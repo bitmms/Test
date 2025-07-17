@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    color: #000000;
+}
+
+.iconfont {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+::selection {
+    color: #00b96b;
+    background: #d1ecf9;
+}
+
+/* 哀悼日的灰色主题 */
+.sad-html {
+    filter: grayscale(100%);
+}

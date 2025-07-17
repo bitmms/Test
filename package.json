@@ -1,0 +1,20 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^1.5.2",
+    "eslint": "^9.31.0",
+    "nuxt": "^4.0.0",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "less": "^4.3.0",
+    "less-loader": "^12.3.0"
+  }
+}
