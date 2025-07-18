@@ -75,12 +75,15 @@ onMounted(() => {
   <div id="container">
     <aside class="container-left-box">
       <div class="aside-logo-box">
-        <div id="aside-logo-box">
-          <div class="logo">
-            <img src="../assets/img/todo/logo.png" alt="logoALT SEO">
-            <div class="logo-desc">拖动 Logo 到书签栏，立即收藏本站</div>
-          </div>
-        </div>
+        <header id="aside-logo-box">
+          <a href="/" class="logo" aria-label="返回首页">
+            <img
+                src="@/assets/svg/logo/bits-logo.svg"
+                alt="双比特 - 程序员导航站"
+                loading="eager"
+            >
+          </a>
+        </header>
       </div>
 
       <div class="aside-nav-box">
@@ -112,10 +115,6 @@ onMounted(() => {
             </li>
           </ul>
         </div>
-      </div>
-
-      <div class="aside-bottom-box">
-        <div id="aside-bottom-box"/>
       </div>
     </aside>
 
@@ -216,7 +215,7 @@ onMounted(() => {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background: #f9f9f9;
+    background: #f5f5f5;
 
     .container-left-box {
       width: var(--aside-width);
@@ -233,12 +232,11 @@ onMounted(() => {
 
       .aside-nav-box {
         flex: 1;
-        margin: 20px 0;
-      }
+        overflow-y: scroll;
 
-      .aside-bottom-box {
-        width: 100%;
-        height: 100px;
+        &::-webkit-scrollbar {
+          width: 0;
+        }
       }
     }
 
@@ -246,6 +244,7 @@ onMounted(() => {
       flex: 1;
       display: flex;
       flex-direction: column;
+      overflow-y: scroll;
 
       .content-box {
         width: 100%;
@@ -273,30 +272,6 @@ onMounted(() => {
     }
   }
 
-  /* 滚动条 */
-  #container {
-    .container-left-box {
-      .aside-nav-box {
-        overflow-y: scroll;
-
-        // 滚动条整体样式
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        // 滚动条本身的样式
-        &::-webkit-scrollbar-thumb {
-          background-color: #ff0000;
-          cursor: pointer;
-        }
-      }
-    }
-
-    .container-right-box {
-      overflow-y: scroll;
-    }
-  }
-
   /* 具体的样式 */
   #container {
     #aside-logo-box {
@@ -305,28 +280,19 @@ onMounted(() => {
 
       .logo {
         position: relative;
+        display: block;
         width: 100%;
         height: 100%;
 
         img {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-
-        .logo-desc {
           position: absolute;
           top: 50%;
-          left: 100%;
-          transform: translateY(-50%);
-          width: 300px;
-          background: #8d6e63;
-          display: none;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: block;
+          width: 80%;
+          cursor: pointer;
         }
-      }
-
-      .logo:hover .logo-desc {
-        display: block;
       }
     }
 
@@ -401,12 +367,6 @@ onMounted(() => {
           margin-top: 12px;
         }
       }
-    }
-
-    #aside-bottom-box {
-      width: 100%;
-      height: 100px;
-      padding: 20px;
     }
 
     #main-box {
@@ -622,7 +582,7 @@ onMounted(() => {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background: #f9f9f9;
+    background: #f5f5f5;
 
     .container-left-box {
       width: var(--aside-width);
@@ -639,12 +599,11 @@ onMounted(() => {
 
       .aside-nav-box {
         flex: 1;
-        margin: 20px 0;
-      }
+        overflow-y: scroll;
 
-      .aside-bottom-box {
-        width: 100%;
-        height: 100px;
+        &::-webkit-scrollbar {
+          width: 0;
+        }
       }
     }
 
@@ -652,6 +611,7 @@ onMounted(() => {
       flex: 1;
       display: flex;
       flex-direction: column;
+      overflow-y: scroll;
 
       .content-box {
         width: 100%;
@@ -679,41 +639,6 @@ onMounted(() => {
     }
   }
 
-  /* 滚动条 */
-  #container {
-    .container-left-box {
-      .aside-nav-box {
-        overflow-y: scroll;
-
-        // 滚动条整体样式
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        // 滚动条本身的样式
-        &::-webkit-scrollbar-thumb {
-          background-color: #ff0000;
-          cursor: pointer;
-        }
-      }
-    }
-
-    .container-right-box {
-      overflow-y: scroll;
-
-      // 滚动条整体样式
-      &::-webkit-scrollbar {
-        width: 0;
-      }
-
-      // 滚动条本身的样式
-      &::-webkit-scrollbar-thumb {
-        background-color: #ff0000;
-        cursor: pointer;
-      }
-    }
-  }
-
   /* 具体的样式 */
   #container {
     #aside-logo-box {
@@ -722,28 +647,19 @@ onMounted(() => {
 
       .logo {
         position: relative;
+        display: block;
         width: 100%;
         height: 100%;
 
         img {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-
-        .logo-desc {
           position: absolute;
           top: 50%;
-          left: 100%;
-          transform: translateY(-50%);
-          width: 300px;
-          background: #8d6e63;
-          display: none;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: block;
+          width: 80%;
+          cursor: pointer;
         }
-      }
-
-      .logo:hover .logo-desc {
-        display: block;
       }
     }
 
@@ -818,12 +734,6 @@ onMounted(() => {
           margin-top: 12px;
         }
       }
-    }
-
-    #aside-bottom-box {
-      width: 100%;
-      height: 100px;
-      padding: 20px;
     }
 
     #main-box {
