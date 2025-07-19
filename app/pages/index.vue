@@ -124,8 +124,10 @@ onMounted(() => {
           <section v-for="(categoryItem, categoryIndex) in htmlData" :key="categoryIndex" class="main-section">
 
             <div :id="categoryItem.category" class="section-title">
-              <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
-              <span class="title-text">{{ categoryItem.category }}</span>
+              <a :href="`/#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
+                <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
+                <span class="title-text">{{ categoryItem.category }}</span>
+              </a>
             </div>
 
             <div class="section-item">
@@ -141,7 +143,7 @@ onMounted(() => {
                       </div>
                       <div class="item-right">
                         <div class="web-title">{{ websiteItem.name }}</div>
-                        <div class="web-desc">{{ websiteItem.description }}</div>
+                        <div class="web-desc">{{ websiteItem.desc }}</div>
                       </div>
                     </div>
                   </a>
@@ -383,27 +385,36 @@ onMounted(() => {
           height: 30px;
           margin-bottom: 20px;
 
-          .title-icon {
-            position: relative;
-            float: left;
-            width: 30px;
-            height: 30px;
+          a {
+            display: inline-block;
+            transition: all var(--transition-time);
 
-            img {
-              position: absolute;
-              top: 50%;
-              left: 0;
-              transform: translateY(-50%);
-              width: 80%;
-              height: 80%;
+            .title-icon {
+              position: relative;
+              float: left;
+              width: 30px;
+              height: 30px;
+
+              img {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: 80%;
+                height: 80%;
+              }
+            }
+
+            .title-text {
+              font-weight: 600;
+              color: #333333;
+              line-height: 30px;
+              font-size: 16px;
             }
           }
 
-          .title-text {
-            font-weight: 600;
-            color: #333333;
-            line-height: 30px;
-            font-size: 16px;
+          a:hover {
+            scale: 1.05;
           }
         }
 

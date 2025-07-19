@@ -8,55 +8,55 @@
       {
         "name": "哔哩哔哩",
         "href": "https://www.bilibili.com/",
-        "description": "弹幕视频社区，互动性强",
+        "desc": "弹幕视频社区，互动性强",
         "slug": "bits-bilibili-video-community"
       },
       {
         "name": "抖音",
         "href": "https://www.douyin.com/",
-        "description": "短视频平台，记录美好生活",
+        "desc": "短视频平台，记录美好生活",
         "slug": "bits-douyin-short-video"
       },
       {
         "name": "虎牙直播",
         "href": "https://www.huya.com/",
-        "description": "游戏直播为主，弹幕互动",
+        "desc": "游戏直播为主，弹幕互动",
         "slug": "bits-huya-game-live"
       },
       {
         "name": "555电影",
         "href": "https://5573695.vip/",
-        "description": "最新 Netflix 免费在线观看",
+        "desc": "最新 Netflix 免费在线观看",
         "slug": "bits-555-movie-netflix"
       },
       {
         "name": "永乐视频",
         "href": "https://ylsp.tv/",
-        "description": "4K 高清影视免费看",
+        "desc": "4K 高清影视免费看",
         "slug": "bits-yongle-4k-movie"
       },
       {
         "name": "语雀",
         "href": "https://www.yuque.com/",
-        "description": "阿里系笔记与知识库",
+        "desc": "阿里系笔记与知识库",
         "slug": "bits-yuque-knowledge-base"
       },
       {
         "name": "百度翻译",
         "href": "https://fanyi.baidu.com/",
-        "description": "百度旗下的专业翻译工具",
+        "desc": "百度旗下的专业翻译工具",
         "slug": "bits-baidu-translate-tool"
       },
       {
         "name": "文件转化器",
         "href": "https://www.freeconvert.com/zh",
-        "description": "在线格式转换工具",
+        "desc": "在线格式转换工具",
         "slug": "bits-freeconvert-file-tool"
       },
       {
         "name": "ChatGPT",
         "href": "https://chatgpt.com/",
-        "description": "OpenAI 开发的语言模型",
+        "desc": "OpenAI 开发的语言模型",
         "slug": "bits-chatgpt-language-model"
       }
     ]
@@ -70,49 +70,49 @@
       {
         "name": "CSDN",
         "href": "https://www.csdn.net/",
-        "description": "中文 IT 技术交流平台",
+        "desc": "中文 IT 技术交流平台",
         "slug": "bits-csdn-it-community"
       },
       {
         "name": "博客园",
         "href": "https://www.cnblogs.com/",
-        "description": "开发者知识分享社区",
+        "desc": "开发者知识分享社区",
         "slug": "bits-cnblogs-dev-sharing"
       },
       {
         "name": "稀土掘金",
         "href": "https://juejin.cn/",
-        "description": "中文开发者技术社区",
+        "desc": "中文开发者技术社区",
         "slug": "bits-juejin-dev-community"
       },
       {
         "name": "思否",
         "href": "https://segmentfault.com/",
-        "description": "专业开发者技术社区",
+        "desc": "专业开发者技术社区",
         "slug": "bits-segmentfault-tech-forum"
       },
       {
         "name": "简书",
         "href": "https://www.jianshu.com/",
-        "description": "优质创作分享社区",
+        "desc": "优质创作分享社区",
         "slug": "bits-jianshu-content-sharing"
       },
       {
         "name": "OSCHINA",
         "href": "https://www.oschina.net/",
-        "description": "中文开源技术社区",
+        "desc": "中文开源技术社区",
         "slug": "bits-oschina-open-source"
       },
       {
         "name": "鸿蒙开发者论坛",
         "href": "https://developer.huawei.com/home/forum/",
-        "description": "鸿蒙开发问答社区",
+        "desc": "鸿蒙开发问答社区",
         "slug": "bits-harmonyos-dev-forum"
       },
       {
         "name": "Stack Overflow",
         "href": "https://stackoverflow.com/questions",
-        "description": "全球最大技术问答平台",
+        "desc": "全球最大技术问答平台",
         "slug": "bits-stackoverflow-qna"
       }
     ]
@@ -126,43 +126,43 @@
       {
         "name": "Maven Repository",
         "href": "https://mvnrepository.com/",
-        "description": "Java 依赖库下载中心",
+        "desc": "Java 依赖库下载中心",
         "slug": "bits-maven-java-repo"
       },
       {
         "name": "Github",
         "href": "https://github.com/",
-        "description": "全球最大开源项目托管平台",
+        "desc": "全球最大开源项目托管平台",
         "slug": "bits-github-open-source"
       },
       {
         "name": "Gitee",
         "href": "https://gitee.com/",
-        "description": "国内主流代码托管平台",
+        "desc": "国内主流代码托管平台",
         "slug": "bits-gitee-code-hosting"
       },
       {
         "name": "OpenHarmony 三方库中心仓",
         "href": "https://ohpm.openharmony.cn/",
-        "description": "鸿蒙开发三方库",
+        "desc": "鸿蒙开发三方库",
         "slug": "bits-openharmony-third-lib"
       },
       {
         "name": "Docker",
         "href": "https://www.docker.com/",
-        "description": "容器化部署平台",
+        "desc": "容器化部署平台",
         "slug": "bits-docker-container-platform"
       },
       {
         "name": "Ollama",
         "href": "https://ollama.com/",
-        "description": "本地运行大语言模型的工具",
+        "desc": "本地运行大语言模型的工具",
         "slug": "bits-ollama-local-llm"
       },
       {
         "name": "Vercel",
         "href": "https://vercel.com/",
-        "description": "静态页面托管平台",
+        "desc": "静态页面托管平台",
         "slug": "bits-vercel-static-hosting"
       }
     ]
@@ -176,73 +176,73 @@
       {
         "name": "阿里云盘",
         "href": "https://www.alipan.com/",
-        "description": "不限速，界面简洁易用",
+        "desc": "不限速，界面简洁易用",
         "slug": "bits-alipan-cloud-storage"
       },
       {
         "name": "百度网盘",
         "href": "https://pan.baidu.com/",
-        "description": "功能强大，资源分享广泛",
+        "desc": "功能强大，资源分享广泛",
         "slug": "bits-baidu-cloud-drive"
       },
       {
         "name": "迅雷云盘",
         "href": "https://pan.xunlei.com/login",
-        "description": "支持边下边播，资源丰富",
+        "desc": "支持边下边播，资源丰富",
         "slug": "bits-xunlei-cloud-streaming"
       },
       {
         "name": "蓝奏・云存储",
         "href": "https://www.lanzoui.com/",
-        "description": "不限速，适合小文件分享",
+        "desc": "不限速，适合小文件分享",
         "slug": "bits-lanzou-small-file"
       },
       {
         "name": "小飞机网盘",
         "href": "https://www.feejii.com/",
-        "description": "轻便网盘，适合快速传输",
+        "desc": "轻便网盘，适合快速传输",
         "slug": "bits-feijii-fast-transfer"
       },
       {
         "name": "夸克网盘",
         "href": "https://pan.quark.cn/",
-        "description": "夸克浏览器集成，速度快",
+        "desc": "夸克浏览器集成，速度快",
         "slug": "bits-quark-cloud-integrated"
       },
       {
         "name": "腾讯微云",
         "href": "https://www.weiyun.com/",
-        "description": "腾讯出品，微信 QQ 无缝接入",
+        "desc": "腾讯出品，微信 QQ 无缝接入",
         "slug": "bits-weiyun-tencent"
       },
       {
         "name": "一刻相册",
         "href": "https://photo.baidu.com/",
-        "description": "百度出品，专注照片存储",
+        "desc": "百度出品，专注照片存储",
         "slug": "bits-yike-photo-storage"
       },
       {
         "name": "123 云盘",
         "href": "https://www.123pan.com/",
-        "description": "下载不限速，资源丰富",
+        "desc": "下载不限速，资源丰富",
         "slug": "bits-123pan-unlimited-speed"
       },
       {
         "name": "电信天翼云盘",
         "href": "https://cloud.189.cn/",
-        "description": "电信官方云盘，安全稳定",
+        "desc": "电信官方云盘，安全稳定",
         "slug": "bits-189-cloud-telecom"
       },
       {
         "name": "中国联通云盘",
         "href": "https://pan.wo.cn/",
-        "description": "联通推出的文件存储服务",
+        "desc": "联通推出的文件存储服务",
         "slug": "bits-unicom-cloud-storage"
       },
       {
         "name": "中国移动云盘",
         "href": "https://yun.139.com/",
-        "description": "移动用户专享云存储工具",
+        "desc": "移动用户专享云存储工具",
         "slug": "bits-chinamobile-cloud"
       }
     ]
@@ -256,43 +256,43 @@
       {
         "name": "AcWing",
         "href": "https://www.acwing.com/",
-        "description": "程序员刷题与课程学习平台",
+        "desc": "程序员刷题与课程学习平台",
         "slug": "bits-acwing-coding-practice"
       },
       {
         "name": "洛谷",
         "href": "https://www.luogu.com.cn/",
-        "description": "OIer 的刷题与交流社区",
+        "desc": "OIer 的刷题与交流社区",
         "slug": "bits-luogu-oi-training"
       },
       {
         "name": "力扣",
         "href": "https://leetcode.cn/",
-        "description": "全球求职刷题知名平台",
+        "desc": "全球求职刷题知名平台",
         "slug": "bits-leetcode-job-prep"
       },
       {
         "name": "牛客竞赛",
         "href": "https://ac.nowcoder.com/",
-        "description": "算法笔试与竞赛平台",
+        "desc": "算法笔试与竞赛平台",
         "slug": "bits-nowcoder-alg-compet"
       },
       {
         "name": "OI Wiki",
         "href": "https://oi-wiki.org/",
-        "description": "信息学竞赛知识汇总站",
+        "desc": "信息学竞赛知识汇总站",
         "slug": "bits-oiwiki-info-comp"
       },
       {
         "name": "Codeforces",
         "href": "https://codeforces.com/",
-        "description": "国际顶尖算法竞赛平台",
+        "desc": "国际顶尖算法竞赛平台",
         "slug": "bits-codeforces-intl-comp"
       },
       {
         "name": "杭电 OJ",
         "href": "https://acm.hdu.edu.cn/",
-        "description": "题量丰富的老牌 OJ 平台",
+        "desc": "题量丰富的老牌 OJ 平台",
         "slug": "bits-hdu-oj-classic"
       }
     ]
@@ -306,49 +306,49 @@
       {
         "name": "轩辕镜像",
         "href": "https://xuanyuan.cloud/",
-        "description": "专业 Docker 镜像加速服务",
+        "desc": "专业 Docker 镜像加速服务",
         "slug": "bits-xuanyuan-docker-mirror"
       },
       {
         "name": "阿里云镜像站",
         "href": "https://developer.aliyun.com/mirror/",
-        "description": "阿里开源镜像服务平台",
+        "desc": "阿里开源镜像服务平台",
         "slug": "bits-aliyun-open-mirror"
       },
       {
         "name": "华为云镜像站",
         "href": "https://mirrors.huaweicloud.com/",
-        "description": "华为云开源软件镜像源",
+        "desc": "华为云开源软件镜像源",
         "slug": "bits-huawei-cloud-mirror"
       },
       {
         "name": "腾讯云镜像站",
         "href": "https://mirrors.cloud.tencent.com/",
-        "description": "腾讯云软件源镜像服务",
+        "desc": "腾讯云软件源镜像服务",
         "slug": "bits-tencent-cloud-mirror"
       },
       {
         "name": "网易开源镜像站",
         "href": "https://mirrors.163.com/",
-        "description": "网易云开源镜像站",
+        "desc": "网易云开源镜像站",
         "slug": "bits-163-open-mirror"
       },
       {
         "name": "清华镜像站",
         "href": "https://mirrors.tuna.tsinghua.edu.cn/",
-        "description": "清华大学开源镜像平台",
+        "desc": "清华大学开源镜像平台",
         "slug": "bits-tsinghua-univ-mirror"
       },
       {
         "name": "北大镜像站",
         "href": "https://mirrors.pku.edu.cn/Mirrors",
-        "description": "北京大学开源镜像服务",
+        "desc": "北京大学开源镜像服务",
         "slug": "bits-pku-univ-mirror"
       },
       {
         "name": "中科大镜像站",
         "href": "https://mirrors.ustc.edu.cn/",
-        "description": "中科大开源镜像平台",
+        "desc": "中科大开源镜像平台",
         "slug": "bits-ustc-univ-mirror"
       }
     ]
@@ -362,37 +362,37 @@
       {
         "name": "阿里巴巴矢量图标库",
         "href": "https://www.iconfont.cn/",
-        "description": "阿里免费图标资源库",
+        "desc": "阿里免费图标资源库",
         "slug": "bits-iconfont-vector-icons"
       },
       {
         "name": "Emoji 大全",
         "href": "https://www.emojiall.com/zh-hans",
-        "description": "Emoji 中文释义及用法",
+        "desc": "Emoji 中文释义及用法",
         "slug": "bits-emojiall-reference"
       },
       {
         "name": "免费图标",
         "href": "https://icon-icons.com/zh/",
-        "description": "多格式免费图标下载",
+        "desc": "多格式免费图标下载",
         "slug": "bits-free-icons-download"
       },
       {
         "name": "菜鸟图标",
         "href": "https://icon.sucai999.com/",
-        "description": "免费商用矢量图标资源",
+        "desc": "免费商用矢量图标资源",
         "slug": "bits-cainiao-commercial-icons"
       },
       {
         "name": "ByteDance IconPark",
         "href": "https://iconpark.oceanengine.com/",
-        "description": "字节免费图标资源库",
+        "desc": "字节免费图标资源库",
         "slug": "bits-bytedance-iconpark"
       },
       {
         "name": "中国大学矢量校徽大全",
         "href": "https://www.urongda.com/",
-        "description": "专业级矢量校徽库",
+        "desc": "专业级矢量校徽库",
         "slug": "bits-china-univ-logos"
       }
     ]
@@ -406,73 +406,73 @@
       {
         "name": "SQLPub",
         "href": "https://www.sqlpub.com/",
-        "description": "国内免费的 MySQL 云服务",
+        "desc": "国内免费的 MySQL 云服务",
         "slug": "bits-sqlpub-mysql-cloud"
       },
       {
         "name": "华为云",
         "href": "https://www.huaweicloud.com/",
-        "description": "华为企业级云服务平台",
+        "desc": "华为企业级云服务平台",
         "slug": "bits-huawei-enterprise-cloud"
       },
       {
         "name": "阿里云",
         "href": "https://www.aliyun.com/",
-        "description": "阿里企业级云服务平台",
+        "desc": "阿里企业级云服务平台",
         "slug": "bits-aliyun-enterprise-cloud"
       },
       {
         "name": "腾讯云",
         "href": "https://cloud.tencent.com/",
-        "description": "腾讯企业级云服务平台",
+        "desc": "腾讯企业级云服务平台",
         "slug": "bits-tencent-enterprise-cloud"
       },
       {
         "name": "京东云",
         "href": "https://www.jdcloud.com/",
-        "description": "京东企业级云服务平台",
+        "desc": "京东企业级云服务平台",
         "slug": "bits-jd-enterprise-cloud"
       },
       {
         "name": "百度智能云",
         "href": "https://cloud.baidu.com/",
-        "description": "百度企业级云服务平台",
+        "desc": "百度企业级云服务平台",
         "slug": "bits-baidu-ai-cloud"
       },
       {
         "name": "火山引擎",
         "href": "https://www.volcengine.com/",
-        "description": "字节跳动企业级云服务平台",
+        "desc": "字节跳动企业级云服务平台",
         "slug": "bits-volcengine-cloud"
       },
       {
         "name": "金山云",
         "href": "https://www.ksyun.com/",
-        "description": "金山软件企业级云服务平台",
+        "desc": "金山软件企业级云服务平台",
         "slug": "bits-kingsoft-enterprise-cloud"
       },
       {
         "name": "天翼云",
         "href": "https://www.ctyun.cn/",
-        "description": "中国电信企业级云服务平台",
+        "desc": "中国电信企业级云服务平台",
         "slug": "bits-ctyun-telecom-cloud"
       },
       {
         "name": "移动云",
         "href": "https://ecloud.10086.cn/",
-        "description": "中国移动企业级云服务平台",
+        "desc": "中国移动企业级云服务平台",
         "slug": "bits-cmcc-enterprise-cloud"
       },
       {
         "name": "联通云",
         "href": "https://www.cucloud.cn/",
-        "description": "中国联通企业级云服务平台",
+        "desc": "中国联通企业级云服务平台",
         "slug": "bits-unicom-enterprise-cloud"
       },
       {
         "name": "七牛云",
         "href": "https://www.qiniu.com/",
-        "description": "专注存储与 CDN 服务",
+        "desc": "专注存储与 CDN 服务",
         "slug": "bits-qiniu-storage-cdn"
       }
     ]
@@ -486,13 +486,13 @@
       {
         "name": "云未落",
         "href": "https://cnnic.cnnic.link/",
-        "description": "魔法工具",
+        "desc": "魔法工具",
         "slug": "bits-yunweiluo-tool"
       },
       {
         "name": "网际快车",
         "href": "https://wjkc66.vip/",
-        "description": "魔法工具",
+        "desc": "魔法工具",
         "slug": "bits-wangji-kuaiche-tool"
       }
     ]
@@ -506,49 +506,49 @@
       {
         "name": "腾讯元宝",
         "href": "https://yuanbao.tencent.com/",
-        "description": "腾讯元宝",
+        "desc": "腾讯元宝",
         "slug": "bits-tencent-yuanbao-llm"
       },
       {
         "name": "纳米 AI 搜索",
         "href": "https://bot.n.cn/",
-        "description": "纳米 AI 搜索",
+        "desc": "纳米 AI 搜索",
         "slug": "bits-nami-ai-search"
       },
       {
         "name": "文心一言",
         "href": "https://yiyan.baidu.com/",
-        "description": "文心一言",
+        "desc": "文心一言",
         "slug": "bits-wenxin-yiyan-llm"
       },
       {
         "name": "KIMI AI",
         "href": "https://www.kimi.com/",
-        "description": "KIMI AI",
+        "desc": "KIMI AI",
         "slug": "bits-kimi-ai-model"
       },
       {
         "name": "豆包",
         "href": "https://www.doubao.com/",
-        "description": "豆包",
+        "desc": "豆包",
         "slug": "bits-doubao-ai-assistant"
       },
       {
         "name": "DeepSeek",
         "href": "https://www.deepseek.com/",
-        "description": "DeepSeek",
+        "desc": "DeepSeek",
         "slug": "bits-deepseek-llm"
       },
       {
         "name": "讯飞星火",
         "href": "https://xinghuo.xfyun.cn/desk",
-        "description": "讯飞星火",
+        "desc": "讯飞星火",
         "slug": "bits-xunfei-xinghuo-llm"
       },
       {
         "name": "ChatGPT",
         "href": "https://chatgpt.com/",
-        "description": "ChatGPT",
+        "desc": "ChatGPT",
         "slug": "bits-chatgpt-openai"
       }
     ]
@@ -562,7 +562,7 @@
       {
         "name": "本人的网站",
         "href": "/",
-        "description": "本人的网站",
+        "desc": "本人的网站",
         "slug": "bits-my-personal-website"
       }
     ]
@@ -576,223 +576,223 @@
       {
         "name": "Vue.js v2 文档",
         "href": "https://v2.cn.vuejs.org/",
-        "description": "Vue.js v2 官方文档",
+        "desc": "Vue.js v2 官方文档",
         "slug": "bits-vuejs-v2-docs"
       },
       {
         "name": "Vue.js 文档",
         "href": "https://cn.vuejs.org/",
-        "description": "Vue.js 官方文档",
+        "desc": "Vue.js 官方文档",
         "slug": "bits-vuejs-official-docs"
       },
       {
         "name": "Axios 文档",
         "href": "https://www.axios-http.cn/docs/intro",
-        "description": "Axios 官方文档",
+        "desc": "Axios 官方文档",
         "slug": "bits-axios-docs"
       },
       {
         "name": "Element UI",
         "href": "https://element.eleme.cn/#/zh-CN",
-        "description": "Element UI 官方文档",
+        "desc": "Element UI 官方文档",
         "slug": "bits-element-ui-docs"
       },
       {
         "name": "Element Plus",
         "href": "https://element-plus.org/",
-        "description": "Element Plus 官方文档",
+        "desc": "Element Plus 官方文档",
         "slug": "bits-element-plus-docs"
       },
       {
         "name": "TDesign",
         "href": "https://tdesign.tencent.com/",
-        "description": "TDesign 官方文档",
+        "desc": "TDesign 官方文档",
         "slug": "bits-tdesign-docs"
       },
       {
         "name": "Ant Design Vue",
         "href": "https://www.antdv.com/docs/vue/introduce-cn",
-        "description": "Ant Design Vue 官方文档",
+        "desc": "Ant Design Vue 官方文档",
         "slug": "bits-antdv-docs"
       },
       {
         "name": "Arco Design",
         "href": "https://arco.design/",
-        "description": "Arco Design 官方文档",
+        "desc": "Arco Design 官方文档",
         "slug": "bits-arco-design-docs"
       },
       {
         "name": "MDN Web Docs",
         "href": "https://developer.mozilla.org/zh-CN/docs/Learn_web_development",
-        "description": "MDN Web 开发学习文档",
+        "desc": "MDN Web 开发学习文档",
         "slug": "bits-mdn-web-docs"
       },
       {
         "name": "Nuxt.js",
         "href": "https://nuxt.com/",
-        "description": "Nuxt.js 官方文档",
+        "desc": "Nuxt.js 官方文档",
         "slug": "bits-nuxtjs-docs"
       },
       {
         "name": "Electron",
         "href": "https://www.electronjs.org/zh/",
-        "description": "Electron 官方文档",
+        "desc": "Electron 官方文档",
         "slug": "bits-electron-docs"
       },
       {
         "name": "React",
         "href": "https://zh-hans.react.dev/learn",
-        "description": "React 官方文档",
+        "desc": "React 官方文档",
         "slug": "bits-react-docs"
       },
       {
         "name": "jQuery",
         "href": "https://jquery.com/",
-        "description": "jQuery 官方文档",
+        "desc": "jQuery 官方文档",
         "slug": "bits-jquery-docs"
       },
       {
         "name": "Next.js",
         "href": "https://www.nextjs.cn/",
-        "description": "Next.js 官方文档",
+        "desc": "Next.js 官方文档",
         "slug": "bits-nextjs-docs"
       },
       {
         "name": "ECharts",
         "href": "https://echarts.apache.org/zh/index.html",
-        "description": "ECharts 官方文档",
+        "desc": "ECharts 官方文档",
         "slug": "bits-echarts-docs"
       },
       {
         "name": "Chart.js",
         "href": "https://chartjs.cn/",
-        "description": "Chart.js 官方文档",
+        "desc": "Chart.js 官方文档",
         "slug": "bits-chartjs-docs"
       },
       {
         "name": "AJAX 教程",
         "href": "https://www.runoob.com/ajax/ajax-tutorial.html",
-        "description": "AJAX 菜鸟教程",
+        "desc": "AJAX 菜鸟教程",
         "slug": "bits-ajax-tutorial"
       },
       {
         "name": "Bootstrap v3",
         "href": "https://v3.bootcss.com/",
-        "description": "Bootstrap v3 官方文档",
+        "desc": "Bootstrap v3 官方文档",
         "slug": "bits-bootstrap-v3-docs"
       },
       {
         "name": "Bootstrap v4",
         "href": "https://v4.bootcss.com/",
-        "description": "Bootstrap v4 官方文档",
+        "desc": "Bootstrap v4 官方文档",
         "slug": "bits-bootstrap-v4-docs"
       },
       {
         "name": "Bootstrap v5",
         "href": "https://v5.bootcss.com/",
-        "description": "Bootstrap v5 官方文档",
+        "desc": "Bootstrap v5 官方文档",
         "slug": "bits-bootstrap-v5-docs"
       },
       {
         "name": "UniApp",
         "href": "https://uniapp.dcloud.net.cn/",
-        "description": "UniApp 官方文档",
+        "desc": "UniApp 官方文档",
         "slug": "bits-uniapp-docs"
       },
       {
         "name": "Cocos Creator",
         "href": "https://www.cocos.com/creator",
-        "description": "Cocos Creator 官方文档",
+        "desc": "Cocos Creator 官方文档",
         "slug": "bits-cocos-creator-docs"
       },
       {
         "name": "Redis 教程",
         "href": "https://www.redis.net.cn/tutorial/3501.html",
-        "description": "Redis 中文教程",
+        "desc": "Redis 中文教程",
         "slug": "bits-redis-tutorial"
       },
       {
         "name": "MySQL 中文网",
         "href": "https://www.mysqlzh.com/",
-        "description": "MySQL 中文网",
+        "desc": "MySQL 中文网",
         "slug": "bits-mysql-chinese-docs"
       },
       {
         "name": "PostgreSQL",
         "href": "https://www.postgresql.org/",
-        "description": "PostgreSQL 官方网站",
+        "desc": "PostgreSQL 官方网站",
         "slug": "bits-postgresql-docs"
       },
       {
         "name": "MongoDB",
         "href": "https://www.mongodb.com/zh-cn/docs/",
-        "description": "MongoDB 官方文档",
+        "desc": "MongoDB 官方文档",
         "slug": "bits-mongodb-docs"
       },
       {
         "name": "SQL Server",
         "href": "https://www.microsoft.com/zh-cn/sql-server/sql-server-downloads",
-        "description": "SQL Server 官方下载页",
+        "desc": "SQL Server 官方下载页",
         "slug": "bits-sqlserver-docs"
       },
       {
         "name": "SQLite",
         "href": "https://sqlite.org/index.html",
-        "description": "SQLite 官方网站",
+        "desc": "SQLite 官方网站",
         "slug": "bits-sqlite-docs"
       },
       {
         "name": "博客园文章",
         "href": "https://www.cnblogs.com/an-wen/p/11180076.html",
-        "description": "博客园文章页面",
+        "desc": "博客园文章页面",
         "slug": "bits-cnblogs-article"
       },
       {
         "name": "微信公众号文章",
         "href": "https://mp.weixin.qq.com/s/N8a-YcCoVmXNrDWjnaxuJg",
-        "description": "微信公众号文章",
+        "desc": "微信公众号文章",
         "slug": "bits-wechat-article"
       },
       {
         "name": "菜鸟教程",
         "href": "https://www.runoob.com/",
-        "description": "菜鸟教程官方网站",
+        "desc": "菜鸟教程官方网站",
         "slug": "bits-runoob-tutorials"
       },
       {
         "name": "MyBatis",
         "href": "https://mybatis.net.cn/index.html",
-        "description": "MyBatis 官方文档",
+        "desc": "MyBatis 官方文档",
         "slug": "bits-mybatis-docs"
       },
       {
         "name": "MyBatis-Plus",
         "href": "https://baomidou.com/",
-        "description": "MyBatis-Plus 官方文档",
+        "desc": "MyBatis-Plus 官方文档",
         "slug": "bits-mybatis-plus-docs"
       },
       {
         "name": "Go 语言之旅",
         "href": "https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/preface.md",
-        "description": "Go 语言之旅中文翻译",
+        "desc": "Go 语言之旅中文翻译",
         "slug": "bits-golang-tour-cn"
       },
       {
         "name": "Spring 中文文档",
         "href": "https://springdoc.cn/",
-        "description": "Spring 中文文档",
+        "desc": "Spring 中文文档",
         "slug": "bits-spring-cn-docs"
       },
       {
         "name": ".NET 学习",
         "href": "https://learn.microsoft.com/zh-cn/dotnet/",
-        "description": ".NET 官方学习文档",
+        "desc": ".NET 官方学习文档",
         "slug": "bits-dotnet-learning"
       },
       {
         "name": "FreeSWITCH",
         "href": "https://rts.cn/freeswitch",
-        "description": "FreeSWITCH 相关资源",
+        "desc": "FreeSWITCH 相关资源",
         "slug": "bits-freeswitch-resources"
       }
     ]
