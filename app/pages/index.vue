@@ -142,12 +142,12 @@ onMounted(() => {
             <div class="section-item">
               <ul>
                 <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
-                  <a :href="`/redirect/${websiteItem.slug}`" target="_blank">
+                  <a :href="`/redirect/${websiteItem.slug}`" :title="websiteItem.desc" target="_blank">
                     <div class="item-box">
                       <div class="item-left">
                         <div class="web-logo">
-                          <span v-show="websiteItem.logo === '~'">{{ websiteItem.name.charAt(0) }}</span>
-                          <img v-show="websiteItem.logo !== '~'" :src="websiteItem.logo" :alt="websiteItem.name.charAt(0)">
+                          <span v-if="websiteItem.logo === '~'">{{ websiteItem.name.charAt(0) }}</span>
+                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name">
                         </div>
                       </div>
                       <div class="item-right">
@@ -176,8 +176,8 @@ onMounted(() => {
       <div id="tool-box">
 
         <div class="tool-item-box" @click="returnToUpOrDown">
-          <img v-if="isShowToUp" :src="toolOfToUp" alt="返回顶部">
-          <img v-if="!isShowToUp" :src="toolOfToDown" alt="滚动到底部">
+          <img v-show="isShowToUp" :src="toolOfToUp" alt="返回顶部">
+          <img v-show="!isShowToUp" :src="toolOfToDown" alt="滚动到底部">
         </div>
 
       </div>
@@ -186,38 +186,13 @@ onMounted(() => {
 </template>
 
 <style lang="less" scoped>
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1201px) {
   /* 变量 */
   #container {
-    --aside-border-right: 4px;
-    --box-big-sep-distance: 80px;
-    --main-scrollbar-width: 8px;
     --aside-width: 220px;
+    --content-grid: 1fr 1fr 1fr 1fr;
 
-    --header-height: 60px;
-    --search-height: 360px;
-    --notice-height: 44px;
-    --friend-height: 420px;
-    --footer-height: 60px;
-    --aside-top-height: 60px;
-    --aside-bottom-height: 80px;
-    --box-small-sep-distance: 20px;
-    --header-text-width: 220px;
-    --tool-width: 40px;
-
-    --aside-top-background-color: #a2d1a2;
-    --aside-nav-background-color: #815353;
-    --aside-bottom-background-color: #d8b174;
-    --header-background-color: #f5f5f5;
-    --search-background-color: #007dfe;
-    --hot-background-color: #931515;
-    --notice-background-color: #ffffff;
-    --main-background-color: #a4caa4;
-    --friend-background-color: #084908;
-    --footer-background-color: #ac2626;
-    --tool-background-color: #4a5255;
-
-    --transition-time: 0.1s;
+    --transition-time: .2s;
   }
 
   /* 结构 */
@@ -230,11 +205,11 @@ onMounted(() => {
     background: #f5f5f5;
 
     .container-left-box {
+      position: relative;
       width: var(--aside-width);
       height: 100%;
       display: flex;
       flex-direction: column;
-      border-right: var(--aside-border-right) solid #ffffff;
       overflow: hidden;
 
       .aside-logo-box {
@@ -252,6 +227,16 @@ onMounted(() => {
       }
     }
 
+    .container-left-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: #ffffff;
+    }
+
     .container-right-box {
       flex: 1;
       display: flex;
@@ -261,25 +246,23 @@ onMounted(() => {
       .content-box {
         width: 100%;
         height: auto;
-        margin-top: var(--box-small-sep-distance);
-        padding-left: var(--box-big-sep-distance);
-        padding-right: calc(var(--box-big-sep-distance) - var(--main-scrollbar-width));
+        padding: 3%;
       }
 
       .footer-box {
         width: 100%;
         height: auto;
-        margin-top: var(--box-small-sep-distance);
         padding-left: 0;
         padding-right: 0;
+        background: rgba(255, 255, 255, 0.6);
       }
     }
 
     .container-tool-box {
       position: absolute;
-      right: var(--box-small-sep-distance);
-      bottom: var(--box-small-sep-distance);
-      width: var(--tool-width);
+      right: 25px;
+      bottom: 25px;
+      width: 40px;
       height: auto;
     }
   }
@@ -384,17 +367,16 @@ onMounted(() => {
     #main-box {
       width: 100%;
       height: auto;
-      box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
 
       .main-section {
         width: 100%;
         height: auto;
-        margin-top: 10px;
+        margin-top: 40px;
 
         .section-title {
           width: 100%;
           height: 30px;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
 
           a {
             display: inline-block;
@@ -433,23 +415,23 @@ onMounted(() => {
           display: block;
           width: 100%;
           height: auto;
-          margin-bottom: 20px;
 
           ul {
             width: 100%;
             height: auto;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-gap: var(--box-small-sep-distance);
+            grid-template-columns: var(--content-grid);
+            grid-row-gap: 25px;
+            grid-column-gap: 25px;
 
             li {
               height: 84px;
               border-radius: 4px;
               box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
-              background-color: rgba(255, 255, 255, 0.6);
-              border: 2px solid #ffffff;
-              transition: all 0.2s ease;
+              background: rgba(255, 255, 255, 0.6);
+              transition: all var(--transition-time);
               cursor: pointer;
+              overflow: hidden;
 
               a {
                 display: block;
@@ -503,28 +485,34 @@ onMounted(() => {
                   }
 
                   .item-right {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
-                    flex: 1;
                     padding: 10px 0;
+                    overflow: hidden;
 
                     .web-title {
                       flex: 1;
+                      display: block;
                       font-size: 14px;
                       font-weight: 500;
                       color: #333333;
                       line-height: 20px;
                       margin-bottom: 2px;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                      overflow: hidden;
                     }
 
                     .web-desc {
                       flex: 1;
+                      display: block;
                       color: #999999;
                       font-size: 12px;
                       line-height: 20px;
-                      display: -webkit-box;
-                      overflow: hidden;
+                      white-space: nowrap;
                       text-overflow: ellipsis;
+                      overflow: hidden;
                     }
                   }
                 }
@@ -538,8 +526,8 @@ onMounted(() => {
         }
       }
 
-      .main-section:nth-child(n + 2) {
-        margin-top: 20px;
+      .main-section:nth-child(1) {
+        margin-top: 0;
       }
     }
 
@@ -557,13 +545,13 @@ onMounted(() => {
     }
 
     #tool-box {
-      width: var(--tool-width);
+      width: 40px;
       height: auto;
 
       .tool-item-box {
         position: relative;
-        width: var(--tool-width);
-        height: var(--tool-width);
+        width: 40px;
+        height: 40px;
         background: #ffffff;
         border-radius: 50%;
         cursor: pointer;
@@ -591,38 +579,13 @@ onMounted(() => {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   /* 变量 */
   #container {
-    --aside-border-right: 0px;
-    --box-big-sep-distance: 20px;
-    --main-scrollbar-width: 0px;
-    --aside-width: 0px;
+    --aside-width: 0;
+    --content-grid: 1fr 1fr;
 
-    --header-height: 60px;
-    --search-height: 360px;
-    --notice-height: 44px;
-    --friend-height: 420px;
-    --footer-height: 60px;
-    --aside-top-height: 60px;
-    --aside-bottom-height: 80px;
-    --box-small-sep-distance: 20px;
-    --header-text-width: 220px;
-    --tool-width: 40px;
-
-    --aside-top-background-color: #a2d1a2;
-    --aside-nav-background-color: #815353;
-    --aside-bottom-background-color: #d8b174;
-    --header-background-color: #f5f5f5;
-    --search-background-color: #007dfe;
-    --hot-background-color: #931515;
-    --notice-background-color: #ffffff;
-    --main-background-color: #a4caa4;
-    --friend-background-color: #084908;
-    --footer-background-color: #ac2626;
-    --tool-background-color: #4a5255;
-
-    --transition-time: 0.1s;
+    --transition-time: .2s;
   }
 
   /* 结构 */
@@ -635,11 +598,11 @@ onMounted(() => {
     background: #f5f5f5;
 
     .container-left-box {
+      position: relative;
       width: var(--aside-width);
       height: 100%;
       display: flex;
       flex-direction: column;
-      border-right: var(--aside-border-right) solid #ffffff;
       overflow: hidden;
 
       .aside-logo-box {
@@ -657,6 +620,16 @@ onMounted(() => {
       }
     }
 
+    .container-left-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: #ffffff;
+    }
+
     .container-right-box {
       flex: 1;
       display: flex;
@@ -666,25 +639,23 @@ onMounted(() => {
       .content-box {
         width: 100%;
         height: auto;
-        margin-top: var(--box-small-sep-distance);
-        padding-left: var(--box-big-sep-distance);
-        padding-right: calc(var(--box-big-sep-distance) - var(--main-scrollbar-width));
+        padding: 3%;
       }
 
       .footer-box {
         width: 100%;
         height: auto;
-        margin-top: var(--box-small-sep-distance);
         padding-left: 0;
         padding-right: 0;
+        background: rgba(255, 255, 255, 0.6);
       }
     }
 
     .container-tool-box {
       position: absolute;
-      right: var(--box-small-sep-distance);
-      bottom: var(--box-small-sep-distance);
-      width: var(--tool-width);
+      right: 25px;
+      bottom: 25px;
+      width: 40px;
       height: auto;
     }
   }
@@ -789,17 +760,16 @@ onMounted(() => {
     #main-box {
       width: 100%;
       height: auto;
-      box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
 
       .main-section {
         width: 100%;
         height: auto;
-        margin-top: 10px;
+        margin-top: 40px;
 
         .section-title {
           width: 100%;
           height: 30px;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
 
           a {
             display: inline-block;
@@ -838,23 +808,23 @@ onMounted(() => {
           display: block;
           width: 100%;
           height: auto;
-          margin-bottom: 20px;
 
           ul {
             width: 100%;
             height: auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: var(--box-small-sep-distance);
+            grid-template-columns: var(--content-grid);
+            grid-row-gap: 25px;
+            grid-column-gap: 25px;
 
             li {
               height: 84px;
               border-radius: 4px;
               box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
-              background-color: rgba(255, 255, 255, 0.6);
-              border: 2px solid #ffffff;
-              transition: all 0.2s ease;
+              background: rgba(255, 255, 255, 0.6);
+              transition: all var(--transition-time);
               cursor: pointer;
+              overflow: hidden;
 
               a {
                 display: block;
@@ -908,28 +878,34 @@ onMounted(() => {
                   }
 
                   .item-right {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
-                    flex: 1;
                     padding: 10px 0;
+                    overflow: hidden;
 
                     .web-title {
                       flex: 1;
+                      display: block;
                       font-size: 14px;
                       font-weight: 500;
                       color: #333333;
                       line-height: 20px;
                       margin-bottom: 2px;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                      overflow: hidden;
                     }
 
                     .web-desc {
                       flex: 1;
+                      display: block;
                       color: #999999;
                       font-size: 12px;
                       line-height: 20px;
-                      display: -webkit-box;
-                      overflow: hidden;
+                      white-space: nowrap;
                       text-overflow: ellipsis;
+                      overflow: hidden;
                     }
                   }
                 }
@@ -943,8 +919,8 @@ onMounted(() => {
         }
       }
 
-      .main-section:nth-child(n + 2) {
-        margin-top: 20px;
+      .main-section:nth-child(1) {
+        margin-top: 0;
       }
     }
 
@@ -962,13 +938,13 @@ onMounted(() => {
     }
 
     #tool-box {
-      width: var(--tool-width);
+      width: 40px;
       height: auto;
 
       .tool-item-box {
         position: relative;
-        width: var(--tool-width);
-        height: var(--tool-width);
+        width: 40px;
+        height: 40px;
         background: #ffffff;
         border-radius: 50%;
         cursor: pointer;
