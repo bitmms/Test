@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type {Category} from "~/assets/ts/Category";
 
-import ToUpIcon from '@/components/icons/ToUpIcon.vue'
-import ToDownIcon from '@/components/icons/ToDownIcon.vue'
 import data from '@/assets/json/data.json'
 import defaultNavIcon from '~/assets/svg/nav/defaultNavIcon.svg'
+import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
+import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
 
 // === DOM Refs ===
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)
@@ -174,10 +174,12 @@ onMounted(() => {
 
     <div class="container-tool-box">
       <div id="tool-box">
+
         <div class="tool-item-box" @click="returnToUpOrDown">
-          <span><ToUpIcon v-if="isShowToUp" :icon-color="'#815353'"/></span>
-          <span><ToDownIcon v-if="!isShowToUp" :icon-color="'#815353'"/></span>
+          <img v-if="isShowToUp" :src="toolOfToUp" alt="返回顶部">
+          <img v-if="!isShowToUp" :src="toolOfToDown" alt="滚动到底部">
         </div>
+
       </div>
     </div>
   </div>
@@ -567,13 +569,14 @@ onMounted(() => {
         cursor: pointer;
         transition: all var(--transition-time);
 
-        span {
+        img {
+          display: block;
+          width: 65%;
+          height: 65%;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 1.2em;
-          color: #333333;
         }
       }
 
@@ -971,13 +974,14 @@ onMounted(() => {
         cursor: pointer;
         transition: all var(--transition-time);
 
-        span {
+        img {
+          display: block;
+          width: 65%;
+          height: 65%;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 1.2em;
-          color: #333333;
         }
       }
 
