@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none"><script xmlns=""/>
+  
+ 
+  <circle cx="50" cy="50" r="50" fill="#727CF5"/>
+  <g clip-path="url(#clip0_2035_970)">
+    <path d="M33.6397 46.4056C34.2249 42.8533 35.819 40.3952 38.2736 37.9432C41.4209 34.7924 45.6001 33.2631 50.0386 33.2631C52.9586 33.2631 55.8288 34.1308 58.3376 35.5757L61.3534 37.3704L65.9935 29.345L62.9821 27.6204C59.0622 25.3576 54.5873 23.76 50.0395 23.76C36.7248 23.76 25.7128 35.7488 24.2626 46.4056H18L28.9383 64.2086L39.6927 46.4056H33.6397Z" fill="white"/>
+    <path d="M71.0612 35.7106L60.3068 53.5101H66.3545C64.8208 61.5026 58.0387 66.8301 50.039 66.8301C47.1306 66.8301 44.2692 66.0344 41.764 64.5966L38.7491 62.8489L34.124 70.8974L37.1399 72.6265C41.0482 74.8706 45.5072 76.0553 50.0381 76.0553C56.9605 76.0553 63.4709 73.4195 68.373 68.5112C72.4697 64.4101 75.0406 59.7265 75.7653 53.5101H82.0003L71.0612 35.7106Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_2035_970">
+      <rect width="64" height="64" fill="white" transform="translate(18 18)"/>
+    </clipPath>
+  </defs>
+<style xmlns="">#csdn-plugin-note-btn{
+      position: fixed;
+      z-index: 100;
+      width: 25px;
+      box-sizing: content-box;
+      right: 0px;
+      top: 20%;
+      color: rgb(255, 255, 255);
+      background: #fff;
+      cursor: pointer;
+      border-bottom-left-radius: 6px;
+      padding: 10px 5px;
+      border-top-left-radius: 6px;
+      font-size: 16px;
+      letter-spacing: 4px;
+      box-shadow: 0px 2px 12px 0px rgba(123,123,123,0.26);
+    }
+    #csdn-plugin-note-btn img.logo{
+      display: block; width:25px; height:25px; margin-bottom:2px;
+    }
+    #csdn-plugin-note-btn img.close{
+      display: none; padding: 5px 5px 10px 5px; width: 15px; height: 15px; box-sizing: content-box; opacity:0.8;
+    }
+    #csdn-plugin-note-btn img.close:hover{opacity:1;}
+    #csdn-plugin-note-btn:hover img.close{display: block;} 
+    #csdn-plugin-note-btn:hover{ padding-bottom: 0;} 
+    #csdn-plugin-note-btn span{
+      color: #484848; font-size: 15px; width: 25px; display: block; text-align: center; word-break: break-all; line-height: 18px; font-weight: 600;padding-left: 2px;
+    }</style><script xmlns=""/></svg>

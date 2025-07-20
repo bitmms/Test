@@ -56,12 +56,21 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
 const initHtmlData = async () => {
   // 1. 加载全部的 json 数据
   htmlData.value = data;
-  // 2. 加载所有的 svg 文件
-  const svgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/nav/*.svg', {eager: true});
-  // 3. 封装 svg 文件
-  htmlData.value.forEach((item) => {
-    const itemSvg = svgs[item.iconSvg];
-    item.iconSvg = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : defaultNavIcon;
+  // 2. 加载所有的 svg/nav 文件
+  const navSvgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/nav/*.svg', {eager: true});
+  // 3. 加载所有的 svg/nav 文件
+  const websiteSvgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/website/*.svg', {eager: true});
+  // 4. 封装所有的 svg/website 文件
+  htmlData.value.forEach(categoryItem => {
+    const itemSvg = navSvgs[categoryItem.iconSvg];
+    categoryItem.iconSvg = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : defaultNavIcon;
+  })
+  // 5. 封装所有的 svg/website 文件
+  htmlData.value.forEach((categoryItem) => {
+    categoryItem.children.forEach(websiteItem => {
+      const itemSvg = websiteSvgs[websiteItem.logo];
+      websiteItem.logo = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : '~';
+    })
   })
 }
 
@@ -132,14 +141,14 @@ onMounted(() => {
 
             <div class="section-item">
               <ul>
-                <li
-                    v-for="(websiteItem, websiteIndex) in categoryItem.children"
-                    :key="websiteIndex"
-                >
+                <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
                   <a :href="`/redirect/${websiteItem.slug}`" target="_blank">
                     <div class="item-box">
                       <div class="item-left">
-                        <div class="web-logo">{{ websiteItem.name.charAt(0) }}</div>
+                        <div class="web-logo">
+                          <span v-show="websiteItem.logo === '~'">{{ websiteItem.name.charAt(0) }}</span>
+                          <img v-show="websiteItem.logo !== '~'" :src="websiteItem.logo" :alt="websiteItem.name.charAt(0)">
+                        </div>
                       </div>
                       <div class="item-right">
                         <div class="web-title">{{ websiteItem.name }}</div>
@@ -439,54 +448,82 @@ onMounted(() => {
               border: 2px solid #ffffff;
               transition: all 0.2s ease;
               cursor: pointer;
-              padding: 12px;
 
-              .item-box {
-                display: flex;
+              a {
+                display: block;
                 width: 100%;
-                height: 60px;
+                height: 100%;
+                padding: 12px;
 
-                .item-left {
-                  width: 60px;
-                  height: 60px;
-                  padding: 10px;
-
-                  .web-logo {
-                    width: 100%;
-                    height: 100%;
-                    background: #3367d6;
-                    border-radius: 50%;
-                    text-align: center;
-                    line-height: 40px;
-                    font-size: 20px;
-                    font-weight: 500;
-                    color: #fff;
-                  }
-                }
-
-                .item-right {
+                .item-box {
                   display: flex;
-                  flex-direction: column;
-                  flex: 1;
-                  padding: 10px 0;
+                  width: 100%;
+                  height: 60px;
 
-                  .web-title {
-                    flex: 1;
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: #333333;
-                    line-height: 20px;
-                    margin-bottom: 2px;
+                  .item-left {
+                    width: 60px;
+                    height: 60px;
+                    padding: 10px;
+
+                    .web-logo {
+                      position: relative;
+                      width: 40px;
+                      height: 40px;
+
+                      span {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        text-align: center;
+                        line-height: 40px;
+                        font-size: 20px;
+                        font-weight: 500;
+                        background: #007dfe;
+                        color: #ffffff;
+                        border-radius: 50%;
+                      }
+
+                      img {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 20%;
+                      }
+                    }
                   }
 
-                  .web-desc {
+                  .item-right {
+                    display: flex;
+                    flex-direction: column;
                     flex: 1;
-                    color: #999999;
-                    font-size: 12px;
-                    line-height: 20px;
-                    display: -webkit-box;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    padding: 10px 0;
+
+                    .web-title {
+                      flex: 1;
+                      font-size: 14px;
+                      font-weight: 500;
+                      color: #333333;
+                      line-height: 20px;
+                      margin-bottom: 2px;
+                    }
+
+                    .web-desc {
+                      flex: 1;
+                      color: #999999;
+                      font-size: 12px;
+                      line-height: 20px;
+                      display: -webkit-box;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
                   }
                 }
               }
@@ -761,27 +798,36 @@ onMounted(() => {
           height: 30px;
           margin-bottom: 20px;
 
-          .title-icon {
-            position: relative;
-            float: left;
-            width: 30px;
-            height: 30px;
+          a {
+            display: inline-block;
+            transition: all var(--transition-time);
 
-            img {
-              position: absolute;
-              top: 50%;
-              left: 0;
-              transform: translateY(-50%);
-              width: 80%;
-              height: 80%;
+            .title-icon {
+              position: relative;
+              float: left;
+              width: 30px;
+              height: 30px;
+
+              img {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: 80%;
+                height: 80%;
+              }
+            }
+
+            .title-text {
+              font-weight: 600;
+              color: #333333;
+              line-height: 30px;
+              font-size: 16px;
             }
           }
 
-          .title-text {
-            font-weight: 600;
-            color: #333333;
-            line-height: 30px;
-            font-size: 16px;
+          a:hover {
+            scale: 1.05;
           }
         }
 
@@ -806,54 +852,82 @@ onMounted(() => {
               border: 2px solid #ffffff;
               transition: all 0.2s ease;
               cursor: pointer;
-              padding: 12px;
 
-              .item-box {
-                display: flex;
+              a {
+                display: block;
                 width: 100%;
-                height: 60px;
+                height: 100%;
+                padding: 12px;
 
-                .item-left {
-                  width: 60px;
-                  height: 60px;
-                  padding: 10px;
-
-                  .web-logo {
-                    width: 100%;
-                    height: 100%;
-                    background: #3367d6;
-                    border-radius: 50%;
-                    text-align: center;
-                    line-height: 40px;
-                    font-size: 20px;
-                    font-weight: 500;
-                    color: #fff;
-                  }
-                }
-
-                .item-right {
+                .item-box {
                   display: flex;
-                  flex-direction: column;
-                  flex: 1;
-                  padding: 10px 0;
+                  width: 100%;
+                  height: 60px;
 
-                  .web-title {
-                    flex: 1;
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: #333333;
-                    line-height: 20px;
-                    margin-bottom: 2px;
+                  .item-left {
+                    width: 60px;
+                    height: 60px;
+                    padding: 10px;
+
+                    .web-logo {
+                      position: relative;
+                      width: 40px;
+                      height: 40px;
+
+                      span {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        text-align: center;
+                        line-height: 40px;
+                        font-size: 20px;
+                        font-weight: 500;
+                        background: #007dfe;
+                        color: #ffffff;
+                        border-radius: 50%;
+                      }
+
+                      img {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 20%;
+                      }
+                    }
                   }
 
-                  .web-desc {
+                  .item-right {
+                    display: flex;
+                    flex-direction: column;
                     flex: 1;
-                    color: #999999;
-                    font-size: 12px;
-                    line-height: 20px;
-                    display: -webkit-box;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    padding: 10px 0;
+
+                    .web-title {
+                      flex: 1;
+                      font-size: 14px;
+                      font-weight: 500;
+                      color: #333333;
+                      line-height: 20px;
+                      margin-bottom: 2px;
+                    }
+
+                    .web-desc {
+                      flex: 1;
+                      color: #999999;
+                      font-size: 12px;
+                      line-height: 20px;
+                      display: -webkit-box;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
                   }
                 }
               }
