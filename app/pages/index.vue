@@ -2,7 +2,8 @@
 import type {Category} from "~/assets/ts/Category";
 
 import data from '@/assets/json/data.json'
-import defaultNavIcon from '~/assets/svg/nav/defaultNavIcon.svg'
+import defaultNavSvg from '~/assets/svg/default/defaultNavSvg.svg'
+import defaultLogoSvg from '~/assets/svg/default/bits-logo.svg'
 import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
 import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
 
@@ -63,7 +64,7 @@ const initHtmlData = async () => {
   // 4. 封装所有的 svg/website 文件
   htmlData.value.forEach(categoryItem => {
     const itemSvg = navSvgs[categoryItem.iconSvg];
-    categoryItem.iconSvg = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : defaultNavIcon;
+    categoryItem.iconSvg = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : defaultNavSvg;
   })
   // 5. 封装所有的 svg/website 文件
   htmlData.value.forEach((categoryItem) => {
@@ -87,7 +88,7 @@ onMounted(() => {
         <header id="aside-logo-box">
           <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
             <img
-                src="@/assets/svg/logo/bits-logo.svg"
+                :src="defaultLogoSvg"
                 alt="双比特 - 程序员导航站"
                 loading="eager"
             >
