@@ -9,14 +9,14 @@ const route = useRoute();
 const slug = route.params.slug as string;
 
 // ======= 批量预加载指定的 SVG 文件 =======
-const svgAssets = import.meta.glob('~/assets/svg/{nav,website}/*.svg', {eager: true, import: 'default'})
+const svgAssets = import.meta.glob('~/assets/svg/{default,nav,website}/*.svg', {eager: true, import: 'default'})
 
 // 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
 const getSvgUrl = (path: string) => {
   if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
     return svgAssets[path] as string;
   }
-  return '~'
+  return ''
 }
 
 // 从 dataJson 中找到符合要求的 WebSite 对象
@@ -24,7 +24,7 @@ const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
     desc: '点击返回主页',
-    logo: `/_nuxt/assets/svg/default/defaultNotFound-404-${new Date().getSeconds() % 10}.svg`,
+    logo: `/assets/svg/default/defaultNotFound-404-${new Date().getSeconds() % 10}.svg`,
     href: '/',
     slug: '/',
   }
@@ -44,7 +44,8 @@ const targetWebSiteInfo = computed(() => {
   <div id="redirect-container">
 
     <div class="logo-box">
-      <img :src="getSvgUrl(targetWebSiteInfo.logo)" :alt="targetWebSiteInfo.name">
+      <span v-if="getSvgUrl(targetWebSiteInfo.logo) === ''">{{ targetWebSiteInfo.name.charAt(0) }}</span>
+      <img v-else :src="getSvgUrl(targetWebSiteInfo.logo)" :alt="targetWebSiteInfo.name">
     </div>
 
     <div class="title-box">
@@ -89,6 +90,19 @@ const targetWebSiteInfo = computed(() => {
     img {
       height: 80px;
       object-fit: contain;
+    }
+
+    span {
+      display: block;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      font-size: 36px;
+      border-radius: 50%;
+      font-weight: 500;
+      background: #007dfe;
+      color: #ffffff;
     }
   }
 

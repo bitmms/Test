@@ -19,7 +19,7 @@ const getSvgUrl = (path: string) => {
   if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
     return svgAssets[path] as string;
   }
-  return '~'
+  return ''
 }
 
 // 直接在服务器渲染
@@ -86,14 +86,9 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
         <div id="aside-nav-box">
           <ul>
             <li v-for="(item, index) in htmlData" :key="index">
-              <a :href="'#' + item.category" :title="item.category" :aria-label="item.category">
+              <a :href="`#${item.category}`" :title="item.category" :aria-label="item.category">
                 <div
-                    class="nav-item-box"
-                    :class="
-                    (item.isSelected ? 'active' : '') +
-                    ' ' +
-                    (item.isMouseenter ? 'mouseenter' : '')
-                  "
+                    :class="`nav-item-box ${item.isSelected ? 'active' : ''} ${item.isMouseenter ? 'mouseenter' : ''}`"
                     @click="selectAsideNavItem(item)"
                     @mouseenter="mouseEnterAsideNavItem(item)"
                     @mouseleave="mouseLeaveAsideNavItem(item)"
@@ -120,7 +115,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
           <section v-for="(categoryItem, categoryIndex) in htmlData" :key="categoryIndex" class="main-section">
 
             <div :id="categoryItem.category" class="section-title">
-              <a :href="`/#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
+              <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
                 <span class="title-icon"><img :src="getSvgUrl(categoryItem.iconSvg)" :alt="categoryItem.category"></span>
                 <span class="title-text">{{ categoryItem.category }}</span>
               </a>
@@ -133,7 +128,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
                     <div class="item-box">
                       <div class="item-left">
                         <div class="web-logo">
-                          <span v-if="websiteItem.logo === '~'">{{ websiteItem.name.charAt(0) }}</span>
+                          <span v-if="getSvgUrl(websiteItem.logo) === ''">{{ websiteItem.name.charAt(0) }}</span>
                           <img v-else :src="getSvgUrl(websiteItem.logo)" :alt="websiteItem.name">
                         </div>
                       </div>
