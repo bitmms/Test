@@ -2,6 +2,7 @@
 import type {Category} from "~/assets/ts/Category";
 import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
 import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
+import data from '~/assets/json/data.json'
 
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)
@@ -9,9 +10,6 @@ const contextBoxRef: Ref<HTMLElement | null> = ref(null)
 // ======= State =======
 const isShowToUp: Ref<boolean> = ref(false)
 const htmlData: Ref<Category[]> = ref([])
-
-// ======= SSR 数据 =======
-const {data} = await useFetch('/api/data')
 
 // ======= 批量预加载指定的 SVG 文件 =======
 const svgAssets = import.meta.glob('~/assets/svg/{nav,website}/*.svg', {eager: true, import: 'default'})
@@ -26,7 +24,7 @@ const getSvgUrl = (path: string) => {
 
 // 直接在服务器渲染
 {
-  htmlData.value = data.value as Category[];
+  htmlData.value = data as Category[];
 }
 
 // 返回顶部、返回底部

@@ -2,13 +2,11 @@
 import {useRoute} from 'vue-router';
 import {computed} from 'vue';
 import type WebSite from "~/assets/ts/WebSite";
+import data from '~/assets/json/data.json'
 
 // ======= 路由参数 =======
 const route = useRoute();
 const slug = route.params.slug as string;
-
-// ======= SSR 数据 =======
-const {data} = await useFetch('/api/data')
 
 // 直接在服务器渲染
 const targetWebSiteInfo = computed(() => {
@@ -19,7 +17,7 @@ const targetWebSiteInfo = computed(() => {
     href: '/',
     slug: '/',
   }
-  for (const categoryItem of data.value) {
+  for (const categoryItem of data) {
     for (const websiteItem of categoryItem.children) {
       if (websiteItem.slug === slug) {
         return websiteItem;
