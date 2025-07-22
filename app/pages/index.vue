@@ -13,6 +13,17 @@ const htmlData: Ref<Category[]> = ref([])
 // ======= SSR 数据 =======
 const {data} = await useFetch('/api/data')
 
+// ======= 批量预加载指定的 SVG 文件 =======
+const svgAssets = import.meta.glob('~/assets/svg/{nav,website}/*.svg', {eager: true, import: 'default'})
+
+// 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
+const getSvgUrl = (path: string) => {
+  if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
+    return svgAssets[path] as string;
+  }
+  return '~'
+}
+
 // 直接在服务器渲染
 {
   htmlData.value = data.value as Category[];
@@ -91,7 +102,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
                 >
                   <div class="nav-icon">
                     <span>
-                      <img :src="item.iconSvg" :alt="item.category">
+                      <img :src="getSvgUrl(item.iconSvg)" :alt="item.category">
                     </span>
                   </div>
                   <div class="nav-title">
@@ -112,7 +123,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
 
             <div :id="categoryItem.category" class="section-title">
               <a :href="`/#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
-                <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
+                <span class="title-icon"><img :src="getSvgUrl(categoryItem.iconSvg)" :alt="categoryItem.category"></span>
                 <span class="title-text">{{ categoryItem.category }}</span>
               </a>
             </div>
@@ -125,7 +136,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
                       <div class="item-left">
                         <div class="web-logo">
                           <span v-if="websiteItem.logo === '~'">{{ websiteItem.name.charAt(0) }}</span>
-                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name">
+                          <img v-else :src="getSvgUrl(websiteItem.logo)" :alt="websiteItem.name">
                         </div>
                       </div>
                       <div class="item-right">
