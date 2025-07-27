@@ -807,6 +807,14 @@ onMounted(() => {
       flex-direction: column;
       overflow-y: scroll;
 
+      .header-box {
+        width: 100%;
+        height: auto;
+        padding-left: 0;
+        padding-right: 0;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
       .content-box {
         width: 100%;
         height: auto;
@@ -924,6 +932,101 @@ onMounted(() => {
 
         li:nth-child(n + 2) {
           margin-top: 12px;
+        }
+      }
+    }
+
+    #header-box {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+
+      .search-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 80px;
+        border-radius: 5px;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        background: #cfd3db;
+
+        .search-select {
+          position: relative;
+          width: 80px;
+          height: 80px;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            width: 55%;
+            height: 55%;
+            cursor: pointer;
+          }
+        }
+
+        .search-input {
+          flex: 1;
+
+          input {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            color: #222226;
+            font-size: 20px;
+            font-weight: 400;
+            background: #d0d6de;
+          }
+        }
+
+        .switch-search {
+          position: absolute;
+          top: 85px;
+          left: 0;
+          border-radius: 5px;
+          width: 100%;
+          height: auto;
+          background: #cfd3db;
+
+          ul {
+            width: 100%;
+            height: auto;
+
+            li {
+              position: relative;
+              float: left;
+              display: block;
+              width: 80px;
+              height: 80px;
+              text-align: center;
+              line-height: 80px;
+
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                width: 60%;
+                height: 60%;
+                transition: all var(--transition-time);
+                cursor: pointer;
+
+                &:hover {
+                  scale: 1.05;
+                }
+              }
+            }
+          }
         }
       }
     }
