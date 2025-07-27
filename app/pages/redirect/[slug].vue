@@ -13,7 +13,7 @@ const slug = route.params.slug as string;
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
 
 // ======= 批量预加载指定的 SVG 文件 =======
-const svgAssets = import.meta.glob('~/assets/svg/{default,website}/*.svg', {eager: true, import: 'default'})
+const svgAssets = import.meta.glob('~/assets/svg/website/*.svg', {eager: true, import: 'default'})
 
 // 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
 const getSvgUrl = (path: string) => {
@@ -28,9 +28,9 @@ const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
     desc: '点击返回主页',
-    logo: `/assets/svg/default/defaultNotFound-404-${new Date().getSeconds() % 10}.svg`,
-    href: '/',
-    slug: '/',
+    logo: '',
+    href: '',
+    slug: '',
   }
   for (const categoryItem of websiteData.value) {
     for (const websiteItem of categoryItem.children) {
