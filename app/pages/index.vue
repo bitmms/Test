@@ -259,6 +259,7 @@ onMounted(() => {
   #container {
     --aside-width: 220px;
     --content-grid: 1fr 1fr 1fr 1fr;
+    --header-display: block;
 
     --transition-time: .2s;
   }
@@ -445,6 +446,7 @@ onMounted(() => {
       width: 100%;
       height: 200px;
       background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+      display: var(--header-display);
 
       .search-box {
         position: absolute;
@@ -755,6 +757,7 @@ onMounted(() => {
   #container {
     --aside-width: 0;
     --content-grid: 1fr 1fr;
+    --header-display: none;
 
     --transition-time: .2s;
   }
@@ -941,6 +944,7 @@ onMounted(() => {
       width: 100%;
       height: 200px;
       background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+      display: var(--header-display);
 
       .search-box {
         position: absolute;
