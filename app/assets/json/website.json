@@ -95,7 +95,7 @@
         "href": "https://www.cnblogs.com/",
         "desc": "开发者知识分享社区",
         "slug": "bits-to-cnblogs",
-        "logo": "/assets/svg/website/blog-yuan.svg"
+        "logo": "/assets/svg/website/cnblogs.svg"
       },
       {
         "name": "稀土掘金",
@@ -137,7 +137,7 @@
         "href": "https://stackoverflow.com/questions",
         "desc": "全球最大技术问答平台",
         "slug": "bits-to-stackoverflow",
-        "logo": "/assets/svg/website/stack-overflow.svg"
+        "logo": "/assets/svg/website/stackoverflow.svg"
       }
     ]
   },

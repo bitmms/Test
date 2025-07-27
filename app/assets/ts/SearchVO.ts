@@ -1,6 +1,6 @@
 import type SearchEngine from "~/assets/ts/SearchEngine";
 
-export class SearchVO {
+export default class SearchVO {
     public tab: boolean
     public list: SearchEngine[]
 

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type {Category} from "~/assets/ts/Category";
+import {computed} from "vue";
+import webSiteJsonData from '~/assets/json/website.json'
+import searchJsonData from '~/assets/json/search.json'
 import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
 import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
-import data from '~/assets/json/data.json'
-import searchMap from '~/assets/json/search.json'
-import type {SearchVO} from "~/assets/ts/SearchVO";
+import type Category from "~/assets/ts/Category";
+import type SearchVO from "~/assets/ts/SearchVO";
 import type SearchEngine from "~/assets/ts/SearchEngine";
-import {computed} from "vue";
 
 // ======= DOM Refs =======
-const contextBoxRef: Ref<HTMLElement | null> = ref(null)
+const contextBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
 
 // ======= State =======
-const htmlData: Ref<Category[]> = ref([])
-const searchContent: Ref<string> = ref('')
-const searchType: Ref<string> = ref('bing')
-const isShowToUp: Ref<boolean> = ref(false)
-const searchData: Ref<SearchVO> = ref(searchMap)
-const isShowSwitchSearchEngines: Ref<boolean> = ref(false)
+const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
+const searchData: Ref<SearchVO> = ref(searchJsonData)       // json 数据
+const searchContent: Ref<string> = ref('')                  // 用户当前等待搜索的字符串
+const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
+const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮
+const isShowSwitchSearchEngines: Ref<boolean> = ref(false)  // 记录当前是否显示切换搜索引擎的盒子
 
 // ======= 批量预加载指定的 SVG 文件 =======
 const svgAssets = import.meta.glob('~/assets/svg/{nav,website,search}/*.svg', {eager: true, import: 'default'})
@@ -28,11 +28,6 @@ const getSvgUrl = (path: string) => {
     return svgAssets[path] as string;
   }
   return ''
-}
-
-// 直接在服务器渲染
-{
-  htmlData.value = data as Category[];
 }
 
 // 返回顶部、返回底部
@@ -57,13 +52,13 @@ const mainContentScroll = () => {
 
 // 点击左侧导航栏的某项
 const selectAsideNavItem = (nowNavItem: Category) => {
-  htmlData.value.forEach((item) => (item.isSelected = false))
+  websiteData.value.forEach((item) => (item.isSelected = false))
   nowNavItem.isSelected = true
 }
 
 // 鼠标移入左侧导航栏的某项
 const mouseEnterAsideNavItem = (nowNavItem: Category) => {
-  htmlData.value.forEach((item) => (item.isMouseenter = false))
+  websiteData.value.forEach((item) => (item.isMouseenter = false))
   if (!nowNavItem.isSelected) {
     nowNavItem.isMouseenter = true
   }
@@ -143,7 +138,7 @@ onMounted(() => {
       <div class="aside-nav-box">
         <div id="aside-nav-box">
           <ul>
-            <li v-for="(item, index) in htmlData" :key="index">
+            <li v-for="(item, index) in websiteData" :key="index">
               <a :href="`#${item.category}`" :title="item.category" :aria-label="item.category">
                 <div
                     :class="`nav-item-box ${item.isSelected ? 'active' : ''} ${item.isMouseenter ? 'mouseenter' : ''}`"
@@ -203,7 +198,7 @@ onMounted(() => {
       </div>
       <div class="content-box">
         <main id="main-box">
-          <section v-for="(categoryItem, categoryIndex) in htmlData" :key="categoryIndex" class="main-section">
+          <section v-for="(categoryItem, categoryIndex) in websiteData" :key="categoryIndex" class="main-section">
 
             <div :id="categoryItem.category" class="section-title">
               <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">

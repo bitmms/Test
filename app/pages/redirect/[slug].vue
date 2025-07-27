@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import {useRoute} from 'vue-router';
 import {computed} from 'vue';
+import {useRoute} from 'vue-router';
+import webSiteJsonData from '~/assets/json/website.json'
 import type WebSite from "~/assets/ts/WebSite";
-import data from '~/assets/json/data.json'
+import type Category from "~/assets/ts/Category";
 
 // ======= 路由参数 =======
 const route = useRoute();
 const slug = route.params.slug as string;
+
+// ======= State =======
+const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
 
 // ======= 批量预加载指定的 SVG 文件 =======
 const svgAssets = import.meta.glob('~/assets/svg/{default,nav,website}/*.svg', {eager: true, import: 'default'})
@@ -28,7 +32,7 @@ const targetWebSiteInfo = computed(() => {
     href: '/',
     slug: '/',
   }
-  for (const categoryItem of data) {
+  for (const categoryItem of websiteData.value) {
     for (const websiteItem of categoryItem.children) {
       if (websiteItem.slug === slug) {
         return websiteItem;

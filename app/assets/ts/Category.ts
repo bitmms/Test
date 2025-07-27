@@ -1,6 +1,6 @@
 import type WebSite from '@/assets/ts/WebSite.ts'
 
-export class Category {
+export default class Category {
   public isSelected: boolean
   public isMouseenter: boolean
   public category: string
