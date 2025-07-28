@@ -202,7 +202,7 @@ onMounted(() => {
                       <div class="item-left">
                         <div class="web-logo">
                           <span v-if="websiteItem.logo === ''">{{ websiteItem.name.charAt(0) }}</span>
-                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name">
+                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name" loading="lazy">
                         </div>
                       </div>
                       <div class="item-right">
