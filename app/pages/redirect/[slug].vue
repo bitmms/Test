@@ -12,17 +12,6 @@ const slug = route.params.slug as string;
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
 
-// ======= 批量预加载指定的 SVG 文件 =======
-const svgAssets = import.meta.glob('~/assets/svg/website/*.svg', {eager: true, import: 'default'})
-
-// 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
-const getSvgUrl = (path: string) => {
-  if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
-    return svgAssets[path] as string;
-  }
-  return ''
-}
-
 // 从 dataJson 中找到符合要求的 WebSite 对象
 const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
@@ -48,8 +37,8 @@ const targetWebSiteInfo = computed(() => {
   <div id="redirect-container">
 
     <div class="logo-box">
-      <span v-if="getSvgUrl(targetWebSiteInfo.logo) === ''">{{ targetWebSiteInfo.name.charAt(0) }}</span>
-      <img v-else :src="getSvgUrl(targetWebSiteInfo.logo)" :alt="targetWebSiteInfo.name">
+      <span v-if="targetWebSiteInfo.logo === ''">{{ targetWebSiteInfo.name.charAt(0) }}</span>
+      <img v-else :src="targetWebSiteInfo.logo" :alt="targetWebSiteInfo.name">
     </div>
 
     <div class="title-box">

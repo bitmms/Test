@@ -2,8 +2,6 @@
 import {computed} from "vue";
 import webSiteJsonData from '~/assets/json/website.json'
 import searchJsonData from '~/assets/json/search.json'
-import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
-import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
 import type Category from "~/assets/ts/Category";
 import type SearchVO from "~/assets/ts/SearchVO";
 import type SearchEngine from "~/assets/ts/SearchEngine";
@@ -18,17 +16,6 @@ const searchContent: Ref<string> = ref('')                  // 用户当前等�
 const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
 const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮
 const isShowSwitchSearchEngines: Ref<boolean> = ref(false)  // 记录当前是否显示切换搜索引擎的盒子
-
-// ======= 批量预加载指定的 SVG 文件 =======
-const svgAssets = import.meta.glob('~/assets/svg/{nav,website,search}/*.svg', {eager: true, import: 'default'})
-
-// 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
-const getSvgUrl = (path: string) => {
-  if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
-    return svgAssets[path] as string;
-  }
-  return ''
-}
 
 // 返回顶部、返回底部
 const returnToUpOrDown = () => {
@@ -127,7 +114,7 @@ onMounted(() => {
         <header id="aside-logo-box">
           <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
             <img
-                :src="'/bits-logo.svg'"
+                src="/bits-logo.svg"
                 alt="双比特 - 程序员导航站"
                 loading="eager"
             >
@@ -148,7 +135,7 @@ onMounted(() => {
                 >
                   <div class="nav-icon">
                     <span>
-                      <img :src="getSvgUrl(item.iconSvg)" :alt="item.category">
+                      <img :src="item.iconSvg" :alt="item.category">
                     </span>
                   </div>
                   <div class="nav-title">
@@ -169,7 +156,7 @@ onMounted(() => {
 
             <div class="search-select">
               <img
-                  :src="getSvgUrl(nowSearchEngineObj.logo)"
+                  :src="nowSearchEngineObj.logo"
                   :alt="nowSearchEngineObj.name"
                   :title="nowSearchEngineObj.name"
                   @click="showSwitchSearchEngines"
@@ -184,7 +171,7 @@ onMounted(() => {
               <ul>
                 <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
                   <img
-                      :src="getSvgUrl(searchEngineItem.logo)"
+                      :src="searchEngineItem.logo"
                       :alt="searchEngineItem.name"
                       :title="searchEngineItem.name"
                       @click="selectSearchEngine(searchEngineItem.name)"
@@ -202,7 +189,7 @@ onMounted(() => {
 
             <div :id="categoryItem.category" class="section-title">
               <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
-                <span class="title-icon"><img :src="getSvgUrl(categoryItem.iconSvg)" :alt="categoryItem.category"></span>
+                <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
                 <span class="title-text">{{ categoryItem.category }}</span>
               </a>
             </div>
@@ -214,8 +201,8 @@ onMounted(() => {
                     <div class="item-box">
                       <div class="item-left">
                         <div class="web-logo">
-                          <span v-if="getSvgUrl(websiteItem.logo) === ''">{{ websiteItem.name.charAt(0) }}</span>
-                          <img v-else :src="getSvgUrl(websiteItem.logo)" :alt="websiteItem.name">
+                          <span v-if="websiteItem.logo === ''">{{ websiteItem.name.charAt(0) }}</span>
+                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name">
                         </div>
                       </div>
                       <div class="item-right">
@@ -244,8 +231,8 @@ onMounted(() => {
       <div id="tool-box">
 
         <div class="tool-item-box" @click="returnToUpOrDown">
-          <img v-show="isShowToUp" :src="toolOfToUp" alt="返回顶部">
-          <img v-show="!isShowToUp" :src="toolOfToDown" alt="滚动到底部">
+          <img v-show="isShowToUp" src="/svg/tool/tool-to-up.svg" alt="返回顶部">
+          <img v-show="!isShowToUp" src="/svg/tool/tool-to-down.svg" alt="滚动到底部">
         </div>
 
       </div>
