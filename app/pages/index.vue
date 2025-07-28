@@ -304,7 +304,6 @@ onMounted(() => {
         height: auto;
         padding-left: 0;
         padding-right: 0;
-        background: rgba(255, 255, 255, 0.6);
       }
 
       .content-box {
@@ -432,7 +431,7 @@ onMounted(() => {
       position: relative;
       width: 100%;
       height: 200px;
-      background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+      background: url("/img/header-bg.png") no-repeat center center fixed;
       display: var(--header-display);
 
       .search-box {
@@ -802,7 +801,6 @@ onMounted(() => {
         height: auto;
         padding-left: 0;
         padding-right: 0;
-        background: rgba(255, 255, 255, 0.6);
       }
 
       .content-box {
@@ -930,7 +928,7 @@ onMounted(() => {
       position: relative;
       width: 100%;
       height: 200px;
-      background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+      background: url("/img/header-bg.png") no-repeat center center fixed;
       display: var(--header-display);
 
       .search-box {
