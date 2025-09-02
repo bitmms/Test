@@ -1,0 +1,1119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EEB4588-165A-48D2-A5F9-D8640FF9A7E9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MyMVVM</RootNamespace>
+    <AssemblyName>MyMVVM</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>0</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Common\Images\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FFmpeg.AutoGen, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FFmpeg.AutoGen.7.0.0\lib\netstandard2.0\FFmpeg.AutoGen.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.3.5.1\lib\net472\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="HZH_Controls, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HZH_Controls.1.5.240416\lib\net40\HZH_Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="LibVLCSharp, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.3.8.5\lib\net471\LibVLCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LibVLCSharp.WPF, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.WPF.3.8.5\lib\net461\LibVLCSharp.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.3.0.0-ci354\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.5.0.0-ci354\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.2.2.1\lib\net472\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Asio, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Asio.2.2.1\lib\netstandard2.0\NAudio.Asio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Core.2.2.1\lib\netstandard2.0\NAudio.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Midi, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Midi.2.2.1\lib\netstandard2.0\NAudio.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Wasapi, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Wasapi.2.2.1\lib\netstandard2.0\NAudio.Wasapi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinForms, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinForms.2.2.1\lib\net472\NAudio.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinMM, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinMM.2.2.1\lib\netstandard2.0\NAudio.WinMM.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.8.0.3\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PJSUA2, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PJSUA2.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2024.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2024.1.0\lib\net462\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Rubyer, Version=2.15.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rubyer.2.15.18\lib\net462\Rubyer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.8.0.3\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.3.1.0\lib\net45\Vlc.DotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core.Interops, Version=3.1.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.3.1.0\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Wpf, Version=3.1.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Wpf.3.1.0\lib\net45\Vlc.DotNet.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Battery\ViewModel\BatteryViewModel.cs" />
+    <Compile Include="Battery\View\BatteryView.xaml.cs">
+      <DependentUpon>BatteryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\DB\BroadCastDB.cs" />
+    <Compile Include="Broadcast\DB\MusicDB.cs" />
+    <Compile Include="Broadcast\DB\TTSDB.cs" />
+    <Compile Include="Broadcast\Enum\BroadCastPlayStatusEnum.cs" />
+    <Compile Include="Broadcast\Enum\BroadcastTypeEnum.cs" />
+    <Compile Include="Broadcast\Model\BroadCastListModel.cs" />
+    <Compile Include="Broadcast\Model\BroadCastModel.cs" />
+    <Compile Include="Broadcast\Model\MusicModel.cs" />
+    <Compile Include="Broadcast\Model\TTSModel.cs" />
+    <Compile Include="Broadcast\Utils\BroadCastUtil.cs" />
+    <Compile Include="Broadcast\Utils\MusicConfig.cs" />
+    <Compile Include="Broadcast\Utils\TimerPool.cs" />
+    <Compile Include="Broadcast\ViewModel\AllPersonsBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\BroadcastDetailViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\BroadcastListViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\BroadCastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\MultiBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\MusicBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\MusicListViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\ScheduledBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\TaskBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\TTSCreateAndDetailViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\TTSListViewModel.cs" />
+    <Compile Include="Broadcast\ViewModel\TTSRealTimeBroadcastViewModel.cs" />
+    <Compile Include="Broadcast\View\AllPersonsBroadcastView.xaml.cs">
+      <DependentUpon>AllPersonsBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\BroadcastDetailView.xaml.cs">
+      <DependentUpon>BroadcastDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\BroadcastListView.xaml.cs">
+      <DependentUpon>BroadcastListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\BroadcastView.xaml.cs">
+      <DependentUpon>BroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\CameraView.xaml.cs">
+      <DependentUpon>CameraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\MultiBroadcastView.xaml.cs">
+      <DependentUpon>MultiBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\MusicBroadcastView.xaml.cs">
+      <DependentUpon>MusicBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\MusicListView.xaml.cs">
+      <DependentUpon>MusicListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\ScheduledBroadcastView.xaml.cs">
+      <DependentUpon>ScheduledBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\TaskBroadcastView.xaml.cs">
+      <DependentUpon>TaskBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\TTSCreateAndDetailView.xaml.cs">
+      <DependentUpon>TTSCreateAndDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\TTSListView.xaml.cs">
+      <DependentUpon>TTSListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcast\View\TTSRealTimeBroadcastView.xaml.cs">
+      <DependentUpon>TTSRealTimeBroadcastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DB\CommonDB.cs" />
+    <Compile Include="Common\DB\DB.cs" />
+    <Compile Include="Emotion\DB\EmotionAlarmDB.cs" />
+    <Compile Include="Common\DB\LogDB.cs" />
+    <Compile Include="Common\Enum\EnumExtension.cs" />
+    <Compile Include="Common\Enum\ThemeEnum.cs" />
+    <Compile Include="Common\Model\DefaultUserModel.cs" />
+    <Compile Include="Common\Utils\DMConfig.cs" />
+    <Compile Include="Common\Utils\DMUtil.cs" />
+    <Compile Include="Common\Utils\DMVariable.cs" />
+    <Compile Include="Common\Utils\FSSocket.cs" />
+    <Compile Include="Common\Utils\SSH.cs" />
+    <Compile Include="Common\ViewModel\ViewModelCommand.cs" />
+    <Compile Include="Common\ViewModel\ViewModelsBase.cs" />
+    <Compile Include="Common\View\DMMessageBox.xaml.cs">
+      <DependentUpon>DMMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emotion\Model\EmotionModel.cs" />
+    <Compile Include="Emotion\ViewModel\EmotionAlarmViewModel.cs" />
+    <Compile Include="Emotion\View\EmotionAlarmView.xaml.cs">
+      <DependentUpon>EmotionAlarmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Conference\DB\ConferenceDB.cs" />
+    <Compile Include="Conference\ViewModel\ConferenceViewModel.cs" />
+    <Compile Include="Conference\View\ConferenceView.xaml.cs">
+      <DependentUpon>ConferenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch\DB\DispatchDB.cs" />
+    <Compile Include="Dispatch\Model\UserCdrModel.cs" />
+    <Compile Include="Dispatch\ViewModel\MissCallViewModel.cs" />
+    <Compile Include="Dispatch\ViewModel\UserCdrViewModel.cs" />
+    <Compile Include="Dispatch\ViewModel\DispatchViewModel.cs" />
+    <Compile Include="Dispatch\View\DispatchView.xaml.cs">
+      <DependentUpon>DispatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch\View\MissCallView.xaml.cs">
+      <DependentUpon>MissCallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch\View\UserCdrDetailView.xaml.cs">
+      <DependentUpon>UserCdrDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch\View\UserCdrView.xaml.cs">
+      <DependentUpon>UserCdrView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emotion\View\PlayAudioView.xaml.cs">
+      <DependentUpon>PlayAudioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emotion\View\UpdateEmotionKeyWordView.xaml.cs">
+      <DependentUpon>UpdateEmotionKeyWordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\DB\LoginDB.cs" />
+    <Compile Include="Login\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Login\View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\DB\IsPeopleDB.cs" />
+    <Compile Include="MainWindow\DB\SideButtonDB.cs" />
+    <Compile Include="MainWindow\Model\SideButtonModel.cs" />
+    <Compile Include="MainWindow\Utils\InitUtil.cs" />
+    <Compile Include="MainWindow\View\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\View\IsPeople.xaml.cs">
+      <DependentUpon>IsPeople.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\View\MainFormView.xaml.cs">
+      <DependentUpon>MainFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\View\PasswordWindow.xaml.cs">
+      <DependentUpon>PasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\View\VideoCallWebSocketView.xaml.cs">
+      <DependentUpon>VideoCallWebSocketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Map\ViewModel\MapViewModel.cs" />
+    <Compile Include="Map\View\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Model\DispatchNumModel.cs" />
+    <Compile Include="Common\Model\GroupModel.cs" />
+    <Compile Include="Common\Model\DispatchButtonModel.cs" />
+    <Compile Include="MainWindow\Model\MissCallModel.cs" />
+    <Compile Include="Monitor\DB\MonitorDB.cs" />
+    <Compile Include="Monitor\Model\MonitorButton.cs" />
+    <Compile Include="Monitor\Model\MonitorModel.cs" />
+    <Compile Include="Monitor\Utils\DHUtil.cs" />
+    <Compile Include="Monitor\Utils\HKUtil.cs" />
+    <Compile Include="Monitor\Utils\MonitorUtil.cs" />
+    <Compile Include="Monitor\ViewModel\MonitorViewModel.cs" />
+    <Compile Include="Monitor\View\MonitorView.xaml.cs">
+      <DependentUpon>MonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Utils\HaiKang\CHCNetSDK.cs" />
+    <Compile Include="Monitor\View\MoreMonitorView.xaml.cs">
+      <DependentUpon>MoreMonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\View\OneMonitorView.xaml.cs">
+      <DependentUpon>OneMonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Phone\DB\PhoneDB.cs" />
+    <Compile Include="Phone\Model\RTMPResponse.cs" />
+    <Compile Include="Phone\Utils\RemoteControCommonVar.cs" />
+    <Compile Include="Phone\Utils\SipUtil.cs" />
+    <Compile Include="Common\Utils\PJSIP\Account.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountCallConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountIpChangeConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountMediaConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountMwiConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountNatConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountPresConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountRegConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountSipConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AccountVideoConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudDevErrorEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudDevManager.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioDevInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioDevInfoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioDevInfoVector2.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMedia.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaPlayer.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaPlayerInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaRecorder.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaTransmitParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\AudioMediaVector2.cs" />
+    <Compile Include="Common\Utils\PJSIP\AuthCredInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\AuthCredInfoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\Buddy.cs" />
+    <Compile Include="Common\Utils\PJSIP\BuddyConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\BuddyInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\BuddyVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\BuddyVector2.cs" />
+    <Compile Include="Common\Utils\PJSIP\Call.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallMediaInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallMediaInfoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallOpParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallSendDtmfParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallSendRequestParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallSetting.cs" />
+    <Compile Include="Common\Utils\PJSIP\CallVidSetStreamParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecFmtp.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecFmtpVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecInfoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecInfoVector2.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecOpusConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecParamInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\CodecParamSetting.cs" />
+    <Compile Include="Common\Utils\PJSIP\ConfPortInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\ContainerNode.cs" />
+    <Compile Include="Common\Utils\PJSIP\Endpoint.cs" />
+    <Compile Include="Common\Utils\PJSIP\EpConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\Error.cs" />
+    <Compile Include="Common\Utils\PJSIP\ExtraAudioDevice.cs" />
+    <Compile Include="Common\Utils\PJSIP\FindBuddyMatch.cs" />
+    <Compile Include="Common\Utils\PJSIP\IntVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\IpChangeParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\JbufState.cs" />
+    <Compile Include="Common\Utils\PJSIP\JsonDocument.cs" />
+    <Compile Include="Common\Utils\PJSIP\LogConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\LogEntry.cs" />
+    <Compile Include="Common\Utils\PJSIP\LogWriter.cs" />
+    <Compile Include="Common\Utils\PJSIP\LossType.cs" />
+    <Compile Include="Common\Utils\PJSIP\MathStat.cs" />
+    <Compile Include="Common\Utils\PJSIP\Media.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaCoordinate.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaEventData.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFmtChangedEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFormat.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFormatAudio.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFormatAudioVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFormatVideo.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaFormatVideoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaSize.cs" />
+    <Compile Include="Common\Utils\PJSIP\MediaTransportInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnBuddyEvSubStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallMediaEventParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallMediaStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallMediaTransportStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallRedirectedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallReplacedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallReplaceRequestParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallRxOfferParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallRxReinviteParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallSdpCreatedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallTransferRequestParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallTransferStatusParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallTsxStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCallTxOfferParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCreateMediaTransportParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnCreateMediaTransportSrtpParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnDtmfDigitParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnIncomingCallParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnIncomingSubscribeParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnInstantMessageParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnInstantMessageStatusParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnIpChangeProgressParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnMediaEventParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnMwiInfoParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnNatCheckStunServersCompleteParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnNatDetectionCompleteParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnRegStartedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnRegStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnSelectAccountParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnStreamCreatedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnStreamDestroyedParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnTimerParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnTransportStateParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\OnTypingIndicationParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\PendingJob.cs" />
+    <Compile Include="Common\Utils\PJSIP\PersistentDocument.cs" />
+    <Compile Include="Common\Utils\PJSIP\PersistentObject.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_aud_dev_cap.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_aud_dev_route.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_dir.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_echo_flag.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_event_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_file_player_option.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_file_writer_option.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_format_id.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_orient.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_rtcp_fb_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_srtp_crypto_option.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_srtp_keying_method.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_srtp_use.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_tone_desc.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_tone_digit.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_tone_digit_map.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_tp_proto.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_vid_dev_cap.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_vid_dev_std_index.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_vid_packing.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjmedia_vid_stream_rc_method.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjrpid_activity.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_cred_data_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_dialog_cap_status.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_event_id_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_evsub_state.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_hdr_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_inv_state.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_redirect_op.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_role_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_ssl_method.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_status_code.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_transport_flags_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_transport_state.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_transport_type_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsip_tsx_state_e.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua2.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua2PINVOKE.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_100rel_use.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_buddy_status.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_call_flag.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_call_hold_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_call_media_status.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_call_vid_strm_op.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_create_media_transport_flag.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_destroy_flag.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_dtmf_method.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_invalid_id_const_.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_ipv6_use.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_ip_change_op.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_med_tp_st.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_nat64_opt.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_sip_timer_use.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_snd_dev_id.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_snd_dev_mode.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_state.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_stun_use.cs" />
+    <Compile Include="Common\Utils\PJSIP\pjsua_vid_req_keyframe_method.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_constants_.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_file_access.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_log_decoration.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_qos_flag.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_qos_params.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_qos_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_qos_wmm_prio.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_ssl_cert_name_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_ssl_cert_verify_flag_t.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_ssl_cipher.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_ssl_sock_proto.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_stun_nat_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\pj_turn_tp_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\PresenceStatus.cs" />
+    <Compile Include="Common\Utils\PJSIP\PresNotifyParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\RegProgressParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpFbCap.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpFbCapVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpFbConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpSdes.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpStat.cs" />
+    <Compile Include="Common\Utils\PJSIP\RtcpStreamStat.cs" />
+    <Compile Include="Common\Utils\PJSIP\RxMsgEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\SdpSession.cs" />
+    <Compile Include="Common\Utils\PJSIP\SendInstantMessageParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\SendTypingIndicationParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipEventBody.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipHeader.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipHeaderVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipMediaType.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipMultipartPart.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipMultipartPartVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipRxData.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipTransaction.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipTxData.cs" />
+    <Compile Include="Common\Utils\PJSIP\SipTxOption.cs" />
+    <Compile Include="Common\Utils\PJSIP\SrtpCrypto.cs" />
+    <Compile Include="Common\Utils\PJSIP\SrtpCryptoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\SrtpOpt.cs" />
+    <Compile Include="Common\Utils\PJSIP\SslCertInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\SslCertName.cs" />
+    <Compile Include="Common\Utils\PJSIP\SslCertNameVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\StreamInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\StreamStat.cs" />
+    <Compile Include="Common\Utils\PJSIP\StringVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\SWIGTYPE_p_pjmedia_vid_dev_hwnd_type.cs" />
+    <Compile Include="Common\Utils\PJSIP\SWIGTYPE_p_p_void.cs" />
+    <Compile Include="Common\Utils\PJSIP\SWIGTYPE_p_unsigned_char.cs" />
+    <Compile Include="Common\Utils\PJSIP\SWIGTYPE_p_void.cs" />
+    <Compile Include="Common\Utils\PJSIP\TimerEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\TimeVal.cs" />
+    <Compile Include="Common\Utils\PJSIP\TlsConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\TlsInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDesc.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDescVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDigit.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDigitMapDigit.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDigitMapVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneDigitVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\ToneGenerator.cs" />
+    <Compile Include="Common\Utils\PJSIP\TransportConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\TransportInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\TsxStateEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\TsxStateEventSrc.cs" />
+    <Compile Include="Common\Utils\PJSIP\TxErrorEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\TxMsgEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\UaConfig.cs" />
+    <Compile Include="Common\Utils\PJSIP\UserEvent.cs" />
+    <Compile Include="Common\Utils\PJSIP\Version.cs" />
+    <Compile Include="Common\Utils\PJSIP\VidCodecParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\VidConfPortInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\VidDevManager.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoDevInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoDevInfoVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoDevInfoVector2.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoMedia.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoMediaTransmitParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoMediaVector.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoPreview.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoPreviewOpParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoSwitchParam.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoWindow.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoWindowHandle.cs" />
+    <Compile Include="Common\Utils\PJSIP\VideoWindowInfo.cs" />
+    <Compile Include="Common\Utils\PJSIP\WindowHandle.cs" />
+    <Compile Include="Phone\ViewModel\PhoneViewModel.cs" />
+    <Compile Include="Phone\ViewModel\VideoViewModel.cs" />
+    <Compile Include="Phone\View\PhoneView.xaml.cs">
+      <DependentUpon>PhoneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Phone\View\RemoteControView.xaml.cs">
+      <DependentUpon>RemoteControView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Phone\View\VideoView.xaml.cs">
+      <DependentUpon>VideoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\DB\SettingDB.cs" />
+    <Compile Include="Setting\ViewModel\ThemeSettingViewModel.cs" />
+    <Compile Include="Setting\View\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\View\ThemeSetting.xaml.cs">
+      <DependentUpon>ThemeSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftReg\Utils\AES.cs" />
+    <Compile Include="SoftReg\Utils\SoftRegUtil.cs" />
+    <Compile Include="SoftReg\View\SoftRegView.xaml.cs">
+      <DependentUpon>SoftRegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch\ViewModel\UserCdrDetailViewModel.cs" />
+    <Compile Include="Speak\DB\SpeakGroupDB.cs" />
+    <Compile Include="Speak\Model\MessageVO.cs" />
+    <Compile Include="Speak\Model\SpeakGroupVO.cs" />
+    <Compile Include="Speak\ViewModel\SpeakViewModel.cs" />
+    <Compile Include="Speak\View\SpeakView.xaml.cs">
+      <DependentUpon>SpeakView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WIFI\DB\WIFIDB.cs" />
+    <Compile Include="WIFI\Model\WIFIModel.cs" />
+    <Compile Include="WIFI\Utils\WIFIUtil.cs" />
+    <Compile Include="WIFI\ViewModel\EditorWIFIViewModel.cs" />
+    <Compile Include="WIFI\ViewModel\ScanWIFIViewModel.cs" />
+    <Compile Include="WIFI\ViewModel\WIFISettingViewModel.cs" />
+    <Compile Include="WIFI\ViewModel\WIFIViewModel.cs" />
+    <Compile Include="WIFI\View\EditorWIFIView.xaml.cs">
+      <DependentUpon>EditorWIFIView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WIFI\View\ScanWIFIView.xaml.cs">
+      <DependentUpon>ScanWIFIView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WIFI\View\WIFISettingView.xaml.cs">
+      <DependentUpon>WIFISettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WIFI\View\WIFIView.xaml.cs">
+      <DependentUpon>WIFIView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Speak\Font\iconfont.ttf" />
+    <Resource Include="Common\Fonts\iconfont.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Battery\View\BatteryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\AllPersonsBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\BroadcastDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\BroadcastListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\BroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\CameraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\MultiBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\MusicBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\MusicListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\ScheduledBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\TaskBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\TTSCreateAndDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\TTSListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Broadcast\View\TTSRealTimeBroadcastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\View\DMMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emotion\View\EmotionAlarmView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Conference\View\ConferenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dispatch\View\DispatchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dispatch\View\MissCallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dispatch\View\UserCdrDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dispatch\View\UserCdrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emotion\View\PlayAudioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emotion\View\UpdateEmotionKeyWordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\View\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\View\IsPeople.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\View\MainFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\View\PasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\View\VideoCallWebSocketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Map\View\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Monitor\View\MonitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Styles\BlackTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\WarmTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\CoolTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Monitor\View\MoreMonitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Monitor\View\OneMonitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Phone\View\PhoneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Phone\View\RemoteControView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Phone\View\VideoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting\View\SettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting\View\ThemeSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftReg\View\SoftRegView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Speak\View\SpeakView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WIFI\View\EditorWIFIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WIFI\View\ScanWIFIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WIFI\View\WIFISettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WIFI\View\WIFIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\logo2_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\idle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\ring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\Reg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\a.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\Lphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\Rphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\icon-battery.png" />
+    <Resource Include="Common\Images\icon-broadcast.png" />
+    <Resource Include="Common\Images\icon-conference.png" />
+    <Resource Include="Common\Images\icon-dispatch.png" />
+    <Resource Include="Common\Images\icon-map.png" />
+    <Resource Include="Common\Images\icon-monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\icon-phone.png" />
+    <Resource Include="Common\Images\icon-wifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\h3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\listdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\broadcast-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\h8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\MA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\shutdown_def.png" />
+    <Resource Include="Common\Images\shutdown_mo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\themesetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\usermanage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\wifisetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\h10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\hangup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\hh4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\blacklong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\coollogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\warmlogo.ico" />
+    <Resource Include="Common\Images\warmlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\blacklogo.ico" />
+    <Resource Include="Common\Images\coollogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\logo2.1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SoftReg\Images\details1.jpg" />
+    <Resource Include="SoftReg\Images\details2.jpg" />
+    <Resource Include="SoftReg\Images\details3.jpg" />
+    <Resource Include="SoftReg\Images\details4.jpg" />
+    <Resource Include="SoftReg\Images\details5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\loading.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Monitor\Images\close_talk.png" />
+    <Resource Include="Monitor\Images\open_talk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Monitor\Images\speaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Phone\Images\switch_camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Phone\Images\open_talk.png" />
+    <Resource Include="Phone\Images\close_talk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Phone\Images\openFullScreenRemoteContro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Phone\Images\speaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Phone\Images\close_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\icon-speak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Speak\Image\person-touxiang.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets'))" />
+  </Target>
+  <Import Project="..\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets')" />
+</Project>

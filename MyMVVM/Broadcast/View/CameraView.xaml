@@ -1,0 +1,317 @@
+﻿<Window
+    x:Class="MyMVVM.Broadcast.View.CameraView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:WinFormHost="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+    xmlns:local="clr-namespace:MyMVVM.Broadcast.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="CameraView"
+    Width="1440"
+    Height="800"
+    Background="#393e46"
+    Icon="/Common/Images/logo.ico"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Border CornerRadius="0" Style="{DynamicResource UserCdrMain}">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="btnClose_Click">
+                    <materialDesign:PackIcon
+                        Width="45"
+                        Height="45"
+                        Foreground="Black"
+                        Kind="CloseCircleOutline" />
+                </Button>
+            </Grid>
+
+            <Border Grid.Row="1" Padding="22.5,0,22.5,22.5">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="22.5" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="22.5" />
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="22.5" />
+                            <ColumnDefinition Width="450" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid x:Name="Box1" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo1" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                        <Grid x:Name="Box2" Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo2" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                        <Grid x:Name="Box3" Grid.Column="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText3"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo3" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="22.5" />
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="22.5" />
+                            <ColumnDefinition Width="450" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid x:Name="Box4" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText4"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo4" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                        <Grid x:Name="Box5" Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText5"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo5" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                        <Grid x:Name="Box6" Grid.Column="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+
+                            <Border
+                                Grid.Row="0"
+                                Width="420"
+                                Height="50"
+                                Style="{DynamicResource CustomBorderStyle}">
+                                <TextBlock
+                                    x:Name="videoTitleText6"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource CameraTitleText}" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="420"
+                                Height="250"
+                                Padding="0"
+                                Style="{DynamicResource CustomBorderStyle2}">
+                                <WindowsFormsHost>
+                                    <forms:PictureBox x:Name="BroadcastVideo6" />
+                                </WindowsFormsHost>
+                            </Border>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+
+            </Border>
+
+            <Grid Grid.Row="2">
+                <WrapPanel Margin="30,0,0,0" HorizontalAlignment="Left">
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="共" />
+                    <TextBlock
+                        x:Name="TotalPage"
+                        Width="25"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="当前第" />
+                    <TextBlock
+                        x:Name="CurrentPage"
+                        Width="25"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Right">
+                    <Button
+                        Click="Button_Click_To_First_Page"
+                        Content="回到首页"
+                        Style="{DynamicResource Page}" />
+                    <Button
+                        Margin="15,0,10,0"
+                        Click="Button_Click_Pre_Page"
+                        Content="上页"
+                        Style="{DynamicResource Page}" />
+                    <Button
+                        Margin="0,0,50,0"
+                        Click="Button_Click_Next_Page"
+                        Content="下页"
+                        Style="{DynamicResource Page}" />
+                </WrapPanel>
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>

@@ -1,0 +1,166 @@
+﻿<Window x:Class="MyMVVM.WIFI.View.EditorWIFIView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMVVM.WIFI.View"
+        mc:Ignorable="d"
+        Title="EditorWIFIView" 
+        Width="800"
+        SizeToContent="Height"
+        Icon="/Common/Images/logo.ico"
+        MouseDown="Window_MouseDown"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        xmlns:rubyer="http://rubyer.io/winfx/xaml/toolkit"
+        WindowStyle="None"
+        Background="Transparent"
+        >
+
+    <Border Style="{DynamicResource BroadcastFromStyle}">
+
+        <Grid MinWidth="300">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    Text="编辑基站信息" />
+
+                <Grid Grid.Column="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1"
+                            x:Name="btnMinimize"
+                            Click="btnMinimize_Click"
+                            Style="{DynamicResource MinimizeButtonStyle}"
+                            Template="{StaticResource ButtonTemplate}" />
+
+                        <Button Grid.Column="2"
+                            x:Name="btnClose"
+                            Click="btnClose_Click"
+                            Style="{DynamicResource CloseButtonStyle}"
+                            Template="{StaticResource ButtonTemplate}"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+            <Border Grid.Row="1" Padding="40 0 40 0" Margin="0 10 0 10">
+
+                <Border.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="pack://application:,,,/Rubyer;component/Themes/Generic.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                        <Style x:Key="TextButton" BasedOn="{StaticResource RubyerButton}" TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="#2196f3" />
+                            <Setter Property="rubyer:ControlHelper.FocusedBrush" Value="#2196f3" />
+                            <Setter Property="BorderBrush" Value="#000000" />
+                        </Style>
+                    </ResourceDictionary>
+                </Border.Resources>
+
+                <TextBox Text="{Binding SearchText}" Width="300" HorizontalAlignment="Left">
+                    <rubyer:InputBoxHelper.PostContent>
+                        <Button Style="{StaticResource TextButton}" rubyer:ButtonHelper.Shape="Circle" Command="{Binding SearchCommand}">
+                            <rubyer:Icon Type="Search2Line" />
+                        </Button>
+                    </rubyer:InputBoxHelper.PostContent>
+                </TextBox>
+
+            </Border>
+
+            <Border Grid.Row="2" Padding="40 0 40 0">
+                <Grid>
+
+                    <DataGrid 
+                        FontSize="16"
+                        RowHeight="40"
+                        MaxHeight="480"
+                        CanUserAddRows="False"
+                        ColumnHeaderHeight="50"
+                        Background="Transparent"
+                        GridLinesVisibility="None"
+                        AutoGenerateColumns="False"
+                        CanUserResizeColumns="False"
+                        ItemsSource="{Binding WIFIDateList}"
+                        >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="1*" Header="名称" Binding="{Binding WIFIName, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+
+                            <DataGridTemplateColumn Width="1.5*" Header="IP地址">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding WIFIIP}" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="1.5*" Header="MAC地址">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding WIFIMAC}" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="2*" Header="编辑">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="10"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="0" FontSize="16" Command="{Binding SaveEditorCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="保存修改"/>
+                                            <Button Grid.Column="2" FontSize="16" Command="{Binding DeleteCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="删除"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</Window>

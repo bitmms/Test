@@ -1,0 +1,252 @@
+﻿<Window x:Class="MyMVVM.Broadcast.View.BroadcastListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMVVM.Broadcast.View"
+        mc:Ignorable="d"
+        Title="BroadcastListView" 
+                Width="1200"
+        Height="660"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Icon="/Common/Images/icon1.ico"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       >
+
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+
+    <Border Style="{DynamicResource UserCdrMain}">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Style="{DynamicResource UserCdrMainHeader}">
+                <Grid Grid.Row="0">
+                    <TextBlock
+                        Margin="20,18,0,0"
+                        FontFamily="楷体"
+                        FontSize="24"
+                        Style="{DynamicResource ButtonBlockStyle}"
+                        Text="广播记录" />
+                    <Button
+                        x:Name="btnClose"
+                        Grid.Column="2"
+                        Height="50"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="btnClose_Click">
+                        <materialDesign:PackIcon
+                            Width="45"
+                            Height="45"
+                            Foreground="Black"
+                            Kind="CloseCircleOutline" />
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1" Margin="0,20,0,0">
+                <DataGrid
+                    x:Name="DataGridElement"
+                    AutoGenerateColumns="False"
+                    Background="Transparent"
+                    CanUserResizeColumns="False"
+                    ColumnHeaderStyle="{DynamicResource CenteredHeaderStyle}"
+                    FontSize="15"
+                    GridLinesVisibility="None"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding BroadCastList}"
+                    MouseDoubleClick="DataGrid_MouseDoubleClick"
+                    SelectedItem="{Binding SelectedItem}">
+                    <DataGrid.Columns>
+
+                        <!--  广播对象  -->
+                        <DataGridTemplateColumn Width="18*" Header="广播对象">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding DisplayObject}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+
+                        <!--  广播类型  -->
+                        <DataGridTemplateColumn Width="16*" Header="广播类型">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding DisplayType}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--  广播内容  -->
+                        <DataGridTemplateColumn Width="23*" Header="广播内容">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding DisplayContent}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--  次数  -->
+                        <DataGridTemplateColumn Width="6*" Header="次数">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding PlayCount}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--  广播时间  -->
+                        <DataGridTemplateColumn Width="46*" Header="广播时间">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding DisplayTime}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--  播放状态  -->
+                        <DataGridTemplateColumn Width="14*" Header="播放状态">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding DisplayPlayStatus}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--  操作  -->
+                        <DataGridTemplateColumn Width="18*" Header="操作">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+
+                                        <Button
+                                            Width="110"
+                                            Command="{Binding StopCommand}"
+                                            Content="停止广播"
+                                            Style="{DynamicResource EditorButton}"
+                                            Visibility="{Binding IsShowStopButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <Button
+                                            Width="110"
+                                            Command="{Binding CancelCommand}"
+                                            Content="取消广播"
+                                            Style="{DynamicResource EditorButton}"
+                                            Visibility="{Binding IsShowCancelButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <WrapPanel Margin="25,0,0,0">
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="共" />
+                    <TextBlock
+                        Width="25"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="{Binding TotalPages}"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="当前第" />
+                    <TextBlock
+                        Width="25"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="{Binding CurrentPage}"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Right">
+
+                    <Button
+                        Command="{Binding GoToFirstPageCommand}"
+                        Content="回到首页"
+                        Style="{DynamicResource Page}" />
+
+                    <Button
+                        Margin="15,0,10,0"
+                        Command="{Binding PreviousPageCommand}"
+                        Content="上页"
+                        Style="{DynamicResource Page}" />
+
+                    <Button
+                        Margin="0,0,50,0"
+                        Command="{Binding NextPageCommand}"
+                        Content="下页"
+                        Style="{DynamicResource Page}" />
+
+                </WrapPanel>
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>

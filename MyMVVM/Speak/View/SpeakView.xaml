@@ -1,0 +1,382 @@
+﻿<UserControl x:Class="MyMVVM.Speak.View.SpeakView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyMVVM.Speak.View"
+             mc:Ignorable="d" 
+             Width="1480"
+             Height="760"
+             Padding="0 0 10 0"
+             >
+
+    <Border CornerRadius="10" Style="{StaticResource SpeakGroupBackground}">
+        
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="#d5d5d5" Width="250">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Height="60" Padding="5 5 5 5" BorderThickness="0 0 0 1" BorderBrush="#d5d5d5">
+                        <Border>
+                            <TextBlock 
+                            Text="对讲分组"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            FontSize="22"
+                            FontFamily="楷体"
+                            FontWeight="Bold"
+                            />
+                        </Border>
+                    </Border>
+
+                    <ListView Grid.Row="1" x:Name="SpeakGroupListView" d:ItemsSource="{d:SampleData ItemCount=5}" >
+
+                        <!-- 重写父样式 -->
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ListView">
+                                <Border >
+                                    <ScrollViewer 
+                                Padding="{TemplateBinding Padding}"
+                                Focusable="False"
+                                VerticalScrollBarVisibility="Hidden"
+                                HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </ControlTemplate>
+                        </ListView.Template>
+
+                        <!-- 重写子样式 -->
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <!-- 默认背景色 -->
+                                <Setter Property="Background" Value="Transparent"/>
+
+                                <!-- 关键：定义基础模板确保样式生效 -->
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Border 
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!-- 鼠标悬停样式 -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c8e1f9"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+
+                                    <!-- 选中样式 -->
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#c8e1f9"/>
+                                    </Trigger>
+
+                                    <!-- 选中且悬停样式 -->
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background" Value="#c8e1f9"/>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <!-- 数据模板 -->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="10 0 10 0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="190"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0">
+                                            <Border 
+                                        Width="40"
+                                        Height="40"
+                                        Margin="5 10 5 10" 
+                                        Background="Black" 
+                                        CornerRadius="5"/>
+                                        </Grid>
+
+                                        <Grid Grid.Column="1">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" Height="30" Padding="0 8 0 0">
+                                                <TextBlock 
+                                            Width="190" 
+                                            FontSize="16" 
+                                            Foreground="#000000"
+                                            Text="{Binding groupName}"
+                                            VerticalAlignment="Center"
+                                            />
+                                            </Border>
+
+                                            <Border Grid.Row="1" Height="30" Padding="0 0 0 8">
+                                                <TextBlock 
+                                            Width="190" 
+                                            FontSize="12" 
+                                            Foreground="#666666"
+                                            Text="{Binding groupOwnerNameAndNumber}"
+                                            VerticalAlignment="Center"
+                                            />
+                                            </Border>
+
+                                        </Grid>
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Height="60" Padding="0 0 16 0" BorderThickness="0 0 0 1" BorderBrush="#d5d5d5">
+                        <TextBlock 
+                            x:Name="SpeakMessageRecordListHeader"
+                            VerticalAlignment="Center"
+                            TextAlignment="Left"
+                            FontSize="22" 
+                            Foreground="#000000"
+                            Padding="20 0 0 0"
+                            ></TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="1" Padding="0 0 16 20" >
+                        <ListView Grid.Row="1" x:Name="MessageRecordListView" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+                            <!-- 添加ScrollViewer设置，优化滚动行为 -->
+                            <ListView.Template>
+                                <ControlTemplate TargetType="ListView">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ScrollViewer 
+                                        CanContentScroll="False"
+                                        PanningMode="VerticalFirst"
+                                        VerticalScrollBarVisibility="Auto">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </Border>
+                                </ControlTemplate>
+                            </ListView.Template>
+
+                            <!-- 重写子样式 -->
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="Margin" Value="0 15 0 15"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Border 
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <Style.Triggers>
+                                        <!-- 鼠标悬停样式 -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+
+                                        <!-- 选中样式 -->
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+
+                                        <!-- 选中且悬停样式 -->
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="True"/>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <!-- 数据模板 -->
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Column="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="60"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Border Grid.Row="0" Width="60" Height="60" Padding="10">
+                                                    <Border Width="40" Height="40" CornerRadius="5">
+                                                        <Border.Clip>
+                                                            <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,40,40"/>
+                                                        </Border.Clip>
+                                                        <Image Source="/Speak/Image/person-touxiang.png"/>
+                                                    </Border>
+                                                </Border>
+
+                                                <Border Grid.Row="1"></Border>
+                                            </Grid>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Border Grid.Row="0">
+                                                    <TextBlock Text="{Binding messageFromNameAndFromNumber}" VerticalAlignment="Center" FontSize="14" Foreground="#000000"></TextBlock>
+                                                </Border>
+
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!--文本消息-->
+                                                    <Border Grid.Column="0" MinHeight="40" Width="Auto" Background="#ffffff" CornerRadius="0 5 5 0" Padding="20 10 20 10"
+                                                            Visibility="{Binding messageIsText, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            >
+                                                            <TextBlock 
+                                                                Text="{Binding messageText}"
+                                                                TextWrapping="Wrap"
+                                                                MaxWidth="500"
+                                                                VerticalAlignment="Center" 
+                                                                FontSize="18" 
+                                                                Foreground="#000000" />
+                                                    </Border>
+
+                                                    <!--语音消息-->
+                                                    <Grid Grid.Column="0" Cursor="Hand"
+                                                          Visibility="{Binding messageIsAudio, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                          MouseLeftButtonDown="CLickToPlayAudioMessage"
+                                                          >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Border Grid.Column="0" Height="40" Width="40" Background="#ffffff">
+                                                            <TextBlock
+                                                                TextAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                FontFamily="/Speak/Font/#iconfont"
+                                                                FontSize="16"
+                                                                Text="&#xfa29;"
+                                                                Foreground="#000000"
+                                                                />
+                                                        </Border>
+
+                                                        <Border Grid.Column="1" Height="40" Width="Auto" Background="#ffffff" CornerRadius="0 5 5 0" Padding="0 10 20 10">
+                                                            <TextBlock 
+                                                                Text="{Binding messageAudioTimeInfo}"
+                                                                TextAlignment="Left"
+                                                                TextWrapping="Wrap"
+                                                                MaxWidth="500"
+                                                                VerticalAlignment="Center" 
+                                                                FontSize="18" 
+                                                                Foreground="#000000" 
+                                                            />
+                                                        </Border>
+                                                    </Grid>
+                                                    
+                                                    <!--图片消息-->
+                                                    <Border Grid.Column="0" Height="Auto" Width="250" CornerRadius="0 5 5 0"
+                                                            Visibility="{Binding messageIsImage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Left"
+                                                            >
+                                                        <Image Source="{Binding messagePath}"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="1" Padding="10 0 0 5">
+                                                        <TextBlock 
+                                                            Text="{Binding messageSendTimeInfo}" 
+                                                            VerticalAlignment="Bottom" 
+                                                            FontSize="14" 
+                                                            Foreground="#9e9e9e"
+                                                        />
+                                                    </Border>
+
+                                                </Grid>
+
+                                            </Grid>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </Border>
+
+                    <Border Grid.Row="2" BorderThickness="0 1 0 0" BorderBrush="#d5d5d5">
+
+                    </Border>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+
+</UserControl>

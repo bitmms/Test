@@ -1,0 +1,179 @@
+﻿<Window x:Class="MyMVVM.Login.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMVVM.Login.View"
+        mc:Ignorable="d"
+        Title="LoginView" 
+        Width="480"
+        Height="450"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        Style="{DynamicResource WindowIoc}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:viewModel="clr-namespace:MyMVVM.Login.ViewModel"
+        >
+
+    <Window.DataContext>
+        <viewModel:LoginViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </Window.Resources>
+
+    <Window.Visibility>
+        <Binding
+            Converter="{StaticResource BooleanToVisibility}"
+            Mode="TwoWay"
+            Path="IsViewVisible" />
+    </Window.Visibility>
+
+    <Border Style="{DynamicResource LoginStyle}">
+
+        <Border
+            BorderThickness="2"
+            CornerRadius="10"
+            Opacity="0.95">
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="5" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        Width="50"
+                        Margin="10,0,0,0"
+                        Padding="0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Content="LOG IN"
+                        FontFamily="Montserrat"
+                        FontSize="10"
+                        Foreground="Black"
+                        />
+
+                    <Button
+                        x:Name="btnMinimize"
+                        Grid.Column="1"
+                        Click="btnMinimize_Click"
+                        Style="{DynamicResource MinimizeButtonStyle}"
+                        Template="{StaticResource ButtonTemplate}" />
+
+                    <Button
+                        x:Name="btnClose"
+                        Grid.Column="2"
+                        Click="btnClose_Click"
+                        Style="{DynamicResource CloseButtonStyle}"
+                        Template="{StaticResource ButtonTemplate}" />
+
+
+                </Grid>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Width="220"
+                    Margin="0,0,0,0"
+                    Orientation="Vertical">
+
+                    <Image
+                        x:Name="LogoImage1"
+                        Width="140"
+                        Height="100"
+                        Margin="0,30,0,10"
+                        Style="{DynamicResource LoginImage1}" />
+                    
+                    <Image
+                         x:Name="LogoImage2"
+                        Width="140"
+                        Height="100"
+                        Margin="0,30,0,10"
+                        Style="{DynamicResource LoginImage2}" />
+
+                    <WrapPanel Margin="0,15,0,0">
+                        <TextBlock
+                            Margin="0,10,0,0"
+                            FontSize="15"
+                            Style="{DynamicResource TxtUser}"
+                            Text="用户名：" />
+
+                        <TextBox
+                            x:Name="txtUser"
+                            Style="{DynamicResource CustomTextBoxStyle}"
+                            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                            GotKeyboardFocus="txtUser_GotKeyboardFocus"
+                            />
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,15,0,0">
+                        <TextBlock
+                            Margin="0,10,15,0"
+                            FontSize="15"
+                            Style="{DynamicResource Password}"
+                            Text="密码：" />
+
+                        <TextBox
+                            x:Name="password"
+                            Background="Transparent"
+                            Style="{DynamicResource PasswordText}"
+                            Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
+                            GotKeyboardFocus="password_GotKeyboardFocus"
+                            />
+
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,15,0,0">
+                        <TextBlock
+                            Margin="0,10,31,0"
+                            FontSize="15"
+                            Style="{DynamicResource IP}"
+                            Text="IP：" />
+                        <TextBox
+                            x:Name="ip"
+                            Style="{DynamicResource CustomTextBoxStyle}"
+                            Text="{Binding IP, UpdateSourceTrigger=PropertyChanged}" 
+                            GotKeyboardFocus="ip_GotKeyboardFocus"
+                            />
+                    </WrapPanel>
+
+                    <CheckBox
+                        Margin="0,20,0,0"
+                        Content="保存登录信息"
+                        FontSize="12"
+                        IsChecked="{Binding RememberMe}"
+                        Style="{DynamicResource LoginCheckBox}" />
+
+                    <Button
+                        x:Name="btnLogin"
+                        Margin="0,30,0,0"
+                        BorderThickness="0"
+                        Command="{Binding LoginCommand}"
+                        Content="LOG IN"
+                        FontSize="12"
+                        Style="{DynamicResource LoginButtonStyle}"
+                        Template="{StaticResource LoginButtonTemplate}" />
+
+                </StackPanel>
+               
+            </Grid>
+        </Border>
+
+    </Border>
+
+</Window>

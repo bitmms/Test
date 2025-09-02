@@ -1,0 +1,261 @@
+﻿<Window x:Class="MyMVVM.Broadcast.View.BroadcastDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMVVM.Broadcast.View"
+        mc:Ignorable="d"
+        Title="BroadcastDetailView" 
+                Width="550"
+        AllowsTransparency="True"
+        Background="Transparent"
+        SizeToContent="Height"
+        Icon="/Common/Images/logo.ico"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        >
+
+
+
+    <!--
+        materialdesigninxaml    关闭窗口的图标
+        HandyControl            文字滚动条
+    -->
+
+    <!-- 仅在本页面生效的样式 HandyControl -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Border Style="{DynamicResource BroadcastFromStyle}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="广播详情"/>
+
+                <Border Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        MouseLeftButtonDown="Border_MouseLeftButtonDown"
+                        >
+                    <materialDesign:PackIcon
+                            Width="40"
+                            Height="40"
+                            Margin="0 5 5 0"
+                            Foreground="Black"
+                            Kind="CloseCircleOutline" />
+                </Border>
+
+            </Grid>
+
+            <Border Grid.Row="1" Padding="60,0,60,20" >
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="类型" />
+
+                        <TextBox Grid.Column="2" 
+                                 Text="{Binding DisplayType}" 
+                                 IsReadOnly="True"
+                                 FontSize="18"
+                                 Foreground="#000000"
+                                 Background="Transparent"
+                                 BorderBrush="#2196f3"
+                                 Width="330"
+                                 MinHeight="50"
+                                 MaxHeight="150"
+                                 Margin="0 5 0 5"
+                                 Padding="10"
+                            />
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" MinHeight="60" MaxHeight="180">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="对象" />
+
+                        <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+
+                            <TextBox 
+                                 Text="{Binding DisplayObject}" 
+                                 IsReadOnly="True"
+                                 TextWrapping="Wrap"
+                                 FontSize="18"
+                                 Foreground="#000000"
+                                 Background="Transparent"
+                                 BorderBrush="#2196f3"
+                                 Width="330"
+                                 MinHeight="50"
+                                 MaxHeight="150"
+                                 Margin="0 5 0 5"
+                                 Padding="10"
+                            />
+                        </ScrollViewer>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" MinHeight="60" MaxHeight="180">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20" Text="内容" />
+
+                        <TextBox Grid.Column="2"
+                                 Text="{Binding DisplayContent}" 
+                                 TextWrapping="Wrap"
+                                 IsReadOnly="True"
+                                 FontSize="18"
+                                 Foreground="#000000"
+                                 Background="Transparent"
+                                 BorderBrush="#2196f3"
+                                 Width="330"
+                                 MinHeight="50"
+                                 MaxHeight="150"
+                                 Margin="0 5 0 5"
+                                 Padding="10"
+                            />
+
+                    </Grid>
+
+                    <Grid Grid.Row="3" MinHeight="60" MaxHeight="180" Visibility="{Binding IsShowPlayCount, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20" Text="次数" />
+
+                        <TextBox Grid.Column="2"
+                                 Text="{Binding PlayCount}" 
+                                 TextWrapping="Wrap"
+                                 IsReadOnly="True"
+                                 FontSize="18"
+                                 Foreground="#000000"
+                                 Background="Transparent"
+                                 BorderBrush="#2196f3"
+                                 Width="330"
+                                 MinHeight="50"
+                                 MaxHeight="150"
+                                 Margin="0 5 0 5"
+                                 Padding="10"
+                            />
+
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20" Text="时间" />
+
+                        <hc:RunningBlock 
+                            Grid.Column="2" 
+                            Content="{Binding DisplayTime}"
+                            Duration="0:0:10" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center" 
+                            BorderThickness="1"
+                            
+                            FontSize="18"
+                            Foreground="#000000"
+                            Background="Transparent"
+                            BorderBrush="#2196f3"
+                            Width="330"
+                            MinHeight="50"
+                            MaxHeight="150"
+                            Padding="10"
+                            Margin="0 5 0 5"
+                            
+                            >
+                        </hc:RunningBlock>
+
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20" Text="状态" />
+
+                        <TextBox Grid.Column="2" 
+                              Text="{Binding DisplayPlayStatus}" 
+                              IsReadOnly="True"
+                              FontSize="18"
+                              Foreground="#000000"
+                              Background="Transparent"
+                              BorderBrush="#2196f3"
+                              Width="330"
+                              MinHeight="50"
+                              MaxHeight="150"
+                              Padding="10"
+                              Margin="0 5 0 5"
+                         />
+
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Border>
+
+
+</Window>

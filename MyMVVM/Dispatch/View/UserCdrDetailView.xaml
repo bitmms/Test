@@ -1,0 +1,207 @@
+﻿<Window x:Class="MyMVVM.Dispatch.View.UserCdrDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMVVM.Dispatch.View"
+        mc:Ignorable="d"
+        Title="UserCdrDetailView" 
+        Width="1200"
+        Height="700"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Icon="/Common/Images/icon1.ico"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        >
+
+
+    <Border Style="{DynamicResource UserCdrMain}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Style="{DynamicResource UserCdrMainHeader}">
+                <Grid Grid.Row="0">
+                    <TextBlock
+                        Margin="20,18,0,0"
+                        FontFamily="楷体"
+                        FontSize="24"
+                        Style="{DynamicResource ButtonBlockStyle}"
+                        Text="调度记录" />
+                    <Button
+                        x:Name="btnClose"
+                        Grid.Column="2"
+                        Height="50"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="btnClose_Click">
+                        <materialDesign:PackIcon
+                            Width="45"
+                            Height="45"
+                            Foreground="Black"
+                            Kind="CloseCircleOutline" />
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CanUserResizeColumns="False"
+                    CanUserSortColumns="False"
+                    ColumnHeaderStyle="{DynamicResource CenteredHeaderStyle}"
+                    GridLinesVisibility="Horizontal"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding DispatchCdr}"
+                    RowHeight="36"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    SelectedItem="{Binding SelectedItem}">
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontSize" Value="16" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns>
+
+                        <DataGridTemplateColumn Width="*" Header="主叫">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding CallerNum}" />
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Width="*" Header="被叫">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding CalleeNum}" />
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Width="*" Header="时间">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Style="{DynamicResource UserCdrText}"
+                                        Text="{Binding Duration}" />
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <WrapPanel Margin="25,0,0,0">
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="共" />
+                    <TextBlock
+                        Width="25"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="{Binding TotalPages}" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="跳转至 " />
+                    <TextBox
+                        Width="30"
+                        Padding="0,0,0,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="{Binding PageNumberInput, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="20"
+                        FontWeight="Black"
+                        Text="页" />
+                    <Button
+                        Command="{Binding GoToPageCommand}"
+                        CommandParameter="{Binding PageNumberInput}"
+                        Content="跳转"
+                        Style="{DynamicResource Page}" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Right">
+
+                    <Button
+                        Command="{Binding GoToFirstPageCommand}"
+                        Content="回到首页"
+                        Style="{DynamicResource Page}" />
+
+                    <Button
+                        Margin="15,0,10,0"
+                        Command="{Binding PreviousPageCommand}"
+                        Content="上页"
+                        Style="{DynamicResource Page}" />
+                    <Button
+                        Margin="0,0,50,0"
+                        Command="{Binding NextPageCommand}"
+                        Content="下页"
+                        Style="{DynamicResource Page}" />
+                </WrapPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
