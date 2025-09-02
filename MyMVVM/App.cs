@@ -40,7 +40,6 @@ namespace MyMVVM
                 Application.Current.Shutdown();
                 return;
             }
-            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             if (IsRegistered() == false)
             {
                 SoftRegView reg = new SoftRegView();
@@ -60,14 +59,36 @@ namespace MyMVVM
                     }
                 };
             }
+
+            // UI 主线程未捕获异常
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+            // 非UI线程未捕获异常（后台线程）
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            // Task 异步异常
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
         }
 
-        //全局异常捕获
+        /// UI 主线程异常
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            DMMessageBox.Show("错误", "系统出现异常！请重试！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm);
-            Console.WriteLine(e);
+            // DMMessageBox.Show("错误", "系统出现异常！请重试！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm);
+            Console.WriteLine("UI线程异常: " + e.Exception);
             e.Handled = true;
+        }
+        /// 非UI线程异常（后台线程）
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // 如果需要弹窗提示，可以用 Dispatcher.Invoke 切回UI线程
+            // this.Dispatcher.Invoke(() => DMMessageBox.Show("错误", "后台线程出现异常！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm));
+            Console.WriteLine("非UI线程异常: " + e.ExceptionObject);
+            
+        }
+        /// Task 异常
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            // DMMessageBox.Show("错误", "系统出现异常！请重试！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm);
+            Console.WriteLine("Task异常: " + e.Exception);
+            e.SetObserved();
         }
 
         private bool IsRegistered()
