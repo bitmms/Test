@@ -73,15 +73,20 @@ namespace MyMVVM
         {
             // DMMessageBox.Show("错误", "系统出现异常！请重试！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm);
             Console.WriteLine("UI线程异常: " + e.Exception);
+
             e.Handled = true;
         }
         /// 非UI线程异常（后台线程）
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                DMMessageBox.Show_Network_Error("错误", "网络连接失败");
+            });
             // 如果需要弹窗提示，可以用 Dispatcher.Invoke 切回UI线程
             // this.Dispatcher.Invoke(() => DMMessageBox.Show("错误", "后台线程出现异常！", DMMessageType.MESSAGE_FAIL, DMMessageButton.Confirm));
             Console.WriteLine("非UI线程异常: " + e.ExceptionObject);
-            
+
         }
         /// Task 异常
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)

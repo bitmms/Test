@@ -236,10 +236,6 @@ namespace MyMVVM.Common
             }
             catch (Exception ex)
             {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    DMMessageBox.Show("错误", "网络连接失败!!请联系管理员", DMMessageType.MESSAGE_FAIL);
-                });
                 throw;
             }
             finally

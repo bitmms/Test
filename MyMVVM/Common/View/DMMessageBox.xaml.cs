@@ -77,6 +77,7 @@ namespace MyMVVM.Common.View
         // 点击确定按钮
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
         {
+            isOpen = false;
             this.DialogResult = true;
         }
 
@@ -170,5 +171,34 @@ namespace MyMVVM.Common.View
         }
 
 
+        // 标记网络异常弹窗是否开启状态
+        public static bool isOpen = false;
+        public static bool Show_Network_Error(string title, string msg)
+        {
+            if (!isOpen)
+            {
+                isOpen = true;
+                DMMessageBox msgBox = new DMMessageBox();
+                {
+                    msgBox.Title = title;
+                    msgBox.Message = msg;
+                    TextBlock tt = msgBox.FindName("infoIcon") as TextBlock;
+                    tt.Text = iconType[DMMessageType.MESSAGE_FAIL];
+                    tt.Foreground = iconColor[DMMessageType.MESSAGE_FAIL];
+                }
+
+                StackPanel ConfirmPanel = msgBox.FindName("ConfirmPanel") as StackPanel;
+                StackPanel YesAndNoPanel = msgBox.FindName("YesAndNoPanel") as StackPanel;
+                StackPanel LeftAndRight = msgBox.FindName("LeftAndRight") as StackPanel;
+                YesAndNoPanel.Visibility = Visibility.Collapsed;
+                LeftAndRight.Visibility = Visibility.Collapsed;
+                ConfirmPanel.Visibility = Visibility.Visible;
+
+                return (bool)msgBox.ShowDialog();
+
+            }
+            return true;
+
+        }
     }
 }
