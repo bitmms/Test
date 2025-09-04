@@ -260,13 +260,14 @@ namespace MyMVVM.MainWindow.View
                 int count = EmotionAlarmDB.getCount();
                 if (count != 0)
                 {
-                    EmotionAlarmNumber.Text = "(" + EmotionAlarmDB.getCount() + ")";
+                    //EmotionAlarmNumber.Text = "(" + EmotionAlarmDB.getCount() + ")";
                 }
                 else
                 {
-                    EmotionAlarmNumber.Text = "";
+                    //EmotionAlarmNumber.Text = "";
                 }
-
+                string nowHostName = CommonDB.GetNowHostName();
+                HostName.Content = nowHostName;
             });
         }
 

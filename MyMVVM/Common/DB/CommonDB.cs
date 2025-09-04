@@ -19,6 +19,18 @@ namespace MyMVVM.Common
 {
     public class CommonDB
     {
+        /// <summary>
+        /// 查询当前处于主机还是备机，返回字符串：主机、备机
+        /// </summary>
+        /// <returns></returns>
+
+        public static string GetNowHostName()
+        {
+            string sql = "select name from dm_host_name where id = 1";
+            DataTable dt = DB.ExecuteQuery(sql);
+            return dt.Rows[0]["name"].ToString();
+        }
+
 
         #region 左右调度
 

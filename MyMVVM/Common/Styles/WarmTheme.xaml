@@ -218,10 +218,64 @@
 
     <!--  有人值守、无人值守  -->
     <Style x:Key="DM-People" TargetType="Button">
-        <Setter Property="Height" Value="60" />
-        <Setter Property="Width" Value="150" />
-        <Setter Property="Margin" Value="5,0,0,0" />
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="BorderThickness" Value="4,4,4,4" />
+        <Setter Property="FontWeight" Value="Black" />
+        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="BorderBrush" Value="#ebebd4" />
+        <Setter Property="Foreground" Value="#000000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3,3,3,3">
+
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="10"
+                                Direction="320"
+                                Opacity="1"
+                                ShadowDepth="5"
+                                Color="Black" />
+                        </Border.Effect>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Margin" Value="5,5,1,1" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect
+                            BlurRadius="8"
+                            Direction="320"
+                            Opacity="0.6"
+                            ShadowDepth="2"
+                            Color="Black" />
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <TranslateTransform Y="2" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <!--  主机、备机  -->
+    <Style x:Key="Host-Name-Button" TargetType="Button">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="BorderThickness" Value="4,4,4,4" />
         <Setter Property="FontWeight" Value="Black" />
         <Setter Property="Background" Value="#F5F5F5" />
@@ -234,7 +288,7 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="3,3,3,0">
+                        CornerRadius="3,3,3,3">
 
                         <Border.Effect>
                             <DropShadowEffect
