@@ -321,6 +321,7 @@
                         x:Name="HostName"
                         Content="主机"
                         Margin="10 0 10 0"
+                        Click="ShowPingNetworkWindow"
                         Style="{DynamicResource DM-People}" />
                 </Grid>
 

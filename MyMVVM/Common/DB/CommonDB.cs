@@ -23,12 +23,21 @@ namespace MyMVVM.Common
         /// 查询当前处于主机还是备机，返回字符串：主机、备机
         /// </summary>
         /// <returns></returns>
-
         public static string GetNowHostName()
         {
             string sql = "select name from dm_host_name where id = 1";
             DataTable dt = DB.ExecuteQuery(sql);
             return dt.Rows[0]["name"].ToString();
+        }
+
+        /// <summary>
+        /// 查询IP地址是什么
+        /// </summary>
+        public static string GetHostIPByType(string type)
+        {
+            string sql = $"select join_ip from dm_server_join where join_type = '{type}'";
+            DataTable dt = DB.ExecuteQuery(sql);
+            return dt.Rows[0]["join_ip"].ToString();
         }
 
 

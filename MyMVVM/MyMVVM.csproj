@@ -301,6 +301,9 @@
     </Compile>
     <Compile Include="Common\DB\CommonDB.cs" />
     <Compile Include="Common\DB\DB.cs" />
+    <Compile Include="Common\View\PingNetworkDeviceView.xaml.cs">
+      <DependentUpon>PingNetworkDeviceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Emotion\DB\EmotionAlarmDB.cs" />
     <Compile Include="Common\DB\LogDB.cs" />
     <Compile Include="Common\Enum\EnumExtension.cs" />
@@ -812,6 +815,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Common\View\PingNetworkDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Emotion\View\EmotionAlarmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1105,6 +1112,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Speak\Image\person-touxiang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Images\ping_no.png" />
+    <Resource Include="Common\Images\ping_ok.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" />

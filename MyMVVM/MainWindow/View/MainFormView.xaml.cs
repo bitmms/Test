@@ -515,6 +515,17 @@ namespace MyMVVM.MainWindow.View
 
         #endregion
 
+
+
+        #region 检测IP是否可以ping通
+
+        private void ShowPingNetworkWindow(object sender, RoutedEventArgs e)
+        {
+            new PingNetworkDeviceView().ShowDialog();
+        }
+
+        #endregion
+
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,6 +13,22 @@ namespace MyMVVM.Common.Utils
 {
     public class DMUtil
     {
+        public static bool PingNetworkDevice(string IP)
+        {
+            Ping pingSender = new Ping();
+            PingOptions options = new PingOptions();
+            options.DontFragment = true;
+            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            byte[] buffer = Encoding.ASCII.GetBytes(data);
+            int timeout = 120;
+            PingReply reply = pingSender.Send(IP, timeout, buffer, options);
+            if (reply.Status == IPStatus.Success)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         /// <summary>
         /// 判断字符串是不是点分十进制的IP地址
