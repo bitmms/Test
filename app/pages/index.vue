@@ -9,6 +9,7 @@ import type SearchEngine from "~/assets/ts/SearchEngine";
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
 const mainBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
+const searchInputDom: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
 
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
@@ -132,6 +133,9 @@ onMounted(() => {
       mainBoxRef.value?.classList.remove("light")
     }
   }
+
+  // 搜索框立刻获取焦点
+  searchInputDom.value?.focus()
 })
 
 </script>
@@ -195,7 +199,7 @@ onMounted(() => {
           </div>
 
           <div class="search-input">
-            <input v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
+            <input ref="searchInputDom" v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
           </div>
 
           <div v-show="isShowSwitchSearchEngines" class="switch-search">
