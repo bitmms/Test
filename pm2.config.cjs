@@ -4,7 +4,7 @@ module.exports = {
       name: "bugu-code-bits",
       script: "./.output/server/index.mjs",
       env: {
-        PORT: 8080
+        PORT: 47134
       }
     }
   ]
