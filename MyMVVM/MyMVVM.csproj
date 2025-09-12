@@ -695,6 +695,9 @@
     <Compile Include="Speak\Model\MessageVO.cs" />
     <Compile Include="Speak\Model\SpeakGroupVO.cs" />
     <Compile Include="Speak\ViewModel\SpeakViewModel.cs" />
+    <Compile Include="Speak\View\SpeakPlayVideoView.xaml.cs">
+      <DependentUpon>SpeakPlayVideoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Speak\View\SpeakView.xaml.cs">
       <DependentUpon>SpeakView.xaml</DependentUpon>
     </Compile>
@@ -927,6 +930,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Speak\View\SpeakPlayVideoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Speak\View\SpeakView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1116,6 +1123,9 @@
   <ItemGroup>
     <Resource Include="Common\Images\ping_no.png" />
     <Resource Include="Common\Images\ping_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Speak\Image\speak-play-video-button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" />

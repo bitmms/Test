@@ -346,6 +346,28 @@
                                                         <Image Source="{Binding messagePath}"/>
                                                     </Border>
 
+                                                    <!--视频消息-->
+                                                    <Border Grid.Column="0" Height="Auto" Width="250" CornerRadius="0 5 5 0"
+                                                            Visibility="{Binding messageIsVideo, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Left"
+                                                            >
+
+                                                        <Grid>
+                                                        
+                                                        <Image Source="{Binding messagePath}"/>
+
+                                                        <Button Width="100" Height="100" Click="ClickToPlayOrPauseVideoMessage" 
+                                                                Background="Transparent"
+                                                                BorderThickness="0"
+                                                                >
+                                                                <Image Source="/Speak/Image/speak-play-video-button.png"/>
+                                                        </Button>
+
+                                                        </Grid>
+
+                                                    </Border>
+
                                                     <Border Grid.Column="1" Padding="10 0 0 5">
                                                         <TextBlock 
                                                             Text="{Binding messageSendTimeInfo}" 

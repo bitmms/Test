@@ -75,9 +75,14 @@ namespace MyMVVM.Speak
                 messageVO.messageIsText = messageVO.messageType == "0";
                 messageVO.messageIsAudio = messageVO.messageType == "1";
                 messageVO.messageIsImage = messageVO.messageType == "2";
+                messageVO.messageIsVideo = messageVO.messageType == "3";
                 messageVO.messageSendTimeInfo = $"{messageVO.messageFromTime} 发送";
                 if (messageVO.messagePath.Length > 10)
                 {
+                    if (messageVO.messageIsVideo)
+                    {
+                        messageVO.messagePath = messageVO.messagePath.Replace("mp4", "jpg");
+                    }
                     messageVO.messagePath = $"http://{DMVariable.SSHIP}:{90}{messageVO.messagePath}";
                 }
 

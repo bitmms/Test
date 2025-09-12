@@ -21,6 +21,7 @@ namespace MyMVVM.Speak.Model
         public bool messageIsText { get; set; }
         public bool messageIsAudio { get; set; }
         public bool messageIsImage { get; set; }
+        public bool messageIsVideo { get; set; }
         public string messageSendTimeInfo { get; set; }
     }
 }

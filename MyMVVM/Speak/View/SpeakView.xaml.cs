@@ -123,6 +123,34 @@ namespace MyMVVM.Speak.View
         }
 
         /// <summary>
+        /// 点击播放视频消息
+        /// </summary>
+        private void ClickToPlayOrPauseVideoMessage(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button border = sender as Button;
+                MessageVO currentItem = border?.DataContext as MessageVO;
+                if (currentItem == null || string.IsNullOrEmpty(currentItem.messagePath))
+                {
+                    DMMessageBox.ShowInfo("异常");
+                    return;
+                }
+                new SpeakPlayVideoView(currentItem.messagePath.Replace("jpg", "mp4")).ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                DMMessageBox.ShowInfo("异常");
+            }
+            finally
+            {
+                // 标记事件已处理，防止冒泡到父控件
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
         /// 播放结束时自动释放资源
         /// </summary>
         private void AudioPlayer_MediaEnded(object sender, EventArgs e)
