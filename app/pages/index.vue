@@ -76,13 +76,27 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
 // 按下回车进行搜素
 const enterToSearch = () => {
   const searchString = searchContent.value
-  if (searchString.length > 0) {
+  if (searchString.trim().length > 0) {
+    // 缓存搜索字符串
+    let searchStringList: string[] = []
+    if (window.localStorage.getItem('searchStringList') !== null) {
+      searchStringList = JSON.parse(window.localStorage.getItem('searchStringList') as string) as string[];
+    }
+    searchStringList.push(searchString);
+    window.localStorage.setItem('searchStringList', JSON.stringify(searchStringList))
+    console.log('当前搜索字符串为：' + searchString)
+    console.log('当前搜索的列表为：' + searchStringList)
+    // 构建搜索链接
     const targetUrl = nowSearchEngineObj.value.url + encodeURIComponent(searchString)
+    // 以新标签页展示搜索结果
     if (searchData.value.tab) {
       window.open(targetUrl, '_blank', 'noopener,noreferrer')
-    } else {
+    }
+    // 以当前页面展示搜索结果
+    else {
       window.location.href = targetUrl
     }
+    // 清空当前的搜索字符串
     searchContent.value = ''
   }
 }
@@ -137,6 +151,28 @@ onMounted(() => {
   // 搜索框立刻获取焦点
   searchInputDom.value?.focus()
 })
+
+// 监听searchContent的变化
+watch(searchContent, (newSearchString, oldSearchString) => {
+  // 1. 过滤无效变化（空值或与之前相同的值）
+  if (newSearchString.trim() === '' || newSearchString === oldSearchString) {
+    return;
+  }
+  // 2. 读取搜索字符串的缓存列表
+  let searchStringCacheList: string[] = []
+  if (window.localStorage.getItem('searchStringList') !== null) {
+    searchStringCacheList = JSON.parse(window.localStorage.getItem('searchStringList') as string) as string[];
+  }
+  // 3. 匹配搜索字符串的建议列表
+  const searchStringResultList: string[] = []
+  searchStringCacheList.forEach(searchStringItem => {
+    if (searchStringItem.indexOf(newSearchString) !== -1) {
+      searchStringResultList.push(searchStringItem)
+    }
+  })
+  // 4. 处理搜索建议列表
+  console.log('当前搜索的建议：' + searchStringResultList)
+});
 
 </script>
 
