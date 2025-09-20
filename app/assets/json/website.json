@@ -546,6 +546,20 @@
         "logo": "/svg/website/cloud-service-of-sqlpub.svg"
       },
       {
+        "name": "db4free",
+        "href": "https://www.db4free.net/",
+        "desc": "免费的 MySQL 数据库",
+        "slug": "bits-to-db4free",
+        "logo": "/svg/website/cloud-service-of-db4free.svg"
+      },
+      {
+        "name": "Cloud-Redis",
+        "href": "https://cloud.redis.io/",
+        "desc": "免费的 Redis 数据库",
+        "slug": "bits-to-cloud-redis",
+        "logo": "/svg/website/cloud-service-of-cloud-redis.svg"
+      },
+      {
         "name": "华为云",
         "href": "https://www.huaweicloud.com",
         "desc": "华为企业级云服务平台",
