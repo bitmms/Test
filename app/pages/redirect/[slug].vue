@@ -7,7 +7,7 @@ import type Category from "~/assets/ts/Category";
 
 // ======= 路由参数 =======
 const route = useRoute();
-const slug = route.params.slug as string;
+const slug = route.params.slug as string; // 短链接，仅获取最后一个 "/" 符号后面的链接
 
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
@@ -16,14 +16,14 @@ const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
 const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
-    desc: '点击返回主页',
+    desc: '',
     logo: '',
     href: '',
     slug: '',
   }
   for (const categoryItem of websiteData.value) {
     for (const websiteItem of categoryItem.children) {
-      if (websiteItem.slug === slug) {
+      if (websiteItem.slug.indexOf(slug) !== -1) {
         return websiteItem;
       }
     }
