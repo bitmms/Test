@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID生成器 - 灵活定制的唯一标识符生成工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1)',
+                        'custom-hover': '0 20px 25px -5px rgba(59, 130, 246, 0.2), 0 10px 10px -5px rgba(59, 130, 246, 0.1)',
+                    }
+                },
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 transition-custom">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-hashtag text-primary text-2xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-gradient">UUID生成器</h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-primary transition-custom">主页</a>
+                <a href="#about" class="text-gray-600 hover:text-primary transition-custom">关于</a>
+                <a href="#faq" class="text-gray-600 hover:text-primary transition-custom">常见问题</a>
+            </nav>
+            <button class="md:hidden text-gray-600 focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#" class="py-2 text-gray-600 hover:text-primary transition-custom">主页</a>
+                <a href="#about" class="py-2 text-gray-600 hover:text-primary transition-custom">关于</a>
+                <a href="#faq" class="py-2 text-gray-600 hover:text-primary transition-custom">常见问题</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="flex-grow container mx-auto px-4 py-8 md:py-16">
+        <!-- 介绍部分 -->
+        <section class="text-center mb-12 max-w-3xl mx-auto">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">灵活定制的UUID生成工具</h2>
+            <p class="text-gray-600 text-lg mb-8">生成符合标准的UUID，支持多种版本和自定义选项，满足您的各种需求</p>
+            <div class="flex justify-center">
+                <a href="#generator" class="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-custom flex items-center">
+                    开始生成 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 生成器部分 -->
+        <section id="generator" class="bg-white rounded-xl shadow-custom p-6 md:p-8 mb-16 transform hover:shadow-custom-hover transition-custom">
+            <div class="grid md:grid-cols-12 gap-8">
+                <!-- 左侧：选项设置 -->
+                <div class="md:col-span-4 space-y-6">
+                    <h3 class="text-xl font-bold border-b pb-2">生成选项</h3>
+                    
+                    <!-- UUID版本选择 -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">UUID版本</label>
+                        <select id="uuid-version" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                            <option value="v1">UUID v1 (基于时间和MAC地址)</option>
+                            <option value="v3">UUID v3 (基于命名空间和名称的MD5哈希)</option>
+                            <option value="v4" selected>UUID v4 (随机生成)</option>
+                            <option value="v5">UUID v5 (基于命名空间和名称的SHA-1哈希)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 命名空间和名称 (v3/v5) -->
+                    <div id="namespace-options" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">命名空间</label>
+                            <select id="namespace" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                                <option value="nil">Nil UUID (00000000-0000-0000-0000-000000000000)</option>
+                                <option value="dns">DNS (6ba7b810-9dad-11d1-80b4-00c04fd430c8)</option>
+                                <option value="url">URL (6ba7b811-9dad-11d1-80b4-00c04fd430c8)</option>
+                                <option value="oid">OID (6ba7b812-9dad-11d1-80b4-00c04fd430c8)</option>
+                                <option value="x500">X.500 DN (6ba7b814-9dad-11d1-80b4-00c04fd430c8)</option>
+                                <option value="custom">自定义</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="custom-namespace" class="block text-gray-700 font-medium mb-2 hidden" id="custom-namespace-label">自定义命名空间UUID</label>
+                            <input type="text" id="custom-namespace" placeholder="输入自定义命名空间UUID" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom hidden">
+                        </div>
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">名称</label>
+                            <input type="text" id="name" placeholder="输入名称（例如：example.com）" value="example.com" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                        </div>
+                    </div>
+                    
+                    <!-- 格式选项 -->
+                    <div>
+                        <h4 class="font-medium mb-3">格式选项</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="uppercase" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="uppercase" class="ml-2 text-gray-700">大写字母</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="hyphens" checked class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="hyphens" class="ml-2 text-gray-700">包含连字符</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 生成数量 -->
+                    <div>
+                        <label for="count" class="block text-gray-700 font-medium mb-2">生成数量</label>
+                        <div class="flex items-center">
+                            <button id="decrease-count" class="p-2 border border-gray-300 rounded-l-lg hover:bg-gray-100 transition-custom">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input type="number" id="count" min="1" max="100" value="5" class="w-full p-2 border-y border-gray-300 text-center focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                            <button id="increase-count" class="p-2 border border-gray-300 rounded-r-lg hover:bg-gray-100 transition-custom">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 生成按钮 -->
+                    <button id="generate-btn" class="w-full bg-primary hover:bg-primary/90 text-white font-medium px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition-custom flex items-center justify-center">
+                        <i class="fa fa-refresh mr-2"></i> 生成UUID
+                    </button>
+                </div>
+                
+                <!-- 右侧：结果展示 -->
+                <div class="md:col-span-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">生成结果</h3>
+                        <div class="flex space-x-2">
+                            <button id="copy-all" class="text-gray-600 hover:text-primary transition-custom p-2 rounded hover:bg-gray-100" title="复制所有UUID">
+                                <i class="fa fa-copy"></i> 复制全部
+                            </button>
+                            <button id="download" class="text-gray-600 hover:text-primary transition-custom p-2 rounded hover:bg-gray-100" title="下载UUID列表">
+                                <i class="fa fa-download"></i> 下载
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="uuid-results" class="border border-gray-200 rounded-lg max-h-[500px] overflow-y-auto p-4 space-y-3 bg-gray-50">
+                        <!-- UUID将在这里动态生成 -->
+                        <div class="text-gray-500 italic text-center py-8">点击生成按钮开始创建UUID</div>
+                    </div>
+                    
+                    <div id="notification" class="hidden mt-4 p-3 rounded-lg bg-green-100 text-green-800 border border-green-200 flex items-center justify-between animate-fade-in">
+                        <span id="notification-text">UUID已复制到剪贴板</span>
+                        <button id="close-notification" class="text-green-800 hover:text-green-600">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 关于UUID部分 -->
+        <section id="about" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">关于UUID</h2>
+            <div class="bg-white rounded-xl shadow-custom p-6 md:p-8 transform hover:shadow-custom-hover transition-custom">
+                <p class="text-gray-700 mb-4">UUID（通用唯一标识符）是一种用于在计算机系统中唯一标识信息的128位数字。它通常表示为36个字符的字符串，例如：<code class="bg-gray-100 px-1 py-0.5 rounded">550e8400-e29b-41d4-a716-446655440000</code></p>
+                
+                <h3 class="text-xl font-bold mt-6 mb-3">UUID版本说明</h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-primary">UUID v1</h4>
+                        <p>基于时间戳和生成主机的MAC地址。优点是可以通过UUID得知生成时间和生成主机，缺点是可能泄露MAC地址信息。</p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-primary">UUID v3</h4>
+                        <p>基于命名空间和名称的MD5哈希值。相同的命名空间和名称会生成相同的UUID，适用于需要确定性UUID的场景。</p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-primary">UUID v4</h4>
+                        <p>完全随机生成。使用最广泛，优点是简单且没有信息泄露的风险，缺点是不能保证全局唯一性（但概率极低）。</p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-primary">UUID v5</h4>
+                        <p>与v3类似，但使用SHA-1哈希算法，安全性更高，推荐替代v3使用。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 常见问题部分 -->
+        <section id="faq" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">常见问题</h2>
+            <div class="bg-white rounded-xl shadow-custom p-6 md:p-8 transform hover:shadow-custom-hover transition-custom">
+                <div class="space-y-4">
+                    <div class="border-b border-gray-200 pb-4">
+                        <h3 class="font-bold text-lg mb-2">UUID真的是唯一的吗？</h3>
+                        <p class="text-gray-700">UUID不能保证绝对唯一，但重复的概率极低，在实际应用中可以认为是唯一的。对于v4 UUID，重复概率约为1/(2^122)，几乎不可能发生。</p>
+                    </div>
+                    
+                    <div class="border-b border-gray-200 pb-4">
+                        <h3 class="font-bold text-lg mb-2">应该选择哪个版本的UUID？</h3>
+                        <p class="text-gray-700">大多数情况下推荐使用v4，因为它简单且安全。如果需要基于名称生成确定性UUID，应使用v5。v1和v3在特定场景下使用。</p>
+                    </div>
+                    
+                    <div class="border-b border-gray-200 pb-4">
+                        <h3 class="font-bold text-lg mb-2">UUID会在本地生成还是发送到服务器？</h3>
+                        <p class="text-gray-700">所有UUID都在您的浏览器本地生成，不会发送到任何服务器，确保您的数据安全和隐私。</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">可以在商业项目中使用生成的UUID吗？</h3>
+                        <p class="text-gray-700">是的，UUID是开放标准，可以在任何项目（包括商业项目）中自由使用，无需授权。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i class="fa fa-hashtag text-primary text-xl"></i>
+                    <span class="font-bold">UUID生成器</span>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2023 UUID生成器 | 所有UUID均在本地生成，保护您的隐私
+                </div>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // DOM元素
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const uuidVersion = document.getElementById('uuid-version');
+        const namespaceOptions = document.getElementById('namespace-options');
+        const namespace = document.getElementById('namespace');
+        const customNamespace = document.getElementById('custom-namespace');
+        const customNamespaceLabel = document.getElementById('custom-namespace-label');
+        const name = document.getElementById('name');
+        const uppercase = document.getElementById('uppercase');
+        const hyphens = document.getElementById('hyphens');
+        const count = document.getElementById('count');
+        const decreaseCount = document.getElementById('decrease-count');
+        const increaseCount = document.getElementById('increase-count');
+        const generateBtn = document.getElementById('generate-btn');
+        const uuidResults = document.getElementById('uuid-results');
+        const copyAllBtn = document.getElementById('copy-all');
+        const downloadBtn = document.getElementById('download');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        const closeNotification = document.getElementById('close-notification');
+        
+        // 移动端菜单切换
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // UUID版本切换时显示/隐藏命名空间选项
+        uuidVersion.addEventListener('change', () => {
+            if (uuidVersion.value === 'v3' || uuidVersion.value === 'v5') {
+                namespaceOptions.classList.remove('hidden');
+                namespaceOptions.classList.add('animate-fade-in');
+            } else {
+                namespaceOptions.classList.add('hidden');
+            }
+            updateCustomNamespaceVisibility();
+        });
+        
+        // 命名空间切换时显示/隐藏自定义命名空间输入
+        namespace.addEventListener('change', updateCustomNamespaceVisibility);
+        
+        function updateCustomNamespaceVisibility() {
+            if (namespace.value === 'custom' && (uuidVersion.value === 'v3' || uuidVersion.value === 'v5')) {
+                customNamespace.classList.remove('hidden');
+                customNamespaceLabel.classList.remove('hidden');
+            } else {
+                customNamespace.classList.add('hidden');
+                customNamespaceLabel.classList.add('hidden');
+            }
+        }
+        
+        // 生成数量调整
+        decreaseCount.addEventListener('click', () => {
+            if (count.value > 1) {
+                count.value = parseInt(count.value) - 1;
+            }
+        });
+        
+        increaseCount.addEventListener('click', () => {
+            if (count.value < 100) {
+                count.value = parseInt(count.value) + 1;
+            }
+        });
+        
+        // 显示通知
+        function showNotification(text) {
+            notificationText.textContent = text;
+            notification.classList.remove('hidden');
+            notification.classList.add('animate-bounce-in');
+            
+            // 5秒后自动关闭
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+        
+        // 隐藏通知
+        function hideNotification() {
+            notification.classList.add('hidden');
+        }
+        
+        closeNotification.addEventListener('click', hideNotification);
+        
+        // 复制到剪贴板
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch (err) {
+                console.error('无法复制文本: ', err);
+                return false;
+            }
+        }
+        
+        // 下载UUID列表
+        function downloadUUIDs(uuids) {
+            const text = uuids.join('\n');
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `uuids-${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        }
+        
+        // UUID生成逻辑
+        
+        // 命名空间UUID
+        const namespaces = {
+            nil: '00000000-0000-0000-0000-000000000000',
+            dns: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
+            url: '6ba7b811-9dad-11d1-80b4-00c04fd430c8',
+            oid: '6ba7b812-9dad-11d1-80b4-00c04fd430c8',
+            x500: '6ba7b814-9dad-11d1-80b4-00c04fd430c8'
+        };
+        
+        // 生成UUID v1
+        function generateUUIDv1() {
+            const now = new Date().getTime();
+            const uuid = 'xxxxxxxx-xxxx-1xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = (now + Math.random() * 16) % 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
+        }
+        
+        // 生成UUID v4
+        function generateUUIDv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        
+        // 辅助函数：将UUID转换为缓冲区
+        function uuidToBuffer(uuid) {
+            const hex = uuid.replace(/-/g, '');
+            const buffer = new Uint8Array(16);
+            for (let i = 0; i < 16; i++) {
+                buffer[i] = parseInt(hex.substr(i * 2, 2), 16);
+            }
+            return buffer;
+        }
+        
+        // 辅助函数：将缓冲区转换为UUID
+        function bufferToUUID(buffer) {
+            const hex = Array.from(new Uint8Array(buffer))
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join('');
+            return [
+                hex.substring(0, 8),
+                hex.substring(8, 12),
+                hex.substring(12, 16),
+                hex.substring(16, 20),
+                hex.substring(20, 32)
+            ].join('-');
+        }
+        
+        // 生成UUID v3或v5
+        async function generateUUIDv3or5(version, namespaceUuid, name) {
+            const namespaceBuffer = uuidToBuffer(namespaceUuid);
+            const textEncoder = new TextEncoder();
+            const nameBuffer = textEncoder.encode(name);
+            
+            // 连接命名空间和名称缓冲区
+            const buffer = new Uint8Array(namespaceBuffer.length + nameBuffer.length);
+            buffer.set(namespaceBuffer, 0);
+            buffer.set(nameBuffer, namespaceBuffer.length);
+            
+            // 计算哈希
+            let hash;
+            if (version === 'v3') {
+                hash = await crypto.subtle.digest('MD5', buffer);
+            } else { // v5
+                hash = await crypto.subtle.digest('SHA-1', buffer);
+            }
+            
+            // 转换为UUID格式并设置版本
+            const uuid = bufferToUUID(hash).split('-');
+            uuid[2] = uuid[2].replace(/^[0-9a-f]/, version === 'v3' ? '3' : '5');
+            uuid[3] = uuid[3].replace(/^[0-9a-f]/, (parseInt(uuid[3][0], 16) & 0x3 | 0x8).toString(16));
+            
+            return uuid.join('-');
+        }
+        
+        // 格式化UUID
+        function formatUUID(uuid) {
+            let result = uuid;
+            
+            // 处理连字符
+            if (!hyphens.checked) {
+                result = result.replace(/-/g, '');
+            }
+            
+            // 处理大小写
+            if (uppercase.checked) {
+                result = result.toUpperCase();
+            }
+            
+            return result;
+        }
+        
+        // 生成UUID
+        async function generateUUIDs() {
+            const version = uuidVersion.value;
+            const countValue = parseInt(count.value);
+            const uuids = [];
+            
+            try {
+                for (let i = 0; i < countValue; i++) {
+                    let uuid;
+                    
+                    switch (version) {
+                        case 'v1':
+                            uuid = generateUUIDv1();
+                            break;
+                        case 'v3':
+                        case 'v5':
+                            let namespaceUuid;
+                            if (namespace.value === 'custom') {
+                                namespaceUuid = customNamespace.value.trim() || namespaces.nil;
+                            } else {
+                                namespaceUuid = namespaces[namespace.value] || namespaces.nil;
+                            }
+                            const nameValue = name.value.trim() || 'default-name';
+                            uuid = await generateUUIDv3or5(version, namespaceUuid, nameValue);
+                            break;
+                        case 'v4':
+                        default:
+                            uuid = generateUUIDv4();
+                            break;
+                    }
+                    
+                    // 应用格式选项
+                    const formattedUuid = formatUUID(uuid);
+                    uuids.push(formattedUuid);
+                }
+                
+                // 显示结果
+                displayUUIDs(uuids);
+                return uuids;
+            } catch (error) {
+                console.error('生成UUID时出错:', error);
+                uuidResults.innerHTML = `<div class="text-red-500 text-center py-8">生成UUID时出错，请重试</div>`;
+                return [];
+            }
+        }
+        
+        // 显示UUID结果
+        function displayUUIDs(uuids) {
+            uuidResults.innerHTML = '';
+            
+            uuids.forEach((uuid, index) => {
+                const uuidElement = document.createElement('div');
+                uuidElement.className = 'flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-custom group';
+                uuidElement.innerHTML = `
+                    <span class="font-mono text-sm md:text-base break-all">${uuid}</span>
+                    <button class="copy-single text-gray-400 hover:text-primary transition-custom opacity-0 group-hover:opacity-100" data-index="${index}">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                `;
+                uuidResults.appendChild(uuidElement);
+            });
+            
+            // 添加复制单个UUID的事件监听
+            document.querySelectorAll('.copy-single').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const index = parseInt(e.currentTarget.dataset.index);
+                    const uuid = uuids[index];
+                    const success = await copyToClipboard(uuid);
+                    if (success) {
+                        showNotification(`UUID已复制到剪贴板`);
+                    } else {
+                        showNotification(`复制失败，请手动复制`);
+                    }
+                });
+            });
+        }
+        
+        // 生成按钮点击事件
+        generateBtn.addEventListener('click', async () => {
+            // 添加加载状态
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 生成中...';
+            
+            // 生成UUID
+            await generateUUIDs();
+            
+            // 恢复按钮状态
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i> 生成UUID';
+        });
+        
+        // 复制所有UUID
+        copyAllBtn.addEventListener('click', async () => {
+            const uuidElements = document.querySelectorAll('#uuid-results .font-mono');
+            if (uuidElements.length === 0) {
+                showNotification('没有可复制的UUID，请先生成');
+                return;
+            }
+            
+            const uuids = Array.from(uuidElements).map(el => el.textContent);
+            const success = await copyToClipboard(uuids.join('\n'));
+            
+            if (success) {
+                showNotification(`已复制 ${uuids.length} 个UUID到剪贴板`);
+            } else {
+                showNotification(`复制失败，请手动复制`);
+            }
+        });
+        
+        // 下载UUID
+        downloadBtn.addEventListener('click', () => {
+            const uuidElements = document.querySelectorAll('#uuid-results .font-mono');
+            if (uuidElements.length === 0) {
+                showNotification('没有可下载的UUID，请先生成');
+                return;
+            }
+            
+            const uuids = Array.from(uuidElements).map(el => el.textContent);
+            downloadUUIDs(uuids);
+            showNotification(`已下载 ${uuids.length} 个UUID`);
+        });
+        
+        // 页面加载时生成UUID
+        window.addEventListener('load', () => {
+            // 初始检查命名空间选项显示状态
+            if (uuidVersion.value === 'v3' || uuidVersion.value === 'v5') {
+                namespaceOptions.classList.remove('hidden');
+            }
+            updateCustomNamespaceVisibility();
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // 关闭移动菜单
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // 初始生成UUID
+            generateUUIDs();
+        });
+    </script>
+</body>
+</html>

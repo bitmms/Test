@@ -1024,6 +1024,13 @@
         "desc": "水哥创意赛：大声密谋4.0",
         "slug": "/tool/10007.html",
         "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "UUID 生成器",
+        "href": "",
+        "desc": "灵活可控的 UUID 生成器",
+        "slug": "/tool/10008.html",
+        "logo": "/svg/website/me.svg"
       }
     ]
   }
