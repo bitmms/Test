@@ -550,6 +550,13 @@
         "desc": "专业级矢量校徽库",
         "slug": "/redirect/bits-to-uni-logos",
         "logo": "/svg/website/icon-uni-logo.svg"
+      },
+      {
+        "name": "免费商用字体汇总",
+        "href": "https://github.com/wordshub/free-font",
+        "desc": "免费商用字体汇总",
+        "slug": "/redirect/bits-to-free-font",
+        "logo": "/svg/website/icon-free-font.svg"
       }
     ]
   },
