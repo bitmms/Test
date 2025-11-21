@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMVVM", "MyMVVM\MyMVVM.csproj", "{4EEB4588-165A-48D2-A5F9-D8640FF9A7E9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "调度系统", "调度系统\调度系统.vdproj", "{D6FE9308-BD45-4AF9-A169-F07BE4BF4ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementUI.WPF", "ElementUI.WPF\ElementUI.WPF.csproj", "{ADB2BECB-EC70-4B9B-B82A-63592B15840C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,18 @@ Global
 		{4EEB4588-165A-48D2-A5F9-D8640FF9A7E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EEB4588-165A-48D2-A5F9-D8640FF9A7E9}.Release|x64.ActiveCfg = Release|x64
 		{4EEB4588-165A-48D2-A5F9-D8640FF9A7E9}.Release|x64.Build.0 = Release|x64
+		{D6FE9308-BD45-4AF9-A169-F07BE4BF4ABB}.Debug|Any CPU.ActiveCfg = Debug
+		{D6FE9308-BD45-4AF9-A169-F07BE4BF4ABB}.Debug|x64.ActiveCfg = Debug
+		{D6FE9308-BD45-4AF9-A169-F07BE4BF4ABB}.Release|Any CPU.ActiveCfg = Release
+		{D6FE9308-BD45-4AF9-A169-F07BE4BF4ABB}.Release|x64.ActiveCfg = Release
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Debug|x64.Build.0 = Debug|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADB2BECB-EC70-4B9B-B82A-63592B15840C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

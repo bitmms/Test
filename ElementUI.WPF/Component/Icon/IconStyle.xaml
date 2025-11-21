@@ -1,0 +1,35 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:eui="clr-namespace:ElementUI.WPF.Component">
+
+    <!--
+        关于引用 ttf 文件时路径的几种写法
+        (1) FontFamily="pack://application:,,,/ElementUI.WPF;component/Component/Icon/Font/iconfont.ttf#iconfont"
+        (2) FontFamily="./Font/iconfont.ttf#iconfont"
+        (3) FontFamily="Font/iconfont.ttf#iconfont"
+        (4) FontFamily="Font/#iconfont"
+    -->
+
+    <Style TargetType="eui:Icon">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="eui:Icon">
+                    <Border
+                        Width="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                        Height="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                        Background="Transparent">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="pack://application:,,,/ElementUI.WPF;component/Component/Icon/Font/iconfont.ttf#iconfont"
+                            FontSize="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                            Foreground="{Binding IconColor, RelativeSource={RelativeSource TemplatedParent}}"
+                            Text="{Binding IconCode, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

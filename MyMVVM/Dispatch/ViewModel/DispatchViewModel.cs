@@ -20,6 +20,7 @@ using MyMVVM.Common.Model;
 using MyMVVM.Common.Utils;
 using MyMVVM.Common.View;
 using MyMVVM.Common.ViewModel;
+using MyMVVM.Dispatch.Model;
 using NAudio.Wave;
 
 namespace MyMVVM.Dispatch.ViewModel
@@ -83,6 +84,7 @@ namespace MyMVVM.Dispatch.ViewModel
             _timer3 = new Timer(LoadCallingUsers, null, 0, 1000);  // 通话记录
             _timer4 = new Timer(LoadDispatchCdr, null, 0, 1000);  // 调度记录
             _timer5 = new Timer(LoadWaitUser, null, 0, 1000);  // 来电等候
+            _timer6 = new Timer(LoadGatewayAlarmRecord, null, 0, 2000);  // 网关报警记录
 
             Dictionary<string, string> dict = CommonDB.GetFunctionNumber();
             queryNowNumber = dict["number"];
@@ -161,6 +163,7 @@ namespace MyMVVM.Dispatch.ViewModel
         private readonly Timer _timer3; // 通话记录
         private readonly Timer _timer4; // 调度记录
         private readonly Timer _timer5; // 来电等候
+        private readonly Timer _timer6; // 来电等候
 
 
 
@@ -171,6 +174,9 @@ namespace MyMVVM.Dispatch.ViewModel
         // 调度记录
         public ObservableCollection<DefaultUserModel> _dispatchCdr;
         public ObservableCollection<DefaultUserModel> DispatchCdr { get => _dispatchCdr; set { _dispatchCdr = value; OnPropertyChanged(nameof(DispatchCdr)); } }
+        // 网关报警记录
+        public ObservableCollection<GatewayAlarmRecordModel> _GatewayAlarmRecord;
+        public ObservableCollection<GatewayAlarmRecordModel> GatewayAlarmRecord { get => _GatewayAlarmRecord; set { _GatewayAlarmRecord = value; OnPropertyChanged(nameof(GatewayAlarmRecord)); } }
 
         // 调度按钮
         private ObservableCollection<DispatchButtonModel> _dispatchButtonModelList;
@@ -1612,6 +1618,16 @@ namespace MyMVVM.Dispatch.ViewModel
             }
 
             DispatchCdr = _dispatchCdr;
+        }
+
+
+
+        /// <summary>
+        /// 网关报警记录
+        /// </summary>
+        private void LoadGatewayAlarmRecord(object e)
+        {
+            GatewayAlarmRecord = new ObservableCollection<GatewayAlarmRecordModel>(DispatchDB.GetGatewayAlarmRecorList());
         }
 
 
