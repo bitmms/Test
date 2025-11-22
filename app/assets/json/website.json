@@ -6,13 +6,6 @@
     "iconSvg": "/svg/nav/recommend.svg",
     "children": [
       {
-        "name": "丘盾CDN",
-        "href": "https://www.scdn.koxiuqiu.cc/",
-        "desc": "纯公益内容分发网络加速",
-        "slug": "/redirect/bits-to-qiudun-cdn",
-        "logo": "/svg/website/qiudun-cdn.svg"
-      },
-      {
         "name": "哔哩哔哩",
         "href": "https://www.bilibili.com",
         "desc": "弹幕视频社区，互动性强",
@@ -34,20 +27,6 @@
         "logo": "/svg/website/huya.svg"
       },
       {
-        "name": "555电影",
-        "href": "https://5573695.vip",
-        "desc": "最新 Netflix 免费在线观看",
-        "slug": "/redirect/bits-to-555-movie",
-        "logo": "/svg/website/555-movie.svg"
-      },
-      {
-        "name": "永乐视频",
-        "href": "https://ylsp.tv",
-        "desc": "4K 高清影视免费看",
-        "slug": "/redirect/bits-to-yongle-video",
-        "logo": "/svg/website/yongle.svg"
-      },
-      {
         "name": "语雀",
         "href": "https://www.yuque.com",
         "desc": "阿里系笔记与知识库",
@@ -55,32 +34,18 @@
         "logo": "/svg/website/yuque.svg"
       },
       {
-        "name": "百度翻译",
-        "href": "https://fanyi.baidu.com",
-        "desc": "百度旗下的专业翻译工具",
-        "slug": "/redirect/bits-to-baidu-fanyi",
-        "logo": "/svg/website/baidu-fanyi.svg"
+        "name": "555电影",
+        "href": "https://5573695.vip",
+        "desc": "最新 Netflix 免费在线观看",
+        "slug": "/redirect/bits-to-555-movie",
+        "logo": "/svg/website/555-movie.svg"
       },
       {
-        "name": "文件转化器",
-        "href": "https://www.freeconvert.com/zh",
-        "desc": "在线格式转换工具",
-        "slug": "/redirect/bits-to-file-converter",
-        "logo": "/svg/website/file-convert.svg"
-      },
-      {
-        "name": "ChatGPT",
-        "href": "https://chatgpt.com",
-        "desc": "OpenAI 开发的语言模型",
-        "slug": "/redirect/bits-to-chatgpt",
-        "logo": "/svg/website/chatgpt.svg"
-      },
-      {
-        "name": "Online-GDB",
-        "href": "https://www.onlinegdb.com/",
-        "desc": "GDB online is an online compiler and debugger tool",
-        "slug": "/redirect/bits-to-onlinegdb",
-        "logo": "/svg/website/onlinegdb.svg"
+        "name": "Lemon live",
+        "href": "https://lemonlive.pages.dev/",
+        "desc": "聚合直播网站，支持虎牙、斗鱼、抖音、B站",
+        "slug": "/redirect/bits-to-lemonlive",
+        "logo": "/svg/website/lemonlive.svg"
       },
       {
         "name": "微信文件传输助手",
@@ -90,11 +55,25 @@
         "logo": "/svg/website/wx-filehelper.svg"
       },
       {
-        "name": "Lemon live",
-        "href": "https://lemonlive.pages.dev/",
-        "desc": "聚合直播网站，支持虎牙、斗鱼、抖音、B站",
-        "slug": "/redirect/bits-to-lemonlive",
-        "logo": "/svg/website/lemonlive.svg"
+        "name": "百度翻译",
+        "href": "https://fanyi.baidu.com",
+        "desc": "百度旗下的专业翻译工具",
+        "slug": "/redirect/bits-to-baidu-fanyi",
+        "logo": "/svg/website/baidu-fanyi.svg"
+      },
+      {
+        "name": "Online-GDB",
+        "href": "https://www.onlinegdb.com/",
+        "desc": "GDB online is an online compiler and debugger tool",
+        "slug": "/redirect/bits-to-onlinegdb",
+        "logo": "/svg/website/onlinegdb.svg"
+      },
+      {
+        "name": "文件转化器",
+        "href": "https://www.freeconvert.com/zh",
+        "desc": "在线格式转换工具",
+        "slug": "/redirect/bits-to-file-converter",
+        "logo": "/svg/website/file-convert.svg"
       }
     ]
   },
@@ -159,6 +138,13 @@
         "desc": "ChatGPT",
         "slug": "/redirect/bits-to-chatgpt",
         "logo": "/svg/website/ai-llm-chatgpt.svg"
+      },
+      {
+        "name": "通义千问",
+        "href": "https://www.qianwen.com/",
+        "desc": "阿里巴巴全新推出的AI对话助手",
+        "slug": "/redirect/bits-to-qianwen",
+        "logo": "/svg/website/ai-llm-qianwen.svg"
       }
     ]
   },
