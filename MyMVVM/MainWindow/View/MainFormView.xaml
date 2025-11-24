@@ -272,9 +272,26 @@
                         <TextBlock
                             x:Name="EmotionAlarmNumber"
                             FontSize="18"
-                            FontWeight="Bold"
-                            Foreground="red"
-                            TextAlignment="Left" />
+                            FontWeight="Black">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush x:Name="TextColorBrush1" Color="Red" />
+                            </TextBlock.Foreground>
+                            <TextBlock.Triggers>
+                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <ColorAnimationUsingKeyFrames
+                                                Storyboard.TargetName="TextColorBrush1"
+                                                Storyboard.TargetProperty="Color"
+                                                Duration="0:0:0.8">
+                                                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="Red" />
+                                                <DiscreteColorKeyFrame KeyTime="0:0:0.4" Value="Transparent" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </TextBlock.Triggers>
+                        </TextBlock>
                     </WrapPanel>
                 </Grid>
 
