@@ -60,7 +60,6 @@
                             FontFamily="楷体"
                             FontSize="27"
                             FontWeight="Black"
-
                             Style="{DynamicResource DM-Logo-Font}"
                             Text="浙江达名科技有限公司" />
                         <TextBlock
@@ -151,13 +150,14 @@
                     <ColumnDefinition Width="127*" />
                     <ColumnDefinition Width="127*" />
                     <ColumnDefinition Width="150*" />
-                    <ColumnDefinition Width="340*" />
                     <ColumnDefinition Width="300*" />
+                    <ColumnDefinition Width="340*" />
                     <ColumnDefinition Width="140*" />
                     <ColumnDefinition Width="140*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="1"
+                <Grid
+                    Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Margin="0,0,127,0">
                     <WrapPanel VerticalAlignment="Bottom">
@@ -188,7 +188,8 @@
                     </WrapPanel>
                 </Grid>
 
-                <Grid Grid.Column="2"
+                <Grid
+                    Grid.Column="2"
                     Grid.ColumnSpan="2"
                     Margin="0,0,127,0">
                     <WrapPanel VerticalAlignment="Bottom">
@@ -216,7 +217,8 @@
                     </WrapPanel>
                 </Grid>
 
-                <Grid Grid.Column="3"
+                <Grid
+                    Grid.Column="3"
                     Grid.ColumnSpan="2"
                     Margin="0,0,127,0">
                     <WrapPanel VerticalAlignment="Bottom">
@@ -269,20 +271,21 @@
                         </Button>
                         <TextBlock
                             x:Name="EmotionAlarmNumber"
-                            Foreground="red"
                             FontSize="18"
-                            TextAlignment="Left"
-                            FontWeight="Bold" />
+                            FontWeight="Bold"
+                            Foreground="red"
+                            TextAlignment="Left" />
                     </WrapPanel>
                 </Grid>
 
                 <Grid Grid.Column="5" />
 
-                <Border Grid.Column="6"
-                        BorderThickness="3"
-                        CornerRadius="3"
-                        Margin="10 0 10 0"
-                        Style="{DynamicResource SIPUserStateBorder}">
+                <Border
+                    Grid.Column="6"
+                    Margin="10,0,10,0"
+                    BorderThickness="3"
+                    CornerRadius="3"
+                    Style="{DynamicResource SIPUserStateBorder}">
                     <Border.Effect>
                         <DropShadowEffect
                             BlurRadius="10"
@@ -300,28 +303,33 @@
                             <TextBlock Style="{DynamicResource DM-Call-State-Text}" Text="通话" />
                             <Ellipse Fill="#BEBEBE" Style="{DynamicResource CommanndEli}" />
                             <TextBlock Style="{DynamicResource DM-UnOnline-State-Text}" Text="离线" />
-                            <Ellipse Fill="Transparent" Width="12" Height="12"/>
+                            <Ellipse Fill="#2b2b30" Style="{DynamicResource CommanndEli}" />
+                            <TextBlock Style="{DynamicResource DM-UnOnline-State-Text}" Text="故障" />
+                            <Ellipse
+                                Width="12"
+                                Height="12"
+                                Fill="Transparent" />
                         </WrapPanel>
                     </Viewbox>
                 </Border>
 
                 <Border Grid.Column="7">
                     <Button
-                        Height="Auto"
                         x:Name="people"
+                        Height="Auto"
+                        Margin="10,0,10,0"
                         Click="Button_Click_3"
                         Content="有人值守"
-                        Margin="10 0 10 0"
                         Style="{DynamicResource DM-People}" />
                 </Border>
 
                 <Grid Grid.Column="8">
                     <Button
-                        Height="Auto"
                         x:Name="HostName"
-                        Content="主机"
-                        Margin="10 0 10 0"
+                        Height="Auto"
+                        Margin="10,0,10,0"
                         Click="ShowPingNetworkWindow"
+                        Content="主机"
                         Style="{DynamicResource DM-People}" />
                 </Grid>
 
@@ -331,9 +339,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="123*" />
                     <ColumnDefinition Width="466*" />
-                    <ColumnDefinition Width="1009*"/>
+                    <ColumnDefinition Width="1009*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,466,0">
+                <Grid
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,466,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="12*" />
                         <RowDefinition Height="1.8*" />

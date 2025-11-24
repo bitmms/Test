@@ -35,21 +35,30 @@ namespace MyMVVM.Dispatch
                     lineState = row["line_state"].ToString(),
                     lineLength = row["line_length"].ToString(),
                     terminationType = row["termination_type"].ToString(),
+                    type = 2,
                 };
+                // 线路长度
                 if (item.lineLength == null || item.lineLength == "") item.lineLength = "";
-                if ("0 m".Equals(item.lineLength) || item.lineLength == "") item.lineLength = "\\";
-
-
-
-
-
-                if (item.lineState.Contains("AB all break off or no phone connceted")) item.lineState = "未接设备";
-                else if (item.lineState.Contains("A fault to ground")) item.lineState = "接地故障";
+                if ("0 m".Equals(item.lineLength) || item.lineLength == "") item.lineLength = "";
+                // 线路故障
+                if (item.lineState.Contains("AB all break off or no phone connceted"))
+                {
+                    item.desc = "未接电话";
+                    item.type = 1;
+                }
+                else if (item.terminationType.Contains("AB short"))
+                {
+                    item.desc = "线路短接";
+                }
+                else if (item.lineState.Contains("fault to ground"))
+                {
+                    item.desc = "接地故障";
+                }
                 else
                 {
-                    item.lineState = "未知异常";
+                    item.desc = "未知故障";
                 }
-
+                if (item.lineLength != "") item.desc = $"{item.desc} {item.lineLength}";
                 list.Add(item);
             }
             list.Sort((p1, p2) =>

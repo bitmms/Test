@@ -8,11 +8,23 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using MyMVVM.Dispatch.Model;
 
 namespace MyMVVM.Common.Utils
 {
     public class DMUtil
     {
+        // 判断一个号码是否存在 List<GatewayAlarmRecordModel> 列表中
+        public static bool IsFailDevice(List<GatewayAlarmRecordModel> list, string number)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].telno == number) return true;
+            }
+            return false;
+        }
+
+
         public static bool PingNetworkDevice(string IP)
         {
             Ping pingSender = new Ping();

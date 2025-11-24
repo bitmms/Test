@@ -55,6 +55,10 @@ namespace MyMVVM.Dispatch.ViewModel
             UserUnSelected = (Color)Application.Current.Resources["UserUnSelected"];
             UserSelected = (Color)Application.Current.Resources["UserSelected"];
 
+            GatewayLineCheck_UserNoLine = (Color)Application.Current.Resources["GatewayLineCheck_UserNoLine"];
+            GatewayLineCheck_UserFail = (Color)Application.Current.Resources["GatewayLineCheck_UserFail"];
+            GatewayLineCheck_UserFail_TextColor = (Color)Application.Current.Resources["GatewayLineCheck_UserFail_TextColor"];
+
             DispatchButtonUnSelected = (Color)Application.Current.Resources["DispatchButtonUnSelected"];
             DispatchButtonSelected = (Color)Application.Current.Resources["DispatchButtonSelected"];
 
@@ -123,6 +127,10 @@ namespace MyMVVM.Dispatch.ViewModel
         private Color DispatchButtonUnSelected;
         private Color DispatchButtonSelected;
 
+        private Color GatewayLineCheck_UserNoLine;
+        private Color GatewayLineCheck_UserFail;
+        private Color GatewayLineCheck_UserFail_TextColor;
+
         private bool IsKuaZu; // 是否跨组
 
 
@@ -176,6 +184,7 @@ namespace MyMVVM.Dispatch.ViewModel
         public ObservableCollection<DefaultUserModel> DispatchCdr { get => _dispatchCdr; set { _dispatchCdr = value; OnPropertyChanged(nameof(DispatchCdr)); } }
         // 网关报警记录
         public ObservableCollection<GatewayAlarmRecordModel> _GatewayAlarmRecord;
+        public List<GatewayAlarmRecordModel> _GatewayAlarmRecordList = new List<GatewayAlarmRecordModel>();
         public ObservableCollection<GatewayAlarmRecordModel> GatewayAlarmRecord { get => _GatewayAlarmRecord; set { _GatewayAlarmRecord = value; OnPropertyChanged(nameof(GatewayAlarmRecord)); } }
 
         // 调度按钮
@@ -401,7 +410,7 @@ namespace MyMVVM.Dispatch.ViewModel
 
         private void UpdateOnlineUser(object obj)
         {
-            // 用户被选中
+            // 用户被选中：改变文字颜色
             foreach (DefaultUserModel userModel in TempAllButtons)
             {
                 userModel.UserButtonFontColor = DMUtil.ColorToHex(UserUnSelected);
@@ -417,7 +426,6 @@ namespace MyMVVM.Dispatch.ViewModel
             {
                 onlineUserList.Add(row["sip_user"].ToString());
             }
-
             // 获取通话中的用户
             List<string> callUserList = new List<string>();
             foreach (DataRow row in CommonDB.GetDetailedCalls().Rows)
@@ -426,13 +434,28 @@ namespace MyMVVM.Dispatch.ViewModel
                 callUserList.Add(row["dest"].ToString());
             }
 
-            // 用户状态变化
+            // 将用户更新为在线的蓝色背景颜色状态
             for (int i = 0; i < TempAllButtons.Count; i++)
             {
                 var userModel = TempAllButtons[i];
-                //如果用户处于通话中,则无需更新为在线状态
+                // 如果用户处于通话中,则无需更新为在线状态
                 if (callUserList.Contains(userModel.Usernum))
                 {
+                    continue;
+                }
+                // 如果用户处于故障列表中
+                if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, userModel.Usernum))
+                {
+                    GatewayAlarmRecordModel model = _GatewayAlarmRecordList.FirstOrDefault(temp => temp.telno == userModel.Usernum);
+                    if (model.type == 1)
+                    {
+                        userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserNoLine);
+                    }
+                    else
+                    {
+                        userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail);
+                        userModel.UserButtonFontColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail_TextColor);
+                    }
                     continue;
                 }
                 // 如果用户已经不在通话表中但在线,则更新为在线状态
@@ -443,7 +466,7 @@ namespace MyMVVM.Dispatch.ViewModel
                 }
             }
 
-            // 判断是否存在振铃、通话中的用户
+            // 更新振铃、通话中的用户的状态
             if (!CommonDB.IsBFieldEmpty())
             {
                 DataTable dt = CommonDB.GetDetailedCalls();
@@ -456,6 +479,12 @@ namespace MyMVVM.Dispatch.ViewModel
                     string calleeNum = row["callee_num"].ToString();
                     string calleeName = row["callee_name"].ToString();
                     string callState = row["callstate"].ToString();
+
+                    // 如果用户处于故障列表中，则无需更新状态
+                    if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, cidNum) || DMUtil.IsFailDevice(_GatewayAlarmRecordList, calleeNum))
+                    {
+                        continue;
+                    }
                     UpdateButtonColor(cidNum, cidName, destNum, application, calleeNum, calleeName, callState);
                 }
             }
@@ -1627,7 +1656,8 @@ namespace MyMVVM.Dispatch.ViewModel
         /// </summary>
         private void LoadGatewayAlarmRecord(object e)
         {
-            GatewayAlarmRecord = new ObservableCollection<GatewayAlarmRecordModel>(DispatchDB.GetGatewayAlarmRecorList());
+            _GatewayAlarmRecordList = DispatchDB.GetGatewayAlarmRecorList();
+            GatewayAlarmRecord = new ObservableCollection<GatewayAlarmRecordModel>(_GatewayAlarmRecordList);
         }
 
 

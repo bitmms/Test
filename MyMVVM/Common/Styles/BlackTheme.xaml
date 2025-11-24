@@ -35,6 +35,11 @@
     <Color x:Key="DispatchButtonUnSelected">#BEBEBE</Color>
     <Color x:Key="DispatchButtonSelected">#FFFF00</Color>
 
+    <!--  网关检测的用户状态颜色  -->
+    <Color x:Key="GatewayLineCheck_UserNoLine">#DCDCDC</Color>
+    <Color x:Key="GatewayLineCheck_UserFail">#2b2b30</Color>
+    <Color x:Key="GatewayLineCheck_UserFail_TextColor">#ffffff</Color>
+
 
     <!--  程序窗口图标  -->
     <Style x:Key="WindowIoc" TargetType="Window">
