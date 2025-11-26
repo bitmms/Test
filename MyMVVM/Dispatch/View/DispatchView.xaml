@@ -62,7 +62,7 @@
                                             TextAlignment="Center"
                                             TextWrapping="Wrap">
                                             <InlineUIContainer>
-                                                <materialDesign:PackIcon Foreground="#363636" Kind="PhoneClassic" />
+                                                <materialDesign:PackIcon Foreground="{Binding UserButtonFontColor}" Kind="PhoneClassic" />
                                             </InlineUIContainer>
                                             <Run Foreground="{Binding UserButtonFontColor}" Text="{Binding Username}" />
                                         </TextBlock>

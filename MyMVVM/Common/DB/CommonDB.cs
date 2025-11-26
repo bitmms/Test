@@ -62,13 +62,14 @@ namespace MyMVVM.Common
         /// </summary>
         public static Dictionary<string, string> GetFunctionNumber()
         {
-            string sql = "select number, data, ring, misscall from dm_function where id = 1";
+            string sql = "select number, data, ring, misscall, lastcall from dm_function where id = 1";
             DataTable table = DB.ExecuteQuery(sql);
             Dictionary<string, string> dispatchNum = new Dictionary<string, string>();
             dispatchNum.Add("number", table.Rows[0]["number"].ToString());
             dispatchNum.Add("date", table.Rows[0]["data"].ToString());
             dispatchNum.Add("ring", table.Rows[0]["ring"].ToString());
             dispatchNum.Add("misscall", table.Rows[0]["misscall"].ToString());
+            dispatchNum.Add("lastcall", table.Rows[0]["lastcall"].ToString());
             return dispatchNum;
         }
 
@@ -185,6 +186,56 @@ namespace MyMVVM.Common
             return dt;
         }
 
+        /// <summary>
+        /// 判断用户是否处于通话中：非null通话中，null没有通话中
+        /// </summary>
+        public static Dictionary<string, string> IsCalling(string number)
+        {
+            string query = $"select cid_num, dest from detailed_calls where (cid_num = '{number}' or dest = '{number}') and callstate='ACTIVE';";
+            DataTable dt = DB.ExecuteQuery(query);
+            if (dt.Rows.Count <= 0)
+            {
+                return null;
+            }
+            else
+            {
+                Dictionary<string, string> map = new Dictionary<string, string>();
+                map.Add("cidNum", dt.Rows[0]["cid_num"].ToString());
+                map.Add("dest", dt.Rows[0]["dest"].ToString());
+                return map;
+            }
+        }
+
+        /// <summary>
+        /// 判断用户是否处于振铃中：非null通话中，null没有通话中
+        /// </summary>
+        public static Dictionary<string, string> IsRinging(string number)
+        {
+            string query = $"select cid_num, dest from detailed_calls where (cid_num = '{number}' or dest = '{number}') and callstate='RINGING';";
+            DataTable dt = DB.ExecuteQuery(query);
+            if (dt.Rows.Count <= 0)
+            {
+                return null;
+            }
+            else
+            {
+                Dictionary<string, string> map = new Dictionary<string, string>();
+                map.Add("cidNum", dt.Rows[0]["cid_num"].ToString());
+                map.Add("dest", dt.Rows[0]["dest"].ToString());
+                return map;
+            }
+        }
+
+        /// <summary>
+        /// 判断用户是否在线 true在线 false不在线
+        /// </summary>
+        public static bool IsRegSuccess(string number)
+        {
+            if (number.Length >= 7) return true;
+
+            string query = $"select count(*) from sip_registrations where sip_user = '{number}';";
+            return DB.ExecuteCountQuery(query) > 0;
+        }
 
 
         public static DataTable GetOnlineUser()

@@ -22,6 +22,7 @@ using MyMVVM.Common.View;
 using MyMVVM.Common.ViewModel;
 using MyMVVM.Dispatch.Model;
 using NAudio.Wave;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace MyMVVM.Dispatch.ViewModel
 {
@@ -404,319 +405,92 @@ namespace MyMVVM.Dispatch.ViewModel
 
 
 
-
         #region 用户状态的变化
-
 
         private void UpdateOnlineUser(object obj)
         {
-            // 用户被选中：改变文字颜色
             foreach (DefaultUserModel userModel in TempAllButtons)
             {
+                SetOneUserButtonBackgroundState(userModel);
+            }
+        }
+
+        /// <summary>
+        /// 更新用户按钮的文本和图标的颜色
+        /// </summary>
+        private void SetOneUserButtonTextAndIconColor(DefaultUserModel userModel, bool isFail = false)
+        {
+            // 用户被选中
+            if (SelectedUserList.Contains(userModel.Usernum))
+            {
+                userModel.UserButtonFontColor = DMUtil.ColorToHex(UserSelected);
+            }
+            // 用户没有被选中，并且当前用户处于故障状态
+            else if (!SelectedUserList.Contains(userModel.Usernum) && isFail)
+            {
+                userModel.UserButtonFontColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail_TextColor);
+            }
+            // 用户没有被选中，并且当前用户处于正常状态
+            else
+            {
                 userModel.UserButtonFontColor = DMUtil.ColorToHex(UserUnSelected);
-                if (SelectedUserList.Contains(userModel.Usernum))
-                {
-                    userModel.UserButtonFontColor = DMUtil.ColorToHex(UserSelected);
-                }
-            }
-
-            // 获取在线用户 
-            List<string> onlineUserList = new List<string>();
-            foreach (DataRow row in CommonDB.GetOnlineUser().Rows)
-            {
-                onlineUserList.Add(row["sip_user"].ToString());
-            }
-            // 获取通话中的用户
-            List<string> callUserList = new List<string>();
-            foreach (DataRow row in CommonDB.GetDetailedCalls().Rows)
-            {
-                callUserList.Add(row["cid_num"].ToString());
-                callUserList.Add(row["dest"].ToString());
-            }
-
-            // 将用户更新为在线的蓝色背景颜色状态
-            for (int i = 0; i < TempAllButtons.Count; i++)
-            {
-                var userModel = TempAllButtons[i];
-                // 如果用户处于通话中,则无需更新为在线状态
-                if (callUserList.Contains(userModel.Usernum))
-                {
-                    continue;
-                }
-                // 如果用户处于故障列表中
-                if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, userModel.Usernum))
-                {
-                    GatewayAlarmRecordModel model = _GatewayAlarmRecordList.FirstOrDefault(temp => temp.telno == userModel.Usernum);
-                    if (model.type == 1)
-                    {
-                        userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserNoLine);
-                    }
-                    else
-                    {
-                        userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail);
-                        userModel.UserButtonFontColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail_TextColor);
-                    }
-                    continue;
-                }
-                // 如果用户已经不在通话表中但在线,则更新为在线状态
-                if (onlineUserList.Contains(userModel.Usernum))
-                {
-                    userModel.BackgroundColor = DMUtil.ColorToHex(UserOnline);
-                    userModel.UserDisplay = userModel.Usernum;
-                }
-            }
-
-            // 更新振铃、通话中的用户的状态
-            if (!CommonDB.IsBFieldEmpty())
-            {
-                DataTable dt = CommonDB.GetDetailedCalls();
-                foreach (DataRow row in dt.Rows)
-                {
-                    string cidNum = row["cid_num"].ToString();
-                    string cidName = row["cid_name"].ToString();
-                    string destNum = row["dest"].ToString();
-                    string application = row["application"].ToString();
-                    string calleeNum = row["callee_num"].ToString();
-                    string calleeName = row["callee_name"].ToString();
-                    string callState = row["callstate"].ToString();
-
-                    // 如果用户处于故障列表中，则无需更新状态
-                    if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, cidNum) || DMUtil.IsFailDevice(_GatewayAlarmRecordList, calleeNum))
-                    {
-                        continue;
-                    }
-                    UpdateButtonColor(cidNum, cidName, destNum, application, calleeNum, calleeName, callState);
-                }
             }
         }
 
-
-        private void UpdateButtonColor(string cidNum, string cidName, string destNum, string application, string calleeNum, string calleeName, string callState)
+        /// <summary>
+        /// 更新用户按钮的状态
+        /// </summary>
+        private void SetOneUserButtonBackgroundState(DefaultUserModel userModel)
         {
-            // 按 # 呼调度
-            //if (destNum == "#")
-            //{
-            //    UpdateSingleButtonColor(TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum), cidNum, calleeNum, callState);
-            //    // UpdateSingleButtonColor(TempAllButtons.FirstOrDefault(temp => temp.Usernum == calleeNum), cidNum, calleeNum, callState);
-            //    return;
-            //}
+            Dictionary<string, string> map1 = CommonDB.IsCalling(userModel.Usernum);
+            Dictionary<string, string> map2 = CommonDB.IsRinging(userModel.Usernum);
+            GatewayAlarmRecordModel gatewayAlarmRecordModel = _GatewayAlarmRecordList.FirstOrDefault(temp => temp.telno == userModel.Usernum);
 
-            // 临时会议组【√】
-            if (calleeName.Contains("会议") || destNum.Length == 2)
+            // 故障1：短路、其他故障
+            if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, userModel.Usernum) && gatewayAlarmRecordModel != null && gatewayAlarmRecordModel.type == 2)
             {
-                Match match = Regex.Match(calleeName, @"\((\d+)\)");
-                string conferenceNum = "";
-                if (match.Success)
-                {
-                    conferenceNum = $"({match.Groups[1].Value})";
-                }
-
-                if (destNum.Length > 2)
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == destNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = $"会议中{conferenceNum}";
-                    }
-                }
-                else
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = $"会议中({destNum})";
-                    }
-                }
-                return;
+                userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserFail);
+                userModel.UserDisplay = userModel.Usernum;
+                SetOneUserButtonTextAndIconColor(userModel, true);
             }
-
-
-            // 组呼【√】
-            if (calleeName.Contains("组呼") || destNum.StartsWith("#17") || cidName.Contains("组呼"))
+            // 故障2：没有接电话
+            else if (DMUtil.IsFailDevice(_GatewayAlarmRecordList, userModel.Usernum) && gatewayAlarmRecordModel != null && gatewayAlarmRecordModel.type == 1)
             {
-                string toButton = "";
-                if (destNum.StartsWith("#17"))
-                {
-                    toButton = cidNum;
-                }
-                else
-                {
-                    toButton = destNum;
-                }
-                DefaultUserModel userButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == toButton);
-                if (userButton == null) return;
-                switch (callState)
-                {
-                    case "RINGING":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserRinging);
-                        userButton.UserDisplay = $"组呼中";
-                        break;
-                    case "ACTIVE":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        userButton.UserDisplay = $"组呼中";
-                        break;
-                    default:
-                        break;
-                }
-                return;
+                userModel.BackgroundColor = DMUtil.ColorToHex(GatewayLineCheck_UserNoLine);
+                userModel.UserDisplay = userModel.Usernum;
+                SetOneUserButtonTextAndIconColor(userModel);
             }
-
-
-            // 多方通话【√】
-            if (calleeName.Contains("多方通话") || destNum.StartsWith("#16") || cidName.Contains("多方通话"))
+            // 通话中
+            else if (map1 != null)
             {
-                string toButton = "";
-                if (destNum.StartsWith("#16"))
-                {
-                    toButton = cidNum;
-                }
-                else
-                {
-                    toButton = destNum;
-                }
-
-                DefaultUserModel userButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == toButton);
-                if (userButton == null) return;
-                switch (callState)
-                {
-                    case "RINGING":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserRinging);
-                        userButton.UserDisplay = $"多方通话中";
-                        break;
-                    case "ACTIVE":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        userButton.UserDisplay = $"多方通话中";
-                        break;
-                    default:
-                        break;
-                }
-
-                return;
+                userModel.BackgroundColor = DMUtil.ColorToHex(UserCalling);
+                userModel.UserDisplay = DMUtil.SetOneUserButtonDisplayText(map1["cidNum"], map1["dest"]);
+                SetOneUserButtonTextAndIconColor(userModel);
             }
-
-
-            // 全呼【√】
-            if (calleeName.Contains("全呼") || destNum.StartsWith("666888") || cidName.Contains("全呼"))
+            // 振铃中
+            else if (map2 != null)
             {
-                string toButton = "";
-                if (destNum.StartsWith("666888"))
-                {
-                    toButton = cidNum;
-                }
-                else
-                {
-                    toButton = destNum;
-                }
-
-                DefaultUserModel userButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == toButton);
-                if (userButton == null) return;
-                switch (callState)
-                {
-                    case "RINGING":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserRinging);
-                        userButton.UserDisplay = $"全呼中";
-                        break;
-                    case "ACTIVE":
-                        userButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        userButton.UserDisplay = $"全呼中";
-                        break;
-                    default:
-                        break;
-                }
-
-                return;
+                userModel.BackgroundColor = DMUtil.ColorToHex(UserRinging);
+                userModel.UserDisplay = DMUtil.SetOneUserButtonDisplayText(map2["cidNum"], map2["dest"]);
+                SetOneUserButtonTextAndIconColor(userModel);
             }
-
-
-            // 带 * 的功能号码【√】
-            if (destNum.StartsWith("*"))
+            // 在线
+            else if (CommonDB.IsRegSuccess(userModel.Usernum))
             {
-                if (destNum == queryNowNumber)
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = "查询号码中";
-                    }
-                }
-
-                else if (destNum == queryNowTime)
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = "查询时间中";
-                    }
-                }
-
-                else if (destNum == queryNowMissCall)
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = "查询未接来电中";
-                    }
-                }
-
-                else
-                {
-                    DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum);
-                    if (SIPUserButton != null)
-                    {
-                        SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                        SIPUserButton.UserDisplay = $"{cidNum} ➔ {destNum}";
-                    }
-                }
-
-                return;
+                userModel.BackgroundColor = DMUtil.ColorToHex(UserOnline);
+                userModel.UserDisplay = userModel.Usernum;
+                SetOneUserButtonTextAndIconColor(userModel);
             }
-
-
-            // 广播中【√】
-            if (cidNum == DMConfig.ConferenceCallerInfo.OriginationCallerNumber || calleeNum == DMConfig.ConferenceCallerInfo.OriginationCallerNumber)
+            // 默认：离线、没有接电话
+            else
             {
-                DefaultUserModel SIPUserButton = TempAllButtons.FirstOrDefault(temp => temp.Usernum == destNum);
-                if (SIPUserButton != null)
-                {
-                    SIPUserButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                    SIPUserButton.UserDisplay = $"广播中";
-                }
-                return;
-            }
-
-
-            // 普通的 A->B，A点呼B
-            UpdateSingleButtonColor(TempAllButtons.FirstOrDefault(temp => temp.Usernum == cidNum), cidNum, destNum, callState);
-            UpdateSingleButtonColor(TempAllButtons.FirstOrDefault(temp => temp.Usernum == destNum), cidNum, destNum, callState);
-        }
-
-
-        private void UpdateSingleButtonColor(DefaultUserModel userButton, string user1, string user2, string callState)
-        {
-            if (userButton == null) return;
-            switch (callState)
-            {
-                case "RINGING":
-                    userButton.BackgroundColor = DMUtil.ColorToHex(UserRinging);
-                    userButton.UserDisplay = $"{user1} ➔ {user2}";
-                    break;
-                case "ACTIVE":
-                    userButton.BackgroundColor = DMUtil.ColorToHex(UserCalling);
-                    userButton.UserDisplay = $"{user1} ➔ {user2}";
-                    break;
-                default:
-                    break;
+                userModel.BackgroundColor = DMUtil.ColorToHex(UserDefault);
+                userModel.UserDisplay = userModel.Usernum;
+                SetOneUserButtonTextAndIconColor(userModel);
             }
         }
-
 
         #endregion
-
 
 
 

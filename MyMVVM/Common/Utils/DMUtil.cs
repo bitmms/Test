@@ -8,12 +8,53 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using MyMVVM.Common.Model;
 using MyMVVM.Dispatch.Model;
 
 namespace MyMVVM.Common.Utils
 {
     public class DMUtil
     {
+        /// <summary>
+        /// 更新用户通话中时显示的文本内容
+        /// </summary>
+        public static string SetOneUserButtonDisplayText(string fromNumber, string toNumber)
+        {
+            if (toNumber == null || toNumber == "") return fromNumber;
+
+            Dictionary<string, string> dict = CommonDB.GetFunctionNumber();
+            if (toNumber.Equals(dict["number"]))
+            {
+                return "查询本机号码";
+            }
+            else if (toNumber.Equals(dict["date"]))
+            {
+                return "查询当前时间";
+            }
+            else if (toNumber.Equals(dict["ring"]))
+            {
+                return "自振铃中";
+            }
+            else if (toNumber.Equals(dict["misscall"]))
+            {
+                return "查询未接来电";
+            }
+            else if (toNumber.Equals(dict["lastcall"]))
+            {
+                return "查询最后通话";
+            }
+            else if (toNumber.Contains("000000"))
+            {
+                return "通话中";
+            }
+            return $"{fromNumber} -> {toNumber}";
+        }
+
+
+
+
+
+
         // 判断一个号码是否存在 List<GatewayAlarmRecordModel> 列表中
         public static bool IsFailDevice(List<GatewayAlarmRecordModel> list, string number)
         {
