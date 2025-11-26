@@ -14,6 +14,6 @@ namespace MyMVVM.Phone.Utils
         public static LibVLCSharp.Shared.MediaPlayer _mediaPlayer = null;
 
         public static String Port1 = "19358"; // RTMP 服务器的端口号
-        public static String Port2 = "8181";  // 无线通信后台端口，用来控制手机是否推流的
+        public static String Port2 = "8080";  // 无线通信后台端口，用来控制手机是否推流的
     }
 }
