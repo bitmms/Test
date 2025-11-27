@@ -401,9 +401,12 @@ namespace MyMVVM.Broadcast.ViewModel
 
         private void UpdateOnlineUser(object obj)
         {
-            foreach (DefaultUserModel userModel in TempAllButtons)
+            for (int i = 0; i < TempAllButtons.Count; i++)
             {
-                SetOneUserButtonBackgroundState(userModel);
+                if (TempAllButtons.Count >= i + 1 && TempAllButtons[i] != null)
+                {
+                    SetOneUserButtonBackgroundState(TempAllButtons[i]);
+                }
             }
         }
 
