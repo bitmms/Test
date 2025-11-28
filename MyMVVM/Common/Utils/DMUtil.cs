@@ -86,20 +86,65 @@ namespace MyMVVM.Common.Utils
         /// <summary>
         /// 判断字符串是不是点分十进制的IP地址
         /// </summary>
-        public static bool IsIP(string str)
+        public static bool IsIP(string ipString)
         {
-            if (str == null || str == "")
+            // 1. 判空
+            if (ipString == null || ipString.Trim() == "")
             {
                 return false;
             }
-
-            Regex rx = new Regex(@"^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$");
-
-            if (rx.IsMatch(str))
+            // 2. 检查非法字符（仅允许数字和小数点）
+            for (int i = 0; i < ipString.Length; i++)
             {
-                return true;
+                if (!((ipString[i] >= '0' && ipString[i] <= '9') || ipString[i] == '.'))
+                {
+                    return false;
+                }
             }
-            return false;
+            // 3. 拦截首尾为.的情况（提前规避无效分割）
+            if (ipString.StartsWith(".") || ipString.EndsWith("."))
+            {
+                return false;
+            }
+            // 4. 按分隔符 "." 分割，分割后必须恰好4段
+            List<string> segmentList = new List<string>();
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < ipString.Length; i++)
+            {
+                if (ipString[i] != '.')
+                {
+                    stringBuilder.Append(ipString[i]);
+                }
+                else
+                {
+                    segmentList.Add(stringBuilder.ToString());
+                    stringBuilder.Clear();
+                }
+            }
+            segmentList.Add(stringBuilder.ToString());
+            if (segmentList.Count != 4)
+            {
+                return false;
+            }
+            // 5. 遍历每一段验证规则
+            foreach (string segment in segmentList)
+            {
+                // 5.1. 段为空（如192..168.1.1）
+                if (segment.Length == 0) return false;
+                // 5.2. 前导零验证（仅允许单个0，禁止01/001等）
+                if (segment.Length > 1 && segment.StartsWith("0")) return false;
+                // 5.3. 段长度校验（IPv4单段最多3位）
+                if (segment.Length > 3) return false;
+                // 5.4. 转换为整数并验证数值范围（0-255）
+                // 注：此处Parse无异常风险，因已校验段长度<=3且为纯数字
+                int num = int.Parse(segment);
+                if (num < 0 || num > 255)
+                {
+                    return false;
+                }
+            }
+            // 6. 所有规则通过
+            return true;
         }
 
         /// <summary>
