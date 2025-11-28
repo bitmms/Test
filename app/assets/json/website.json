@@ -149,18 +149,61 @@
     ]
   },
   {
+    "category": "中央仓库",
+    "isSelected": false,
+    "isMouseenter": false,
+    "iconSvg": "/svg/nav/central-repository.svg",
+    "children": [
+      {
+        "name": "OpenHarmony 三方库中心仓",
+        "href": "https://ohpm.openharmony.cn",
+        "desc": "鸿蒙开发三方库",
+        "slug": "/redirect/bits-to-repo-harmonyos",
+        "logo": "/svg/website/repo-harmonyos.svg"
+      },
+      {
+        "name": "Nuget",
+        "href": "https://www.nuget.org",
+        "desc": "NuGet 是 .NET 的包管理器",
+        "slug": "/redirect/bits-to-repo-nuget",
+        "logo": "/svg/website/repo-nuget.svg"
+      },
+      {
+        "name": "Maven Repository",
+        "href": "https://mvnrepository.com",
+        "desc": "Java 依赖库下载中心",
+        "slug": "/redirect/bits-to-repo-maven",
+        "logo": "/svg/website/repo-maven.svg"
+      },
+      {
+        "name": "npm",
+        "href": "https://www.npmjs.com",
+        "desc": "JavaScript 代码共享中心",
+        "slug": "/redirect/bits-to-repo-npm",
+        "logo": "/svg/website/repo-npm.svg"
+      },
+      {
+        "name": "pip",
+        "href": "https://pypi.org",
+        "desc": "Python 编程语言的软件仓库",
+        "slug": "/redirect/bits-to-repo-pip",
+        "logo": "/svg/website/repo-pip.svg"
+      },
+      {
+        "name": "Docker",
+        "href": "https://hub.docker.com",
+        "desc": "容器化部署平台",
+        "slug": "/redirect/bits-to-repo-docker",
+        "logo": "/svg/website/repo-docker.svg"
+      }
+    ]
+  },
+  {
     "category": "公共仓库",
     "isSelected": false,
     "isMouseenter": false,
     "iconSvg": "/svg/nav/repository.svg",
     "children": [
-      {
-        "name": "Maven Repository",
-        "href": "https://mvnrepository.com",
-        "desc": "Java 依赖库下载中心",
-        "slug": "/redirect/bits-to-maven-repo",
-        "logo": "/svg/website/maven.svg"
-      },
       {
         "name": "Github",
         "href": "https://github.com",
@@ -174,20 +217,6 @@
         "desc": "国内主流代码托管平台",
         "slug": "/redirect/bits-to-gitee",
         "logo": "/svg/website/gitee.svg"
-      },
-      {
-        "name": "OpenHarmony 三方库中心仓",
-        "href": "https://ohpm.openharmony.cn",
-        "desc": "鸿蒙开发三方库",
-        "slug": "/redirect/bits-to-openharmony-libs",
-        "logo": "/svg/website/harmonyos-repo.svg"
-      },
-      {
-        "name": "Docker",
-        "href": "https://hub.docker.com",
-        "desc": "容器化部署平台",
-        "slug": "/redirect/bits-to-docker",
-        "logo": "/svg/website/docker.svg"
       },
       {
         "name": "Ollama",
