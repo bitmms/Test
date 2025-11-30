@@ -74,6 +74,13 @@
         "desc": "在线格式转换工具",
         "slug": "/redirect/bits-to-file-converter",
         "logo": "/svg/website/file-convert.svg"
+      },
+      {
+        "name": "力扣",
+        "href": "https://leetcode.cn",
+        "desc": "全球求职刷题知名平台",
+        "slug": "/redirect/bits-to-leetcode",
+        "logo": "/svg/website/acm-leetcode.svg"
       }
     ]
   },
@@ -155,6 +162,34 @@
     "iconSvg": "/svg/nav/central-repository.svg",
     "children": [
       {
+        "name": "Github",
+        "href": "https://github.com",
+        "desc": "全球最大开源项目托管平台",
+        "slug": "/redirect/bits-to-github",
+        "logo": "/svg/website/github.svg"
+      },
+      {
+        "name": "Gitee",
+        "href": "https://gitee.com",
+        "desc": "国内主流代码托管平台",
+        "slug": "/redirect/bits-to-gitee",
+        "logo": "/svg/website/gitee.svg"
+      },
+      {
+        "name": "Ollama",
+        "href": "https://ollama.com",
+        "desc": "本地运行大语言模型的工具",
+        "slug": "/redirect/bits-to-ollama",
+        "logo": "/svg/website/ollama.svg"
+      },
+      {
+        "name": "Vercel",
+        "href": "https://vercel.com",
+        "desc": "静态页面托管平台",
+        "slug": "/redirect/bits-to-vercel",
+        "logo": "/svg/website/vercel.svg"
+      },
+      {
         "name": "OpenHarmony 三方库中心仓",
         "href": "https://ohpm.openharmony.cn",
         "desc": "鸿蒙开发三方库",
@@ -195,42 +230,6 @@
         "desc": "容器化部署平台",
         "slug": "/redirect/bits-to-repo-docker",
         "logo": "/svg/website/repo-docker.svg"
-      }
-    ]
-  },
-  {
-    "category": "公共仓库",
-    "isSelected": false,
-    "isMouseenter": false,
-    "iconSvg": "/svg/nav/repository.svg",
-    "children": [
-      {
-        "name": "Github",
-        "href": "https://github.com",
-        "desc": "全球最大开源项目托管平台",
-        "slug": "/redirect/bits-to-github",
-        "logo": "/svg/website/github.svg"
-      },
-      {
-        "name": "Gitee",
-        "href": "https://gitee.com",
-        "desc": "国内主流代码托管平台",
-        "slug": "/redirect/bits-to-gitee",
-        "logo": "/svg/website/gitee.svg"
-      },
-      {
-        "name": "Ollama",
-        "href": "https://ollama.com",
-        "desc": "本地运行大语言模型的工具",
-        "slug": "/redirect/bits-to-ollama",
-        "logo": "/svg/website/ollama.svg"
-      },
-      {
-        "name": "Vercel",
-        "href": "https://vercel.com",
-        "desc": "静态页面托管平台",
-        "slug": "/redirect/bits-to-vercel",
-        "logo": "/svg/website/vercel.svg"
       }
     ]
   },
