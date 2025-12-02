@@ -76,6 +76,13 @@
         "logo": "/svg/website/file-convert.svg"
       },
       {
+        "name": "QQ 邮箱",
+        "href": "https://wx.mail.qq.com",
+        "desc": "QQ 邮箱",
+        "slug": "/redirect/bits-to-qq-email",
+        "logo": "/svg/website/qq-email.svg"
+      },
+      {
         "name": "力扣",
         "href": "https://leetcode.cn",
         "desc": "全球求职刷题知名平台",
