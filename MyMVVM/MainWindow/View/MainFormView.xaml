@@ -145,12 +145,15 @@
             <Grid Grid.Row="1">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="127*" />
-                    <ColumnDefinition Width="127*" />
-                    <ColumnDefinition Width="127*" />
-                    <ColumnDefinition Width="127*" />
-                    <ColumnDefinition Width="150*" />
-                    <ColumnDefinition Width="300*" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="125*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="146*" />
                     <ColumnDefinition Width="340*" />
                     <ColumnDefinition Width="140*" />
                     <ColumnDefinition Width="140*" />
@@ -269,36 +272,55 @@
                             Style="{DynamicResource DM-Function-Button}">
                             <TextBlock Style="{DynamicResource DM-Broadcast-Text}" Text="智能识别" />
                         </Button>
-                        <TextBlock
-                            x:Name="EmotionAlarmNumber"
-                            FontSize="18"
-                            FontWeight="Black">
-                            <TextBlock.Foreground>
-                                <SolidColorBrush x:Name="TextColorBrush1" Color="Red" />
-                            </TextBlock.Foreground>
-                            <TextBlock.Triggers>
-                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                                    <BeginStoryboard>
-                                        <Storyboard RepeatBehavior="Forever">
-                                            <ColorAnimationUsingKeyFrames
-                                                Storyboard.TargetName="TextColorBrush1"
-                                                Storyboard.TargetProperty="Color"
-                                                Duration="0:0:0.8">
-                                                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="Red" />
-                                                <DiscreteColorKeyFrame KeyTime="0:0:0.4" Value="Transparent" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </TextBlock.Triggers>
-                        </TextBlock>
                     </WrapPanel>
                 </Grid>
 
-                <Grid Grid.Column="5" />
+                <Grid Grid.Column="5">
+                    <TextBlock
+                        x:Name="EmotionAlarmNumber"
+                        FontSize="18"
+                        FontWeight="Black"
+                        Foreground="Red" />
+                </Grid>
+
+                <Grid Grid.Column="6">
+                    <WrapPanel VerticalAlignment="Bottom">
+                        <TextBlock>
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="10"
+                                    Direction="315"
+                                    ShadowDepth="5"
+                                    Color="Black" />
+                            </TextBlock.Effect>
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Margin="10,5,0,0"
+                                Kind="HeadSnowflake"
+                                Style="{DynamicResource DM-MissCall-Icon}" />
+                        </TextBlock>
+                        <Button
+                            VerticalAlignment="Bottom"
+                            Click="Button_Click_gateway_alarm"
+                            Style="{DynamicResource DM-Function-Button}">
+                            <TextBlock Style="{DynamicResource DM-MissCall-Text}" Text="网关报警" />
+                        </Button>
+                    </WrapPanel>
+                </Grid>
+
+                <Grid Grid.Column="7">
+                    <TextBlock
+                        x:Name="GatewayAlarmNumber"
+                        FontSize="18"
+                        FontWeight="Black"
+                        Foreground="Red" />
+                </Grid>
+
+                <Grid Grid.Column="8" />
 
                 <Border
-                    Grid.Column="6"
+                    Grid.Column="9"
                     Margin="10,0,10,0"
                     BorderThickness="3"
                     CornerRadius="3"
@@ -330,7 +352,7 @@
                     </Viewbox>
                 </Border>
 
-                <Border Grid.Column="7">
+                <Border Grid.Column="10">
                     <Button
                         x:Name="people"
                         Height="Auto"
@@ -340,7 +362,7 @@
                         Style="{DynamicResource DM-People}" />
                 </Border>
 
-                <Grid Grid.Column="8">
+                <Grid Grid.Column="11">
                     <Button
                         x:Name="HostName"
                         Height="Auto"

@@ -1433,7 +1433,7 @@ namespace MyMVVM.Dispatch.ViewModel
         /// </summary>
         private void LoadGatewayAlarmRecord(object e)
         {
-            _GatewayAlarmRecordList = DispatchDB.GetGatewayAlarmRecorList();
+            _GatewayAlarmRecordList = CommonDB.GetGatewayAlarmRecorList();
             GatewayAlarmRecord = new ObservableCollection<GatewayAlarmRecordModel>(_GatewayAlarmRecordList);
         }
 

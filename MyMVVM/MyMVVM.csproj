@@ -354,6 +354,10 @@
     <Compile Include="Emotion\View\UpdateEmotionKeyWordView.xaml.cs">
       <DependentUpon>UpdateEmotionKeyWordView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gateway\ViewModel\GatewayAlarmViewModel.cs" />
+    <Compile Include="Gateway\View\GatewayView.xaml.cs">
+      <DependentUpon>GatewayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login\DB\LoginDB.cs" />
     <Compile Include="Login\ViewModel\LoginViewModel.cs" />
     <Compile Include="Login\View\LoginView.xaml.cs">
@@ -856,6 +860,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gateway\View\GatewayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login\View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1135,6 +1143,7 @@
       <Name>ElementUI.WPF</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

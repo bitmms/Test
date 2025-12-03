@@ -30,6 +30,7 @@ using MyMVVM.Dispatch.View;
 using MyMVVM.Dispatch.ViewModel;
 using MyMVVM.Emotion;
 using MyMVVM.Emotion.View;
+using MyMVVM.Gateway.View;
 using MyMVVM.Login.ViewModel;
 using MyMVVM.MainWindow.Model;
 using MyMVVM.MainWindow.Utils;
@@ -258,14 +259,11 @@ namespace MyMVVM.MainWindow.View
                 TimeTextBlock1.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 TimeTextBlock2.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 int count = EmotionAlarmDB.getCount();
-                if (count != 0)
-                {
-                    EmotionAlarmNumber.Text = "(" + EmotionAlarmDB.getCount() + ")";
-                }
-                else
-                {
-                    EmotionAlarmNumber.Text = "";
-                }
+                int count2 = CommonDB.GetGatewayAlarmCount();
+
+                EmotionAlarmNumber.Text = count > 0 ? $" {count}" : "";
+                GatewayAlarmNumber.Text = count2 > 0 ? $" {count2}" : "";
+
                 string nowHostName = CommonDB.GetNowHostName();
                 HostName.Content = nowHostName;
             });
@@ -447,6 +445,14 @@ namespace MyMVVM.MainWindow.View
         private void Button_Click_emotion_alarm(object sender, RoutedEventArgs e)
         {
             var view = new EmotionALarmView();
+            view.ShowDialog();
+        }
+
+
+        // 网关报警
+        private void Button_Click_gateway_alarm(object sender, RoutedEventArgs e)
+        {
+            var view = new GatewayView();
             view.ShowDialog();
         }
 

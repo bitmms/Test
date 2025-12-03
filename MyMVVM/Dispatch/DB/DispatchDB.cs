@@ -16,58 +16,6 @@ namespace MyMVVM.Dispatch
 {
     public class DispatchDB
     {
-
-
-        /// <summary>
-        /// 通话记录
-        /// </summary>
-        public static List<GatewayAlarmRecordModel> GetGatewayAlarmRecorList()
-        {
-            List<GatewayAlarmRecordModel> list = new List<GatewayAlarmRecordModel>();
-            string query = "select id, telno, line_state, line_length, termination_type from dm_gateway_line_diagnosis;";
-            DataTable dt = DB.ExecuteQuery(query);
-            foreach (DataRow row in dt.Rows)
-            {
-                var item = new GatewayAlarmRecordModel
-                {
-                    id = int.Parse(row["id"].ToString()),
-                    telno = row["telno"].ToString(),
-                    lineState = row["line_state"].ToString(),
-                    lineLength = row["line_length"].ToString(),
-                    terminationType = row["termination_type"].ToString(),
-                    type = 2,
-                };
-                // 线路长度
-                if (item.lineLength == null || item.lineLength == "") item.lineLength = "";
-                if ("0 m".Equals(item.lineLength) || item.lineLength == "") item.lineLength = "";
-                // 线路故障
-                if (item.lineState.Contains("AB all break off or no phone connceted"))
-                {
-                    item.desc = "未接电话";
-                    item.type = 1;
-                }
-                else if (item.terminationType.Contains("AB short"))
-                {
-                    item.desc = "线路短接";
-                }
-                else if (item.lineState.Contains("fault to ground"))
-                {
-                    item.desc = "接地故障";
-                }
-                else
-                {
-                    item.desc = "未知故障";
-                }
-                if (item.lineLength != "") item.desc = $"{item.desc} {item.lineLength}";
-                list.Add(item);
-            }
-            list.Sort((p1, p2) =>
-            {
-                return p1.telno.CompareTo(p2.telno);
-            });
-            return list;
-        }
-
         /// <summary>
         /// 通话记录
         /// </summary>

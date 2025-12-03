@@ -207,11 +207,11 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="0.02*" />
+                <RowDefinition Height="0.1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="0.02*" />
+                <RowDefinition Height="0.1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="0.02*" />
+                <RowDefinition Height="0.1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
@@ -401,72 +401,8 @@
             </Grid>
 
             <Grid Grid.Row="6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*" />
-                    <RowDefinition Height="0.8*" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Style="{DynamicResource CustomBorderStyle}">
-                    <eui:Button
-                        ButtonBackgroundColor="Transparent"
-                        ButtonBorderColor="Transparent"
-                        ButtonIconAndTextSpace="2"
-                        ButtonIconCode="&#xe60e;"
-                        ButtonIsAutoSize="True"
-                        ButtonText="网关报警"
-                        ButtonTextColor="#2E8B57"
-                        ButtonTextSize="18"
-                        ButtonTextWeight="Black"
-                        IconColor="#2E8B57"
-                        IsEnabled="False"
-                        MouseEnterButtonBackgroundColor="Transparent"
-                        MouseEnterButtonBorderColor="Transparent"
-                        MouseEnterButtonTextColor="#2E8B57"
-                        MouseEnterIconColor="#2E8B57"
-                        NoButtonIconColor="#2E8B57"
-                        Style="{StaticResource LeftIconAndRightTextButton}" />
-                </Border>
-                <Border Grid.Row="1" Style="{DynamicResource CustomBorderStyle2}">
-                    <DataGrid
-                        AutoGenerateColumns="False"
-                        Background="Transparent"
-                        HeadersVisibility="None"
-                        IsReadOnly="True"
-                        ItemsSource="{Binding GatewayAlarmRecord}">
-
-                        <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="Margin" Value="0,8,0,0" />
-                            </Style>
-                        </DataGrid.RowStyle>
-                        <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="BorderThickness" Value="0" />
-                                <Setter Property="FontSize" Value="16" />
-                            </Style>
-                        </DataGrid.CellStyle>
-
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn Width="1*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Center" Text="{Binding telno}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="2*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            HorizontalAlignment="Center"
-                                            Foreground="#f36371"
-                                            Text="{Binding desc}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                <Border>
+                    <Image Width="200" Source="/Common/Images/MA.png" />
                 </Border>
             </Grid>
 
