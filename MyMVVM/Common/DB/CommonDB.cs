@@ -522,7 +522,12 @@ namespace MyMVVM.Common
 
         public static bool QueryNumberIsHasMonitor(string number)
         {
-            string sql = $"select count(*) as count from dm_user where usernum = '{number}' and camera_ip IS NOT NULL and camera_status != '0';";
+            string sql = $"select count(*) as count from dm_user where " +
+                $"usernum = '{number}' and " +
+                $"camera_ip IS NOT NULL and " +
+                $"camera_ip != '' and " +
+                $"camera_status IS NOT NULL and " +
+                $"camera_status != '';";
             DataTable dispatch_number_table = DB.ExecuteQuery(sql);
             return dispatch_number_table.Rows[0]["count"].ToString() != "0";
         }
