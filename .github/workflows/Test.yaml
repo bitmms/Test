@@ -31,7 +31,7 @@ jobs:
           nuget-version: 'latest'
 
       - name: 还原NuGet程序包
-        run: nuget restore .\MyMVVM\MyMVVM.csproj
+        run: nuget restore .\MyMVVM.sln
 
       - name: 构建项目
         run: MSBuild .\MyMVVM\MyMVVM.csproj /t:Build /p:Configuration=Debug /p:Platform=x64
