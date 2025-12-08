@@ -42,7 +42,7 @@ jobs:
 
       - name: 压缩打包产物
         shell: powershell
-        run: Compress-Archive -Path ".\MyMVVM\bin\x64\Debug\*" -DestinationPath ".\MyMVVM_Debug.zip" -Force
+        run: Compress-Archive -Path ".\MyMVVM\bin\x64\Debug\*" -DestinationPath ".\Dispatch-WPF-X64.zip" -Force
 
       - name: 列出构建、打包产物
         shell: powershell
@@ -53,6 +53,6 @@ jobs:
       - name: 上传打包产物（关键：方便下载）
         uses: actions/upload-artifact@v4
         with:
-          name: WPF程序包-Debug-x64
-          path: .\MyMVVM_Debug.zip # 指向压缩包路径
+          name: Dispatch-WPF-X64
+          path: .\Dispatch-WPF-X64.zip # 指向压缩包路径
           retention-days: 30 # 产物保留30天，可按需调整
