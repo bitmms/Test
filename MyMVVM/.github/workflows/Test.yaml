@@ -1,0 +1,50 @@
+# 工作流名称
+name: 编译打包 WPF 程序
+
+# 触发条件：push 到指定分支
+on:
+  push:
+    branches: [ master ]
+
+# 任务定义
+jobs:
+  build:
+    name: 编译打包 WPF 程序
+    runs-on: windows-latest
+    steps:
+
+      - name: 拉取项目代码
+        uses: actions/checkout@v4
+
+      - name: 定位 MSBuild 工具
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
+
+      - name: 清理输出目录
+        shell: powershell
+        run: Remove-Item -Path ".\MyMVVM\bin\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+      - name: 构建项目
+        run: MSBuild .\MyMVVM\MyMVVM.csproj /t:Build /p:Configuration=Debug /p:Platform=x64
+
+      - name: 复制 DLL
+        shell: powershell
+        run: Copy-Item -Path ".\MyMVVM\DLL\*" -Destination ".\MyMVVM\bin\x64\Debug\" -Recurse -Force
+
+      - name: 压缩打包产物
+        shell: powershell
+        run: Compress-Archive -Path ".\MyMVVM\bin\x64\Debug\*" -DestinationPath ".\MyMVVM_Debug.zip" -Force
+
+      - name: 列出构建、打包产物
+        shell: powershell
+        run: |
+          ls -l ./
+          ls -l .\MyMVVM\bin\x64\Debug\
+
+      - name: 上传打包产物（关键：方便下载）
+        uses: actions/upload-artifact@v4
+        with:
+          name: WPF程序包-Debug-x64
+          path: .\MyMVVM_Debug_x64.zip # 指向压缩包路径
+          retention-days: 30 # 产物保留30天，可按需调整
