@@ -1137,12 +1137,6 @@
   <ItemGroup>
     <Resource Include="Speak\Image\speak-play-video-button.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ElementUI.WPF\ElementUI.WPF.csproj">
-      <Project>{adb2becb-ec70-4b9b-b82a-63592b15840c}</Project>
-      <Name>ElementUI.WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0-ci354\build\MaterialDesignThemes.targets')" />

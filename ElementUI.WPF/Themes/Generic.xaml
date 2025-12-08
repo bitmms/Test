@@ -1,8 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/ElementUI.WPF;component/Component/Icon/IconStyle.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/ElementUI.WPF;component/Component/Button/ButtonStyle.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
-</ResourceDictionary>
