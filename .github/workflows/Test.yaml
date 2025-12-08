@@ -7,6 +7,13 @@ on:
     tags: [ 'v*' ]
   workflow_dispatch:
 
+# 环境变量定义（统一管理路径，便于维护）
+env:
+  PROJECT_NAME: MyMVVM
+  BUILD_CONFIG: Release
+  TAG_NAME: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || github.event.inputs.manual_tag }}
+  ZIP_NAME: Dispatch-win-x64--${{ env.TAG_NAME }}.zip
+
 # 任务定义
 jobs:
   build:
