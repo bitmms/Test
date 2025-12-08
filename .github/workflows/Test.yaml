@@ -25,8 +25,13 @@ jobs:
         shell: powershell
         run: Remove-Item -Path ".\MyMVVM\bin\*" -Recurse -Force -ErrorAction SilentlyContinue
 
+      - name: 安装NuGet
+        uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: 'latest'
+
       - name: 还原NuGet程序包
-        run: MSBuild .\MyMVVM\MyMVVM.csproj /t:Restore /p:Configuration=Debug /p:Platform=x64
+        run: nuget restore .\MyMVVM\MyMVVM.csproj
 
       - name: 构建项目
         run: MSBuild .\MyMVVM\MyMVVM.csproj /t:Build /p:Configuration=Debug /p:Platform=x64
