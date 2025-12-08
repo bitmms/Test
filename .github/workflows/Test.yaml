@@ -54,5 +54,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WPF程序包-Debug-x64
-          path: .\MyMVVM_Debug_x64.zip # 指向压缩包路径
+          path: .\MyMVVM_Debug.zip # 指向压缩包路径
           retention-days: 30 # 产物保留30天，可按需调整
