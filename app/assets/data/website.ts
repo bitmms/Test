@@ -1186,7 +1186,7 @@ const searchConfigData = {
 const redirectConfigData = JSON.parse(JSON.stringify(websiteConfigData));
 for (const categoryItem of redirectConfigData) {
     for (const item of categoryItem.children) {
-        item.logo = '/' + item.logo;
+        item.logo = '/Test/' + item.logo;
     }
 }
 
