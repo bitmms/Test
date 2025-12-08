@@ -39,7 +39,7 @@ jobs:
 
       - name: 复制 DLL
         shell: powershell
-        run: Copy-Item -Path "./MyMVVM/DLL/*" -Destination "./MyMVVM/bin/x64/Debug/" -Recurse -Force
+        run: Copy-Item -Path "./MyMVVM/DLL/*" -Destination "./MyMVVM/bin/x64/Dispatch-Debug-win-x64/" -Recurse -Force
 
       - name: 压缩打包产物
         shell: powershell
@@ -55,7 +55,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./Dispatch-Debug-win-x64.zip
+            ./MyMVVM/bin/x64/Dispatch-Debug-win-x64
           body: "调度系统程序包（X64版本）"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
