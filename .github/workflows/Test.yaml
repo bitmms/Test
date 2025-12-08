@@ -61,6 +61,11 @@ jobs:
         with:
           files: |
             ./${{ env.ZIP_NAME }}
-          body: "调度系统程序包（X64版本）"
+          body: |
+            "调度系统程序包（X64版本）"
+            - 版本 Tag: ${{ env.TAG_NAME }}
+            - 构建时间: ${{ github.run_at }}
+            - 提交哈希: ${{ github.sha }}
+            - 程序集版本: ${{ env.TAG_NAME -replace '^v', '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
