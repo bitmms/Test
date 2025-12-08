@@ -1,10 +1,6 @@
 # 工作流名称
 name: 编译打包 WPF 程序
 
-env:
-  BUILD_CONFIG: Release     # 编译配置（Debug、Release）
-  PROJE_NAME: MyMVVM        # 项目的名称
-
 # 触发条件：push 到指定分支
 on:
   create:
@@ -28,7 +24,7 @@ jobs:
 
       - name: 清理输出目录
         shell: powershell
-        run: Remove-Item -Path "./${{ PROJE_NAME }}/bin/*" -Recurse -Force -ErrorAction SilentlyContinue
+        run: Remove-Item -Path "./MyMVVM/bin/*" -Recurse -Force -ErrorAction SilentlyContinue
 
       - name: 安装NuGet
         uses: NuGet/setup-nuget@v2
@@ -36,18 +32,18 @@ jobs:
           nuget-version: 'latest'
 
       - name: 还原NuGet程序包
-        run: nuget restore ./${{ PROJE_NAME }}.sln
+        run: nuget restore ./MyMVVM.sln
 
       - name: 构建项目
-        run: MSBuild ./${{ PROJE_NAME }}/${{ PROJE_NAME }}.csproj /t:${{ BUILD_CONFIG }} /p:Configuration=${{ BUILD_CONFIG }} /p:Platform=x64
+        run: MSBuild ./MyMVVM/MyMVVM.csproj /t:Build /p:Configuration=Debug /p:Platform=x64
 
       - name: 复制 DLL
         shell: powershell
-        run: Copy-Item -Path "./${{ PROJE_NAME }}/DLL/*" -Destination "./${{ PROJE_NAME }}/bin/x64/Dispatch-${{ BUILD_CONFIG }}-win-x64/" -Recurse -Force
+        run: Copy-Item -Path "./MyMVVM/DLL/*" -Destination "./MyMVVM/bin/x64/Debug/" -Recurse -Force
 
       - name: 压缩打包产物
         shell: powershell
-        run: Compress-Archive -Path "./${{ PROJE_NAME }}/bin/x64/${{ BUILD_CONFIG }}/*" -DestinationPath "./Dispatch-${{ BUILD_CONFIG }}-win-x64.zip" -Force
+        run: Compress-Archive -Path "./MyMVVM/bin/x64/Debug/*" -DestinationPath "./Dispatch-Debug-win-x64.zip" -Force
 
       - name: 列出构建、打包产物
         shell: powershell
@@ -59,7 +55,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./Dispatch-${{ BUILD_CONFIG }}-win-x64.zip
+            ./Dispatch-Debug-win-x64.zip
           body: "调度系统程序包（X64版本）"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
