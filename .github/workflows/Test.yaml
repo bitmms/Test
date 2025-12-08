@@ -3,7 +3,7 @@ name: 编译打包 WPF 程序
 
 env:
   BUILD_CONFIG: Release     # 编译配置（Debug、Release）
-  PROJE_NAME: MyMVVM        # 项目名称
+  PROJE_NAME: MyMVVM        # 项目的名称
 
 # 触发条件：push 到指定分支
 on:
