@@ -1,0 +1,47 @@
+name: 构建并部署项目到 GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # 任务一：构建项目
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: 拉取项目到 Github 服务器
+        uses: actions/checkout@v4
+
+      - name: 设置 Node 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 安装 npm 包
+        run: npm ci
+
+      # 【"npm run build" or "npm run generate" or other】
+      - name: 执行构建命令
+        run: npm run generate
+
+      # 上传构建产物
+      - name: 上传构建产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  # 任务二：部署任务【依赖 build 任务的完成】
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write      # 允许操作GitHub Pages
+      id-token: write   # 身份验证需要
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4 # 将构建后的产物上传到 Github Pages 里面
+        id: deployment

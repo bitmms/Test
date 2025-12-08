@@ -5,6 +5,6 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint'],
   css: ['@/assets/css/global.css'],
   app: {
-    baseURL: '/BaseUrl/',
+    baseURL: '/Test/',
   },
 })
