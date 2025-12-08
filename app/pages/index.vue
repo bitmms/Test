@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {computed} from "vue";
-import webSiteJsonData from '~/assets/json/website.json'
-import searchJsonData from '~/assets/json/search.json'
+import {websiteConfigData, searchConfigData} from '~/assets/data/website'
 import type Category from "~/assets/ts/Category";
 import type SearchVO from "~/assets/ts/SearchVO";
 import type SearchEngine from "~/assets/ts/SearchEngine";
@@ -12,8 +11,8 @@ const mainBoxRef: Ref<HTMLElement | null> = ref(null)       // 主区域 dom 元
 const searchInputDom: Ref<HTMLElement | null> = ref(null)   // 主区域 dom 元素，便于处理滚动事件
 
 // ======= State =======
-const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
-const searchData: Ref<SearchVO> = ref(searchJsonData)       // json 数据
+const websiteData: Ref<Category[]> = ref(websiteConfigData) // json 数据
+const searchData: Ref<SearchVO> = ref(searchConfigData)     // json 数据
 const searchContent: Ref<string> = ref('')                  // 用户当前等待搜索的字符串
 const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
 const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮

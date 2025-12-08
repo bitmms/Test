@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useRoute} from 'vue-router';
-import webSiteJsonData from '~/assets/json/website.json'
+import {redirectConfigData} from '~/assets/data/website'
 import type WebSite from "~/assets/ts/WebSite";
 import type Category from "~/assets/ts/Category";
 
@@ -10,7 +10,7 @@ const route = useRoute();
 const slug = route.params.slug as string; // 短链接，仅获取最后一个 "/" 符号后面的链接
 
 // ======= State =======
-const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
+const websiteData: Ref<Category[]> = ref(redirectConfigData)   // json 数据
 
 // 从 dataJson 中找到符合要求的 WebSite 对象
 const targetWebSiteInfo = computed(() => {
